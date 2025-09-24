@@ -1,6 +1,6 @@
-package ejercicioPrueba.vista.principal;
+package ejercicioPrueba.vista;
 
-import ejercicioPrueba.controlador.principal.MenuPrincipal;
+import ejercicioPrueba.vista.principal.MenuPrincipal;
 
 public class Main {
 	public static void main(String[] args) {

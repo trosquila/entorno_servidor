@@ -1,4 +1,4 @@
-package ejercicioPrueba.controlador.principal;
+package ejercicioPrueba.vista.principal;
 
 import ejercicioPrueba.utils.terminalUtils.TerminalUtils;
 
