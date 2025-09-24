@@ -1,17 +1,15 @@
-package ejercicioPrueba.vista.principal;
+package ejercicioPrueba.vista.tipo;
 
-import ejercicioPrueba.controlador.principal.IPrincipalController;
-import ejercicioPrueba.controlador.principal.PrincipalController;
+import ejercicioPrueba.controlador.vistaControlador.ITipoController;
+import ejercicioPrueba.controlador.vistaControlador.TipoController;
 import ejercicioPrueba.utils.terminalUtils.TerminalUtils;
 
-public class MenuPrincipal {
-	IPrincipalController iPrincipal;
-	
-	public MenuPrincipal() {
-		this.iPrincipal = new PrincipalController();
+public class VistaTipo {
+	ITipoController iTipoController;
+	public VistaTipo() {
+		this.iTipoController = new TipoController();
 	}
-	
-	public void menu() {
+	public void menuTipo() {
 		boolean control = true;
 		do {
 			System.out.println("Menú principal");
@@ -25,7 +23,7 @@ public class MenuPrincipal {
 			try {
 				int choose= TerminalUtils.inputInt();
 				if(choose > 0 && choose < 6) {
-					iPrincipal.controlMenu(choose);
+					iTipoController.controlMenu(choose);
 				}else {
 					System.out.println("Valor introducido no válido");
 				}
@@ -33,5 +31,7 @@ public class MenuPrincipal {
 				System.out.println("Valor introducido no válido");
 			}
 		}while(control == true);
+		
 	}
+
 }
