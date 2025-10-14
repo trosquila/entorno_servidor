@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Servlet implementation class NumAleatorio
@@ -27,8 +28,14 @@ public class NumAleatorio extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html");
+		Double numAleatorio = Math.random();
+		PrintWriter out = response.getWriter();
+		out.print("<html><body>");
+		out.print("<h3>Aqui tienes tu número: "+numAleatorio+"</h3>");
+		out.print("</body></html>");
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
