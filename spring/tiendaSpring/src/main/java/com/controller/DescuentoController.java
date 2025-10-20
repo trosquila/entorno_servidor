@@ -9,7 +9,7 @@ public class DescuentoController {
 	@RequestMapping(value="/descuentoController")
 	public String descuentoController(Model model){
 		HoraYdescuento gestor = new HoraYdescuento();
-		String texto = gestor.horaActual()+" y el descuento es del "+gestor.porcentaje()+"%";
+		String texto = gestor.horaActual();
 		model.addAttribute("texto", texto);
 	return "descuentoView";
 	}
