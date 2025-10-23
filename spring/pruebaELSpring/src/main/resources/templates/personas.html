@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>Datos de la Persona</title>
+</head>
+<body>
+	<p>
+		Hola, la persona se llama <span th:text="${persona.nombre}">nombre</span>
+		y tiene <span th:text="${persona.edad}">edad</span> años.
+	</p>
+	<p>
+		El equipo en la posición 1 del array de equipos es: <span
+			th:text="${listaEquipos[1]}">equipo</span>
+	</p>
+	<p>
+		La persona en la posición 0 del array se llama <span
+			th:text="${listaPersonas[0].nombre}">nombre</span>
+	</p>
+	<hr>
+	<h3>Operaciones con Thymeleaf</h3>
+	<p>
+		La suma de edades de la persona en la posición cero y la persona en la
+		posición 1 de la lista es: <span th:text="${listaPersonas[0].edad}">edad1</span>
+		+ <span th:text="${listaPersonas[1].edad}">edad2</span> = <span
+			th:text="${listaPersonas[0].edad +
+listaPersonas[1].edad}"></span>
+	</p>
+	<p>
+		La persona en la posición cero de la lista es mayor que la persona en
+		la posición 1: <span
+			th:text="${listaPersonas[0].edad >
+listaPersonas[1].edad}"></span>
+	</p>
+	<p>
+		La persona en la posición cero de la lista es mayor que la persona en
+		la posición 1 y mayor que la persona en la posición 2: <span
+			th:text="${listaPersonas[0].edad > listaPersonas[1].edad
+&& listaPersonas[0].edad > listaPersonas[2].edad}"></span>
+	</p>
+</body>
+</html>
