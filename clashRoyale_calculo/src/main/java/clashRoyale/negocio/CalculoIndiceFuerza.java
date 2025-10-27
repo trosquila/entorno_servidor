@@ -12,6 +12,7 @@ public class CalculoIndiceFuerza {
 		return ((carta.getDamange() * carta.getHp())/carta.getCoste());
 		
 	}
+	
 	public Carta buscarCarta(String nombre) throws IOException {
 		RecogerDatos recogerCarta = new RecogerDatos();
 		Carta carta = recogerCarta.cantidadCartas(nombre);
