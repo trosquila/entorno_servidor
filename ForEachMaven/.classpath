@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="ForEachMaven/src/main/java"/>
+	<classpathentry kind="lib" path="ForEachMaven/target/ForEachMaven/WEB-INF/lib/jakarta.el-api-5.0.0.jar"/>
+	<classpathentry kind="lib" path="ForEachMaven/target/ForEachMaven/WEB-INF/lib/jakarta.servlet.jsp.jstl-3.0.1.jar"/>
+	<classpathentry kind="lib" path="ForEachMaven/target/ForEachMaven/WEB-INF/lib/jakarta.servlet.jsp.jstl-api-3.0.0.jar"/>
+	<classpathentry kind="lib" path="ForEachMaven/target/ForEachMaven/WEB-INF/lib/jakarta.servlet-api-6.0.0.jar"/>
+	<classpathentry kind="output" path="ForEachMaven/target/ForEachMaven/WEB-INF/classes"/>
+</classpath>

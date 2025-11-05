@@ -1,0 +1,4 @@
+lobo
+vidente
+campesino
+cazador
