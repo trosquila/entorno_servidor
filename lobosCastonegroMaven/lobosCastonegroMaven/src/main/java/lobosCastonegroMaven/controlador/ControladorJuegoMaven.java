@@ -26,7 +26,7 @@ public class ControladorJuegoMaven extends HttpServlet {
      */
     public ControladorJuegoMaven() {
         super();
-        // TODO Auto-generated constructor stub
+        // TODO Auto-generated constructor stub	
     }
 
 	/**
@@ -35,20 +35,27 @@ public class ControladorJuegoMaven extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		NegocioCastoNegro negocio = new NegocioCastoNegro();
 		List <Jugadores> listaJugadores = negocio.buscarJugadores();
-		System.out.println(listaJugadores);
 		request.setAttribute("listaJugadores", listaJugadores);
 
-	    RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/programa.jsp");
 	    dispatcher.forward(request, response);
-
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		NegocioCastoNegro negocio = new NegocioCastoNegro();
+		List <Jugadores> listaJugadores = negocio.buscarJugadores();
+		request.setAttribute("listaJugadores", listaJugadores);
+		
+		
+		 String nombre = request.getParameter("nombre");
+		 String rolAleatorio = negocio.obtenerRol();
+		 request.setAttribute("nombre", nombre);
+		 request.setAttribute("rolAleatorio", rolAleatorio);
+		 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/programa.jsp");
+		    dispatcher.forward(request, response);
 	}
 
 }

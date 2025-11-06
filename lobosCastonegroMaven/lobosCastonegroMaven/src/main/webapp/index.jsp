@@ -6,10 +6,6 @@ pageEncoding="UTF-8"%>
 <html>
 <body>
 <h2><%= "Hello World!" %></h2>
-<select name='provincias'>
-<c:forEach items="${listaJugadores}" var="juguadores">
-<option value="${juguadores.id}">${juguadores.nombre}</option>
-</c:forEach>
-</select>
+	<a href="./ControladorJuegoMaven">Entrar</a>
 </body>
 </html>

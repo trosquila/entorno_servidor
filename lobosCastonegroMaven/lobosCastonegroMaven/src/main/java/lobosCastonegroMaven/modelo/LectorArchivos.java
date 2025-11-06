@@ -22,10 +22,10 @@ public class LectorArchivos {
 			String[] arrayNombres = linea.split("-");
 			Jugadores jugador = new Jugadores(Integer.parseInt(arrayNombres[0]), arrayNombres[1]);
 			listaJugadores.add(jugador);
-			return listaJugadores;
+			
 		}
 		buffer.close();
-		return null; 
+		return listaJugadores; 
 		
 	}
 	
@@ -40,10 +40,9 @@ public class LectorArchivos {
 		List <String> listaRoles = new ArrayList<String>();
 		while((linea = buffer.readLine()) != null) {
 			listaRoles.add(linea);
-			return listaRoles;
 		}
 		buffer.close();
-		return null; 
+		return listaRoles; 
 		
 	}
 }

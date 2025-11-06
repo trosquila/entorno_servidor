@@ -13,4 +13,13 @@ public class NegocioCastoNegro {
 		List <Jugadores> listaJugadores = modelo.sacarJugadores();
 		return listaJugadores;
 	}
+
+	public String obtenerRol() throws IOException {
+		LectorArchivos modelo = new LectorArchivos();
+		List<String> listaRoles =  modelo.Roles();
+		int numero = (int) (Math.random() * listaRoles.size());
+		System.out.println(numero);
+		System.out.println(listaRoles);
+		return listaRoles.get(numero);
+	}
 }
