@@ -49,7 +49,6 @@ public class ControladorJuegoMaven extends HttpServlet {
 		List <Jugadores> listaJugadores = negocio.buscarJugadores();
 		request.setAttribute("listaJugadores", listaJugadores);
 		
-		
 		 String nombre = request.getParameter("nombre");
 		 String rolAleatorio = negocio.obtenerRol();
 		 request.setAttribute("nombre", nombre);

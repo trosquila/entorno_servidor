@@ -24,7 +24,5 @@ public class Jugadores {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
-	
+
 }

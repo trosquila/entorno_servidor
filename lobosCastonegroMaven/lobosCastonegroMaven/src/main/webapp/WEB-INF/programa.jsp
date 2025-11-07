@@ -8,23 +8,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-	<form action="ControladorJuegoMaven" method="POST">
-		<p>Selecciona jugador para asignar un rol</p>
-		<select name='nombre'>
-		<c:forEach items="${listaJugadores}" var="jugadores" >
-			<option value="${jugadores.nombre}">${jugadores.nombre}</option>
-		</c:forEach>
-		</select>
-		<input type="submit" value="asignar">
-	</form>
-	<c:if test="${not empty rolAleatorio}"> 
-		<h3>Jugador ${nombre}</h3>
-		<p>Rol asignado ${rolAleatorio}</p>
-		
-		<c:if test="${rolAleatorio == 'lobo'}"> 
-			<p style="color:red;">¡Cuidado es lobo!</p>
+	<body>
+		<form action="ControladorJuegoMaven" method="POST">
+			<p>Selecciona jugador para asignar un rol</p>
+			<select name='nombre'>
+			<c:forEach items="${listaJugadores}" var="jugadores" >
+				<option value="${jugadores.nombre}">${jugadores.nombre}</option>
+			</c:forEach>
+			</select>
+			<input type="submit" value="asignar">
+		</form>
+		<c:if test="${not empty rolAleatorio}"> 
+			<h3>Jugador ${nombre}</h3>
+			<p>Rol asignado ${rolAleatorio}</p>
+			
+			<c:if test="${rolAleatorio == 'lobo'}"> 
+				<p style="color:red;">¡Cuidado es lobo!</p>
+			</c:if>
+			<c:if test="${rolAleatorio == 'cazador'}"> 
+				<p style="color:green	;">¡Tu deber es matar al lobo!</p>
+			</c:if>
+			
 		</c:if>
-	</c:if>
-</body>
+	</body>
 </html>
