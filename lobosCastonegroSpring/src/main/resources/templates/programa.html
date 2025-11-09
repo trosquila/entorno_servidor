@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Asignar rol</title>
+</head>
+<body>
+    <form th:action="@{/sacarRol}" method="post">
+        <p>Selecciona jugador para asignar un rol</p>
+        <select name="jugadorElegido">
+			<option th:each="jugador : ${listaJugadores}"
+				th:value="${jugador}" th:text="${jugador}">
+			</option>
+		</select>
+
+        <input type="submit" value="Asignar">
+    </form>
+
+    <div th:if="${rolAleatorio}">
+        <h3>Jugador <span th:text="${jugadorElegido}"></span></h3>
+        <p>Rol asignado <span th:text="${rolAleatorio}"></span></p>
+
+        <p th:if="${rolAleatorio == 'lobo'}" style="color:red;">¡Cuidado es lobo!</p>
+        <p th:if="${rolAleatorio == 'cazador'}" style="color:green;">¡Tu deber es matar al lobo!</p>
+    </div>
+</body>
+</html>
