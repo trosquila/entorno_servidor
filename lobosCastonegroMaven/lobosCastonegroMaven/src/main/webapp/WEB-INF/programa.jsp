@@ -26,7 +26,7 @@
 				<p style="color:red;">¡Cuidado es lobo!</p>
 			</c:if>
 			<c:if test="${rolAleatorio == 'cazador'}"> 
-				<p style="color:green	;">¡Tu deber es matar al lobo!</p>
+				<p style="color:green;">¡Tu deber es matar al lobo!</p>
 			</c:if>
 			
 		</c:if>
