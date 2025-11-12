@@ -3,5 +3,6 @@ C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoCol
 C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\DTO\AlumnoDTO.java
 C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\servicios\IAlumnosService.java
 C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\serviciosImp\AlumnosServiceImp.java
-C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\servlets\pruebaConexion.java
+C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\servlets\ControladorAlumnos.java
+C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\servlets\ListadoAlumnosController.java
 C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\Utils\BDUtils.java
