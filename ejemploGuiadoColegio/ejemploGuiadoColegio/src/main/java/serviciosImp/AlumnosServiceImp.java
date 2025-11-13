@@ -17,7 +17,7 @@ public class AlumnosServiceImp implements IAlumnosService {
 	}
 
 	@Override
-	public ArrayList<AlumnoDTO> obtenerAlumnosPorIdNombreApellido(String id, String nombre, String apellido) {
+	public ArrayList<AlumnoDTO> obtenerAlumnosPorIdNombreApellido(String id, String nombre, String apellido, String familiaNumerosa, String activo) {
 		IAlumnosDAO alumnos = new AlumnosDAOImpl();
 		return alumnos.obtenerAlumnosPorIdNombreApellido(id, nombre, apellido);
 	}

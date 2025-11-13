@@ -45,10 +45,12 @@ public class ListadoAlumnosController extends HttpServlet {
 			String id = request.getParameter("id");
 			String nombre = request.getParameter("nombre");
 			String apellido = request.getParameter("apellido");
+			String familiaNumerosa = request.getParameter("familiaNumerosa");
+			String activo = request.getParameter("activo");
 			IAlumnosService a = new AlumnosServiceImp();
 			ArrayList<AlumnoDTO> listaAlumnos = new ArrayList<>();
 			listaAlumnos = a.obtenerAlumnosPorIdNombreApellido(id, nombre,
-			apellido);
+			apellido, familiaNumerosa, activo);
 			request.setAttribute("lista", listaAlumnos);
 			RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/listadoAlumnos.jsp");
 			d.forward(request, response);

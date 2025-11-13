@@ -23,12 +23,19 @@ uiadoColegio/css/index.css">
 			<form
 				action="http://localhost:8080/ejemploGuiadoColegio/alumnos/listadoAlumnos"
 				method="post">
-				<label for="id">Id Alumno</label> <input type="text" id="id"
-					name="id"> <label for="nombre">Nombre Alumno</label> <input
-					type="text" id="nombre" name="nombre"><br> <label
-					for="apellido">Apellido Alumno</label> <input type="text"
-					id="apellido" name="apellido"><br> <input
-					type="submit" value="Enviar">
+				<label for="id">Id Alumno</label>
+				<input type="text" id="id" name="id">
+				<label for="nombre">Nombre Alumno</label>
+				<input type="text" id="nombre" name="nombre"><br>
+				<label for="apellido">Apellido Alumno</label>
+				<input type="text" id="apellido" name="apellido"><br>
+				<label for="familiaNumerosa">Familia numerosa</label>
+				<input type="checkbox" id="activo" name="activo">
+				<label for="activo">Activo</label>
+				<input type="checkbox" id="familiaNumerosa" name="familiaNumerosa">
+				<br>
+				<br>
+				<input type="submit" value="Enviar">
 			</form> 
 		</div>
 		<c:if test="${empty lista}">
