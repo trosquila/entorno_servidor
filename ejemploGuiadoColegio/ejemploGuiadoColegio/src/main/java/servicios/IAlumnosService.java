@@ -7,4 +7,5 @@ import DTO.AlumnoDTO;
 
 public interface IAlumnosService {
 	public ArrayList<AlumnoDTO> obtenerAlumnos() throws SQLException;
+	public ArrayList<AlumnoDTO> obtenerAlumnosPorIdNombreApellido(String id, String nombre, String apellido);
 }

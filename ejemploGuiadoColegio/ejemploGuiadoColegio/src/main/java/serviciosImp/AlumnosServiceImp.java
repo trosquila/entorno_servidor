@@ -16,4 +16,10 @@ public class AlumnosServiceImp implements IAlumnosService {
 		return alumnos.obtenerTodosAlumnos();
 	}
 
+	@Override
+	public ArrayList<AlumnoDTO> obtenerAlumnosPorIdNombreApellido(String id, String nombre, String apellido) {
+		IAlumnosDAO alumnos = new AlumnosDAOImpl();
+		return alumnos.obtenerAlumnosPorIdNombreApellido(id, nombre, apellido);
+	}
+
 }
