@@ -37,9 +37,9 @@ public class AlumnosDAOImpl implements IAlumnosDAO{
 				return listaAlumnos;
 	}
 	@Override
-	public ArrayList<AlumnoDTO> obtenerAlumnosPorIdNombreApellido(String id, String nombre, String apellido) {
+	public ArrayList<AlumnoDTO> obtenerAlumnosPorIdNombreApellido(String id, String nombre, String apellido, int familiaNumerosa, int activo) {
 			String sql = "SELECT a.id, a.nombre, a.apellidos, m.nombre,m.id_municipio " +
-			"FROM alumnos a, municipios m WHERE a.id_municipio = m.id_municipio AND a.id LIKE ? AND a.nombre LIKE ? AND a.apellidos LIKE ?";
+			"FROM alumnos a, municipios m WHERE a.id_municipio = m.id_municipio AND a.id LIKE ? AND a.nombre LIKE ? AND a.apellidos LIKE ? AND a.familia_numerosa = ? AND a.activo = ?";
 			ResultSet alumnoResultSet = null;
 			Connection connection = BDUtils.conexion();
 			ArrayList<AlumnoDTO> listaAlumnos = new ArrayList<>();
@@ -48,6 +48,8 @@ public class AlumnosDAOImpl implements IAlumnosDAO{
 				ps.setString(1, "%" + id + "%");
 				ps.setString(2, "%" + nombre + "%");
 				ps.setString(3, "%" + apellido + "%");
+				ps.setInt(4,familiaNumerosa);
+				ps.setInt(5,activo);
 				logger.debug("Query a ejecutar: " + ps);
 				alumnoResultSet = ps.executeQuery();
 				while (alumnoResultSet.next()) {
@@ -58,11 +60,29 @@ public class AlumnosDAOImpl implements IAlumnosDAO{
 					listaAlumnos.add(a);
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				e.printStackTrace();	
 			}
+			System.out.println(listaAlumnos);
 			return listaAlumnos;
 		}
-
-
-
+	@Override
+	public int insertarAlumno(String id, String nombre, String apellido, String idMunicipio, int familiaNumerosa, int activo) {
+		String sql = "INSERT INTO alumnos (id, nombre, apellidos, id_municipio, familia_numerosa, activo) VALUES (?, ?, ?, ?, ?, ?)";
+		PreparedStatement ps = null;
+		int resultado = 0;
+		try {
+			Connection connection = BDUtils.conexion();
+			ps = connection.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, nombre);
+			ps.setString(3, apellido);
+			ps.setString(4, idMunicipio);
+			ps.setInt(5, familiaNumerosa);
+			ps.setInt(6, activo);
+			resultado = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+				}
+		return resultado;
+	}
 }

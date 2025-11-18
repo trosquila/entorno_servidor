@@ -5,10 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/ejemploG
+<link rel="stylesheet" type="text/css"
+	href="/ejemploG
 uiadoColegio/css/index.css">
-<link rel="stylesheet" type="text/css" href="/ejemploGuiadoColegio/css/formularios.css">
-<link rel="stylesheet" type="text/css" href="/ejemploGuiadoColegio/css/tablas.css">
+<link rel="stylesheet" type="text/css"
+	href="/ejemploGuiadoColegio/css/formularios.css">
+<link rel="stylesheet" type="text/css"
+	href="/ejemploGuiadoColegio/css/tablas.css">
 <meta charset="ISO-8859-1">
 <title>Listado Alumnos</title>
 </head>
@@ -17,38 +20,46 @@ uiadoColegio/css/index.css">
 	<%@include file="/menu.html"%>
 	<div class="container">
 		<div class="form">
-			<form action="http://localhost:8080/ejemploGuiadoColegio/alumnos/listadoAlumnoss"
+			<form
+				action="http://localhost:8080/ejemploGuiadoColegio/alumnos/listadoAlumnos"
 				method="post">
-				<label for="id">Id Alumno</label> <input type="text" id="id"
-					name="id"> <label for="nombre">Nombre Alumno</label> <input
-					type="text" id="nombre" name="nombre"><br> <label
-					for="apellido">Apellido Alumno</label> <input type="text"
-					id="apellido" name="apellido"><br> <input
-					type="submit" value="Enviar">
-			</form>
+				<label for="id">Id Alumno</label>
+				<input type="text" id="id" name="id">
+				<label for="nombre">Nombre Alumno</label>
+				<input type="text" id="nombre" name="nombre"><br>
+				<label for="apellido">Apellido Alumno</label>
+				<input type="text" id="apellido" name="apellido"><br>
+				<label for="familiaNumerosa">Familia numerosa</label>
+				<input type="checkbox" id="familiaNumerosa" name="familiaNumerosa">
+				<label for="activo">Activo</label>
+				<input type="checkbox" id="activo" name="activo">
+				<br>
+				<br>
+				<input type="submit" value="Enviar">
+			</form> 
 		</div>
 		<c:if test="${empty lista}">
-<h2>No hay resultados que mostrar con esos filtros</h2>
-</c:if>
-<c:if test="${not empty lista}">
-<table>
-<tr>
-<th>ID</th>
-		<th>NOMBRE</th>
-<th>APELLIDO</th>
-<th>MUNICIPIO</th>
-</tr>
-<c:forEach items="${lista}" var="alumno">
-<tr>
-<td>${alumno.id}</td>
-<td>${alumno.nombre}</td>
-<td>${alumno.apellido}</td>
-<td>${alumno.municipio}</td>
-</tr>
-</c:forEach>
-</table>
-</c:if>
-		
+			<h2>No hay resultados que mostrar con esos filtros</h2>
+		</c:if>
+		<c:if test="${not empty lista}">
+			<table>
+				<tr>
+					<th>ID</th>
+					<th>NOMBRE</th>
+					<th>APELLIDO</th>
+					<th>MUNICIPIO</th>
+				</tr>
+				<c:forEach items="${lista}" var="alumno">
+					<tr>
+						<td>${alumno.id}</td>
+						<td>${alumno.nombre}</td>
+						<td>${alumno.apellido}</td>
+						<td>${alumno.municipio}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+
 	</div>
 </body>
 </html>

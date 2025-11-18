@@ -1,8 +1,14 @@
+C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\dao\DesplegableDAOImp.java
 C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\dao\IAlumnosDAO.java
 C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\daolmp\AlumnosDAOImpl.java
 C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\DTO\AlumnoDTO.java
+C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\DTO\DesplegableDTO.java
+C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\DTO\IDesplegableDAO.java
 C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\servicios\IAlumnosService.java
 C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\serviciosImp\AlumnosServiceImp.java
 C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\servlets\ControladorAlumnos.java
+C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\servlets\FomularioActualizarAlumnosController.java
+C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\servlets\insertarAlumno.java
 C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\servlets\ListadoAlumnosController.java
 C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\Utils\BDUtils.java
+C:\Users\alumnofp\Desktop\entorno_servidor\ejemploGuiadoColegio\ejemploGuiadoColegio\src\main\java\Utils\DesplegableUtils.java

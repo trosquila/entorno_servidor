@@ -45,8 +45,19 @@ public class ListadoAlumnosController extends HttpServlet {
 			String id = request.getParameter("id");
 			String nombre = request.getParameter("nombre");
 			String apellido = request.getParameter("apellido");
-			String familiaNumerosa = request.getParameter("familiaNumerosa");
-			String activo = request.getParameter("activo");
+			String familiaNumerosaParam = request.getParameter("familiaNumerosa");
+			String activoParam = request.getParameter("activo");
+			System.out.println(activoParam);
+			int familiaNumerosa = 0;
+			if(familiaNumerosaParam != null) {
+				familiaNumerosa = 1;
+			}
+	
+			int activo = 0;
+			if(activoParam != null) {
+				activo = 1;
+			}
+			System.out.println(id);
 			IAlumnosService a = new AlumnosServiceImp();
 			ArrayList<AlumnoDTO> listaAlumnos = new ArrayList<>();
 			listaAlumnos = a.obtenerAlumnosPorIdNombreApellido(id, nombre,

@@ -30,9 +30,9 @@ uiadoColegio/css/index.css">
 				<label for="apellido">Apellido Alumno</label>
 				<input type="text" id="apellido" name="apellido"><br>
 				<label for="familiaNumerosa">Familia numerosa</label>
-				<input type="checkbox" id="activo" name="activo">
-				<label for="activo">Activo</label>
 				<input type="checkbox" id="familiaNumerosa" name="familiaNumerosa">
+				<label for="activo">Activo</label>
+				<input type="checkbox" id="activo" name="activo">
 				<br>
 				<br>
 				<input type="submit" value="Enviar">
