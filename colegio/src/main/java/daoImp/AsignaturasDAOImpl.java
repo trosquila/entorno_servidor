@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import dao.IAsignaturasDAO;
+import dto.AlumnoDTO;
 import dto.AsignaturasDTO;
 import utils.DBUtils;
 
@@ -52,5 +53,119 @@ public class AsignaturasDAOImpl implements IAsignaturasDAO {
 
 		return listaAsignaturas;
 	}
+	@Override
+	public Integer insertarAsignatura(int id, String nombre, int curso, int tasa, int activo) {
+		String sql = "INSERT INTO asignaturas(nombre, curso, tasa, activo) VALUES (?,?,?,?)";
+		PreparedStatement ps = null;
+		int resultado = 0;
+		
+		try {
+			Connection connection = DBUtils.conexion();
+			ps = connection.prepareStatement(sql);
+			ps.setString(1, nombre);
+			ps.setInt(2, curso);
+			ps.setInt(3, tasa);
+			ps.setInt(4, activo);
+
+			resultado = ps.executeUpdate();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return resultado;
+	}
+	@Override
+	public ArrayList<AsignaturasDTO> obtenerAsignaturasModificar(String id, String nombre, String curso, String tasa) {
+		String sql = "SELECT * from asignaturas WHERE id LIKE ? "
+				+ "AND nombre LIKE ? AND curso LIKE ? "
+				+ "AND tasa LIKE ?";
+
+		ResultSet asignaturaResultSet = null;
+		Connection connection = DBUtils.conexion();
+		ArrayList<AsignaturasDTO> listaAsignaturas = new ArrayList<>();
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+
+			ps.setString(1, "%" + id + "%");
+			ps.setString(2, "%" + nombre + "%");
+			ps.setString(3, "%" + curso + "%");
+			ps.setString(4, "%" + tasa + "%");
+
+			logger.debug("Query a ejecutar: " + ps);
+
+			asignaturaResultSet = ps.executeQuery();
+
+			while (asignaturaResultSet.next()) {
+				AsignaturasDTO a = new AsignaturasDTO(asignaturaResultSet.getInt(1), asignaturaResultSet.getString(2),
+						asignaturaResultSet.getInt(3), asignaturaResultSet.getInt(4), 0);
+				listaAsignaturas.add(a);
+			}
+			connection.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return listaAsignaturas;
+	}
+	@Override
+	public int actualizarAsignatura(int id, String nombre, int curso, int tasa) {
+		String sql = "UPDATE asignaturas SET nombre = ?, curso = ?, tasa = ? "
+				+ "WHERE id =  ? ";
+		PreparedStatement ps = null;
+		int resultado = 0;
+		try {
+			Connection connection = DBUtils.conexion();
+			ps = connection.prepareStatement(sql);
+			ps.setString(1, nombre);
+			ps.setInt(2, curso);
+			ps.setInt(3, tasa);
+			ps.setInt(4, id);
+			logger.debug("Query a ejecutar: " + ps);
+			resultado = ps.executeUpdate();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	@Override
+	public ArrayList<AsignaturasDTO> obtenerAsignaturasBorrar(String id, String nombre, String curso, String tasa) {
+		String sql = "SELECT * from asignaturas WHERE id LIKE ? "
+				+ "AND nombre LIKE ? AND curso LIKE ? "
+				+ "AND tasa LIKE ?";
+
+		ResultSet asignaturaResultSet = null;
+		Connection connection = DBUtils.conexion();
+		ArrayList<AsignaturasDTO> listaAsignaturas = new ArrayList<>();
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+
+			ps.setString(1, "%" + id + "%");
+			ps.setString(2, "%" + nombre + "%");
+			ps.setString(3, "%" + curso + "%");
+			ps.setString(4, "%" + tasa + "%");
+
+			logger.debug("Query a ejecutar: " + ps);
+
+			asignaturaResultSet = ps.executeQuery();
+
+			while (asignaturaResultSet.next()) {
+				AsignaturasDTO a = new AsignaturasDTO(asignaturaResultSet.getInt(1), asignaturaResultSet.getString(2),
+						asignaturaResultSet.getInt(3), asignaturaResultSet.getInt(4), 0);
+				listaAsignaturas.add(a);
+			}
+			connection.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return listaAsignaturas;
+	}
+
 	
 }

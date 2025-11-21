@@ -8,4 +8,12 @@ public interface IAsignaturasService {
 
 	ArrayList<AsignaturasDTO> obtenerTodasAsignaturasFiltradas(int id, String nombre, int curso, int tasa);
 
+	Integer insertarAsignatura(int id, String nombre, int Curso, int tasa, int activo);
+
+	ArrayList<AsignaturasDTO> obtenerAsignaturasModificar(String id, String nombre, String curso, String tasa);
+
+	int actualizarAsignatura(int id, String nombre, int curso, int tasa);
+
+	ArrayList<AsignaturasDTO> obtenerAsignaturasBorrar(String id, String nombre, String curso, String tasa);
+
 }

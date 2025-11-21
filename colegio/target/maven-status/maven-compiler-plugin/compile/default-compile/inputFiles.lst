@@ -1,11 +1,11 @@
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\controllers\alumnos\ActualizarAlumnosController.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\controllers\alumnos\BorrarAlumnosController.java
-C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\controllers\alumnos\ControladorAlumnos.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\controllers\alumnos\FormularioActualizarAlumnosController.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\controllers\alumnos\FormularioBorrarAlumnosController.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\controllers\alumnos\InsertarAlumnosController.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\controllers\alumnos\ListadoAlumnosController.java
-C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\controllers\asignaturas\ControladorAsignaturas.java
+C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\controllers\asignaturas\InsertarAsignaturaController.java
+C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\controllers\asignaturas\ListadoAsignaturasController.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\dao\IAlumnosDAO.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\dao\IAsignaturasDAO.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\dao\IDesplegableDAO.java
@@ -16,6 +16,8 @@ C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\dto\AlumnoDTO.j
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\dto\AsignaturasDTO.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\dto\DesplegableDTO.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\servicios\IAlumnosService.java
+C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\servicios\IAsignaturasService.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\serviciosImp\AlumnosServiceImp.java
+C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\serviciosImp\AsiganturasServicelmp.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\utils\DBUtils.java
 C:\Users\alumnofp\Desktop\entorno_servidor\colegio\src\main\java\utils\DesplegableUtils.java
