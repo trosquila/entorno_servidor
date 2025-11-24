@@ -10,9 +10,9 @@ import servicios.IAsignaturasService;
 public class AsiganturasServicelmp implements IAsignaturasService{
 
 	@Override
-	public ArrayList<AsignaturasDTO> obtenerTodasAsignaturasFiltradas(int id, String nombre, int curso, int tasa) {
+	public ArrayList<AsignaturasDTO> obtenerTodasAsignaturasFiltradas(int id, String nombre, int curso, int tasa, int activo) {
 		IAsignaturasDAO asignaturas = new AsignaturasDAOImpl();
-		return asignaturas.obtenerTodasAsignaturasFiltradas(id, nombre, curso, tasa);
+		return asignaturas.obtenerTodasAsignaturasFiltradas(id, nombre, curso, tasa, activo);
 	}
 
 	@Override
@@ -38,6 +38,13 @@ public class AsiganturasServicelmp implements IAsignaturasService{
 	public ArrayList<AsignaturasDTO> obtenerAsignaturasBorrar(String id, String nombre, String curso, String tasa) {
 		IAsignaturasDAO asignaturas = new AsignaturasDAOImpl();
 		return asignaturas.obtenerAsignaturasBorrar(id, nombre, curso, tasa);
+	}
+
+	@Override
+	public int borrarAsignatura(String id) {
+		IAsignaturasDAO asignaturas = new AsignaturasDAOImpl();
+		return asignaturas.borrarAsignatura(id);
+		
 	}
 
 }

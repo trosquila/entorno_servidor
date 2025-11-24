@@ -54,9 +54,17 @@ public class ListadoAsignaturasController extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String cursoParam = request.getParameter("curso");
 		String tasaParam = request.getParameter("tasa");
+		String activoParam = request.getParameter("activo");
+		
 		int id;
 		int curso;
 		int tasa;
+		int activo;
+		if(activoParam == null) {
+			activo = 0;
+		}else {
+			activo = 1;
+		}
 		try {
 		    id = Integer.parseInt(idParam);
 		} catch (NumberFormatException | NullPointerException e) {
@@ -73,13 +81,12 @@ public class ListadoAsignaturasController extends HttpServlet {
 			tasa = 0;
 		}
 
-
 		IAsignaturasService a = new AsiganturasServicelmp();
 		ArrayList<AsignaturasDTO> listaAsignaturas = new ArrayList<>();
 
 		
 		
-		listaAsignaturas = a.obtenerTodasAsignaturasFiltradas(id, nombre, curso, tasa);
+		listaAsignaturas = a.obtenerTodasAsignaturasFiltradas(id, nombre, curso, tasa, activo);
 
 		request.setAttribute("listaAsignaturas", listaAsignaturas);
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/asignaturas/listadoAsignaturas.jsp");

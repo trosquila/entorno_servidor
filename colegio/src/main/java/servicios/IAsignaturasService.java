@@ -6,7 +6,7 @@ import dto.AsignaturasDTO;
 
 public interface IAsignaturasService {
 
-	ArrayList<AsignaturasDTO> obtenerTodasAsignaturasFiltradas(int id, String nombre, int curso, int tasa);
+	ArrayList<AsignaturasDTO> obtenerTodasAsignaturasFiltradas(int id, String nombre, int curso, int tasa, int activo);
 
 	Integer insertarAsignatura(int id, String nombre, int Curso, int tasa, int activo);
 
@@ -15,5 +15,7 @@ public interface IAsignaturasService {
 	int actualizarAsignatura(int id, String nombre, int curso, int tasa);
 
 	ArrayList<AsignaturasDTO> obtenerAsignaturasBorrar(String id, String nombre, String curso, String tasa);
+
+	int borrarAsignatura(String id);
 
 }

@@ -36,19 +36,19 @@
 			<tr>
 				<th>ID</th>
 				<th>NOMBRE</th>
-				<th>APELLIDO</th>
-				<th>MUNICIPIO</th>
+				<th>CURSO</th>
+				<th>TASA</th>
 				<th>BORRAR</th>
 			</tr>
-			<c:forEach items="${lista}" var="alumno">
+			<c:forEach items="${lista}" var="asignatura">
 				<tr>
 					<td id="id">${alumno.id}</td>
-					<td>${alumno.nombre}</td>
-					<td>${alumno.curso}</td>
-					<td>${alumno.tasa}</td>
+					<td>${asignatura.nombre}</td>
+					<td>${asignatura.curso}</td>
+					<td>${asignatura.tasa}</td>
 					<td>
-						<form action="http://localhost:8080/colegio/alumnos/borrarAlumno" method="POST" >
-							<input type="hidden" name="id" value="${alumno.id}">
+						<form action="http://localhost:8080/colegio/asignaturas/borrarAsignatura" method="POST" >
+							<input type="hidden" name="id" value="${asignatura.id}">
 							<input type ="submit" value="Borrar">
 						</form>
 					</td>

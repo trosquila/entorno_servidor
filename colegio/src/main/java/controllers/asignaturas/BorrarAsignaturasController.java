@@ -8,24 +8,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import servicios.IAsignaturasService;
 import serviciosImp.AsiganturasServicelmp;
-import utils.DesplegableUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import dto.AsignaturasDTO;
 
 /**
- * Servlet implementation class FormularioBorrarAlumnosController
+ * Servlet implementation class BorrarAlumnosController
  */
-@WebServlet("/asignaturas/formularioBorrarAsignaturas")
-public class FormularioBorrarAsignaturasController extends HttpServlet {
+@WebServlet("/asignaturas/borrarAsignatura")
+public class BorrarAsignaturasController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FormularioBorrarAsignaturasController() {
+    public BorrarAsignaturasController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,28 +30,19 @@ public class FormularioBorrarAsignaturasController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/asignaturas/borrarAsignatura.jsp");
-        d.forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DesplegableUtils.recuperarDesplegableMunicipios(request);
 		String id = request.getParameter("id");
-        String nombre = request.getParameter("nombre");
-        String curso = request.getParameter("curso");
-        String tasa = request.getParameter("tasa");
-        
-        
-        ArrayList<AsignaturasDTO> listaAsignaturas = new ArrayList<>();
-        
-        IAsignaturasService a = new AsiganturasServicelmp();
-        listaAsignaturas = a.obtenerAsignaturasBorrar(id, nombre, curso , tasa);
-        request.setAttribute("lista", listaAsignaturas);
-        
+	    
+		IAsignaturasService a = new AsiganturasServicelmp();
+	    a.borrarAsignatura(id);
+	    
         RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/asignaturas/borrarAsignatura.jsp");
         d.forward(request, response);
 	}

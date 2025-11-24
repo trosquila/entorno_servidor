@@ -10,31 +10,35 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import dao.IAsignaturasDAO;
-import dto.AlumnoDTO;
 import dto.AsignaturasDTO;
 import utils.DBUtils;
 
 public class AsignaturasDAOImpl implements IAsignaturasDAO {
 	private static Logger logger = LoggerFactory.getLogger(AlumnosDAOImpl.class);
 	@Override
-	public ArrayList<AsignaturasDTO> obtenerTodasAsignaturasFiltradas(int id, String nombre, int curso, int tasa) {
+	public ArrayList<AsignaturasDTO> obtenerTodasAsignaturasFiltradas(int id, String nombre, int curso, int tasa, int activo) {
 		String sql = "SELECT id, nombre, curso, tasa, activo "
-				+ "FROM asignaturas WHERE id = ? "
+				+ "FROM asignaturas WHERE id LIKE ? "
 				+ "AND nombre LIKE ? "
 				+ "AND curso = ? "
-				+ "AND tasa = ?";
+				+ "AND tasa > ? "
+				+ "AND activo = ?";
 
 		ResultSet asignaturaResultSet = null;
 		Connection connection = DBUtils.conexion();
 		ArrayList<AsignaturasDTO> listaAsignaturas = new ArrayList<>();
-
+		String IdString = "";
+		if(id != 0) {
+			String.valueOf(id);
+		}
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 
-			ps.setInt(1, id);
+			ps.setString(1, "%" + IdString + "%");
 			ps.setString(2, "%" + nombre + "%");
 			ps.setInt(3, curso);
 			ps.setInt(4, tasa);
+			ps.setInt(5, activo);
 
 
 			logger.debug("Query a ejecutar: " + ps);
@@ -165,6 +169,25 @@ public class AsignaturasDAOImpl implements IAsignaturasDAO {
 		}
 
 		return listaAsignaturas;
+	}
+	@Override
+	public int borrarAsignatura(String id) {
+		String sql = "UPDATE asignaturas SET activo = 0 "
+				+ "WHERE id = ? ";
+		Connection connection = DBUtils.conexion();
+		PreparedStatement ps;
+		int resultado = 0;
+		try {
+			ps = connection.prepareStatement(sql);
+			ps.setString(1, id);
+			logger.debug("Query a ejecutar: " + ps);
+			resultado = ps.executeUpdate();
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
 	}
 
 	

@@ -29,7 +29,9 @@
 					<label for="nombre">Curso</label> 
 					<input type="text" id="curso" name="curso"><br>
 					<label for="nombre">Tasa</label> 
-					<input type="text" id="tasa" name="tasa"><br>    
+					<input type="text" id="tasa" name="tasa"><br> 
+					<label for="nombre">Activo</label> 
+					<input type="checkbox" id="activo" name="activo"><br>   
 					<input type="submit" value="Enviar">
 				</form>
 			</div>
