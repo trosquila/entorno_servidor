@@ -14,7 +14,10 @@ public class AsignaturasDTO {
 		this.tasa = tasa;
 		this.activo = activo;
 	}
+	public AsignaturasDTO(String nombre) {
+		this.nombre = nombre;
 
+	}
 	public int getId() {
 		return id;
 	}

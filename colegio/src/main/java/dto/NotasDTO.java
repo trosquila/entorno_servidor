@@ -6,6 +6,8 @@ public class NotasDTO {
 	private int idAsignatura;
 	private int nota;
 	private String fecha;
+	AlumnoDTO alumnoDTO;
+	AsignaturasDTO asignaturaDTO;
 	
 	public NotasDTO(int id, int idAlumno, int idAsignatura, int nota, String fecha) {
 		this.id = id;
@@ -14,7 +16,15 @@ public class NotasDTO {
 		this.nota = nota;
 		this.fecha = fecha;
 	}
-
+	
+	public NotasDTO(int id, AlumnoDTO alumnoDTO ,AsignaturasDTO asignaturaDTO, int nota, String fecha) {
+		this.id = id;
+		this.alumnoDTO = alumnoDTO;
+		this.asignaturaDTO = asignaturaDTO;
+		this.nota = nota;
+		this.fecha = fecha;
+	}
+	
 	public int getId() {
 		return id;
 	}

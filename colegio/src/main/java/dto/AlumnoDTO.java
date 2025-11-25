@@ -34,8 +34,9 @@ public class AlumnoDTO {
 		this.nombre = nombre;
 		this.apellido = apellido;
 	}
-	
-	//Getters, setters... 
+	public AlumnoDTO(String nombre) {
+		this.nombre = nombre;
+	}
 
 	public int getId() {
 		return id;
