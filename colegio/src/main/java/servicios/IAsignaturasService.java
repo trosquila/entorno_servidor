@@ -1,6 +1,7 @@
 package servicios;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dto.AsignaturasDTO;
 
@@ -17,5 +18,7 @@ public interface IAsignaturasService {
 	ArrayList<AsignaturasDTO> obtenerAsignaturasBorrar(String id, String nombre, String curso, String tasa);
 
 	int borrarAsignatura(String id);
+
+	List<AsignaturasDTO> obtenerAsignaturas();
 
 }

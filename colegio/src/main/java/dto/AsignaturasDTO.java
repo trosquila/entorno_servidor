@@ -15,6 +15,7 @@ public class AsignaturasDTO {
 		this.activo = activo;
 	}
 	public AsignaturasDTO(String nombre) {
+		super();
 		this.nombre = nombre;
 
 	}

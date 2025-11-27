@@ -40,7 +40,7 @@ public class ListadoNotasController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/asignaturas/listadoAsignaturas.jsp");
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/notas/listadoNotas.jsp");
 		d.forward(request, response);
 	}
 
@@ -55,16 +55,22 @@ public class ListadoNotasController extends HttpServlet {
 		String idAsignatura = request.getParameter("idAsignatura");
 		String nota = request.getParameter("nota");
 		String fecha = request.getParameter("fecha");
-		String activo = request.getParameter("activo");
+		String activoParam = request.getParameter("activo");
+		String activo;
+		if (activoParam == null) {
+			activo = "0";
+		}else {
+			activo = "1";
+		}
 		
 		INotasService a = new NotasServiceImp();
-		ArrayList<NotasDTO> listaAsignaturas = new ArrayList<>();
+		ArrayList<NotasDTO> listaNotas = new ArrayList<>();
 
 		
 		
-		listaAsignaturas = a.obtenerTodasNotas(id, idAlumno, idAsignatura, nota, fecha, activo);
+		listaNotas = a.obtenerTodasNotas(id, idAlumno, idAsignatura, nota, fecha, activo);
 
-		request.setAttribute("listaAsignaturas", listaAsignaturas);
+		request.setAttribute("listaNotas", listaNotas);
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/notas/listadoNotas.jsp");
 		d.forward(request, response);
 	}

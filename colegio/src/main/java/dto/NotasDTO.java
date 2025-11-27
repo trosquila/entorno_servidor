@@ -24,7 +24,7 @@ public class NotasDTO {
 		this.nota = nota;
 		this.fecha = fecha;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -64,6 +64,24 @@ public class NotasDTO {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+
+	public AlumnoDTO getAlumnoDTO() {
+		return alumnoDTO;
+	}
+
+	public void setAlumnoDTO(AlumnoDTO alumnoDTO) {
+		this.alumnoDTO = alumnoDTO;
+	}
+
+	public AsignaturasDTO getAsignaturaDTO() {
+		return asignaturaDTO;
+	}
+
+	public void setAsignaturaDTO(AsignaturasDTO asignaturaDTO) {
+		this.asignaturaDTO = asignaturaDTO;
+	}
+	
+
 	
 	
 	

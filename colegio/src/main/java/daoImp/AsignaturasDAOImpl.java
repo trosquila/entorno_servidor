@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -188,6 +189,32 @@ public class AsignaturasDAOImpl implements IAsignaturasDAO {
 			e.printStackTrace();
 		}
 		return resultado;
+	}
+	@Override
+	public List<AsignaturasDTO> obtenerAsignaturas() {
+		String sql = "SELECT * from asignaturas";
+
+		ResultSet asignaturaResultSet = null;
+		Connection connection = DBUtils.conexion();
+		ArrayList<AsignaturasDTO> listaAsignaturas = new ArrayList<>();
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+
+			asignaturaResultSet = ps.executeQuery();
+
+			while (asignaturaResultSet.next()) {
+				AsignaturasDTO a = new AsignaturasDTO(asignaturaResultSet.getInt(1), asignaturaResultSet.getString(2),
+						asignaturaResultSet.getInt(3), asignaturaResultSet.getInt(4),  asignaturaResultSet.getInt(5));
+				listaAsignaturas.add(a);
+			}
+			connection.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return listaAsignaturas;
 	}
 
 	

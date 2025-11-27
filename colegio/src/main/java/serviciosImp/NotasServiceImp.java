@@ -12,8 +12,14 @@ public class NotasServiceImp implements INotasService {
 	@Override
 	public ArrayList<NotasDTO> obtenerTodasNotas(String id, String idAlumno, String idAsignatura, String nota,
 			String fecha, String activo) {
-		INotasDAO asignaturas = new NotasDAOImpl();
-		return asignaturas.obtenerTodasNotas(id, idAlumno, idAsignatura, nota, fecha, activo);
+		INotasDAO notas = new NotasDAOImpl();
+		return notas.obtenerTodasNotas(id, idAlumno, idAsignatura, nota, fecha, activo);
+	}
+
+	@Override
+	public Integer insertarNota(int idAlumno, int idAsignatura, int nota, String fecha) {
+		INotasDAO notas = new NotasDAOImpl();
+		return notas.insertarNota(idAlumno, idAsignatura, nota, fecha);
 	}
 
 

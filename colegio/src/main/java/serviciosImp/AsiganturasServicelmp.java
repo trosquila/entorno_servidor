@@ -1,6 +1,7 @@
 package serviciosImp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dao.IAsignaturasDAO;
 import daoImp.AsignaturasDAOImpl;
@@ -45,6 +46,12 @@ public class AsiganturasServicelmp implements IAsignaturasService{
 		IAsignaturasDAO asignaturas = new AsignaturasDAOImpl();
 		return asignaturas.borrarAsignatura(id);
 		
+	}
+
+	@Override
+	public List<AsignaturasDTO> obtenerAsignaturas() {
+		IAsignaturasDAO asignaturas = new AsignaturasDAOImpl();
+		return asignaturas.obtenerAsignaturas();
 	}
 
 }
