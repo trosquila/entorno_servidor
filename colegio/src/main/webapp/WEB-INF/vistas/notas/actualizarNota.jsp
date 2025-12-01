@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ page isELIgnored="false"%>
 <!DOCTYPE html>
@@ -8,74 +8,64 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/colegio/css/index.css">
 <link rel="stylesheet" href="/colegio/css/formularios.css">
-<title>Modificar asignatura</title>
+<title>Modificar nota</title>
 </head>
 <body>
-	<h1>Modificar asignatura</h1>
-	<%@include file="/menu.html" %>
-	<div class="container">
-		<h2>Modificar asignatura</h2>
-		<div class="form">
-		<form action="http://localhost:8080/colegio/notas/formularioActualizarNotas" method="post">
-					<label for="alumno">Alumno</label>
-			        <select name="alumno">
-			        	<c:forEach items="${listaAlumnos}" var="listaAlumnos">
-							<option value="${listaAlumnos.id}">  ${listaAlumnos.nombre} ${listaAlumnos.apellido}</option>
-						</c:forEach>
-			        </select>
-			        <label for="asignatura">Curso</label>
-			        <select name="asignatura" id="asignatura">
-			   			<c:forEach items="${listaAsignaturas}" var="listaAsignaturas">
+    <h1>Modificar nota</h1>
+    <%@include file="/menu.html" %>
+
+    <div class="container">
+        <h2>Buscar nota a modificar</h2>
+        <div class="form">
+            <form action="http://localhost:8080/colegio/notas/formularioActualizarNotas" method="post">
+                <div id="formulario">
+                    <label for="alumno">Alumno</label>
+                    <input type="text" name="alumno">
+
+                    <label for="asignatura">Asignatura:</label>
+                    <input type="text" id="asignatura" name="asignatura"><br>
+
+                    <label for="fecha">Fecha (dejar vacío para fecha actual):</label>
+                    <input type="date" name="fecha">
+
+                    <input type="submit" value="Enviar">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Mostrar lista de notas recuperadas -->
+    <c:forEach items="${lista}" var="nota">
+        <div class="form">
+            <form action="http://localhost:8080/colegio/notas/actualizarNotas" method="post">
+                <div id="formulario">
+                    <input type="hidden" name="id" value="${nota.id}" />
+
+                    <label for="asignaturaNombre">Nombre Asignatura</label>
+                    <input type="text" id="asignaturaNombre" name="asignaturaNombre" 
+                           value="${nota.alumnoDTO.nombre}"><br>
+
+                    <label for="curso">Curso</label>
+                    <select name="idAsignatura" id="curso">
+                        <c:forEach items="${listaAsignaturas}" var="listaAsignaturas">
 							<option value="${listaAsignaturas.id}">  ${listaAsignaturas.nombre} </option>
 						</c:forEach>
-			        </select>
-			
-			        <label for="nota">Nota:</label>
-			      	<input type="number" id="tasa" name="nota"><br>
-			
-			        <label for="fecha">Fecha:</label>
-			      	<input type="date"name="fecha">
-			</form>
-		</div>
-	</div>
-	
-	<c:forEach items="${lista}" var="asignatura">
-    <div class="form">
-        <form action="http://localhost:8080/colegio/notas/actualizarNotas" method="post">
-            <div id="formulario">
-                <input type="hidden" name="id" value="${asignatura.id}" />
+                    </select><br>
 
-                <label for="nombre">Nombre Asignatura</label>
-                <input type="text" id="nombre" name="nombre" value="${asignatura.nombre}"><br>
+                    <label for="nota">Nota:</label>
+                    <input type="number" id="nota" name="nota" value="${nota.nota}"><br>
 
-                <label for="curso">Curso</label>
-                <select name="curso" id="curso">
-                    <option value="1" ${asignatura.curso == 1 ? 'selected' : ''}>1</option>
-                    <option value="2" ${asignatura.curso == 2 ? 'selected' : ''}>2</option>
-                    <option value="3" ${asignatura.curso == 3 ? 'selected' : ''}>3</option>
-                    <option value="4" ${asignatura.curso == 4 ? 'selected' : ''}>4</option>
-                </select><br>
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" name="fecha" value="${nota.fecha}">
 
-                <label for="tasa">Tasa:</label>
-                <input type="text" id="tasa" name="tasa" value="${asignatura.tasa}"><br>
+                    <input type="submit" value="Editar">
+                </div>
+            </form>
 
-                <label for="activo">Activo:</label>
-                <select name="activo" id="activo">
-                    <option value="0" ${asignatura.activo == 0 ? 'selected' : ''}>0</option>
-                    <option value="1" ${asignatura.activo == 1 ? 'selected' : ''}>1</option>
-                </select><br>
-
-                <input type="submit" value="editar">
-            </div>
-        </form>
-
-        <c:if test="${resultado == 1}">
-            <b>Asignatura modificada correctamente</b>
-        </c:if>
-    </div>
-</c:forEach>
+            <c:if test="${resultado == 1}">
+                <b>Asignatura modificada correctamente</b>
+            </c:if>
+        </div>
+    </c:forEach>
 </body>
 </html>
-
-
-

@@ -14,11 +14,13 @@ public class AsignaturasDTO {
 		this.tasa = tasa;
 		this.activo = activo;
 	}
+	
 	public AsignaturasDTO(String nombre) {
 		super();
 		this.nombre = nombre;
 
 	}
+
 	public int getId() {
 		return id;
 	}

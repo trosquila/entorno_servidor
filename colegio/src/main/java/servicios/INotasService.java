@@ -10,5 +10,11 @@ public interface INotasService {
 
 	Integer insertarNota(int idAlumno, int idAsignatura, int nota, String fecha);
 
+	ArrayList<NotasDTO> obtenerNotasModificar(String alumno, String asignatura, String fecha);
+
+	int actualizarNota(int id, int idAsignatura, int nota, String fecha);
+
+	int borrarNota(String id);
+
 
 }

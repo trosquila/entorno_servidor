@@ -80,6 +80,12 @@ public class NotasDTO {
 	public void setAsignaturaDTO(AsignaturasDTO asignaturaDTO) {
 		this.asignaturaDTO = asignaturaDTO;
 	}
+
+	@Override
+	public String toString() {
+		return "NotasDTO [id=" + id + ", idAlumno=" + idAlumno + ", idAsignatura=" + idAsignatura + ", nota=" + nota
+				+ ", fecha=" + fecha + ", alumnoDTO=" + alumnoDTO + ", asignaturaDTO=" + asignaturaDTO + "]";
+	}
 	
 
 	

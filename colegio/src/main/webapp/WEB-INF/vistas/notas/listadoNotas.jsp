@@ -20,8 +20,7 @@
 		
 			<div class="container">
 				<div class="form">
-					<form action="http://localhost:8080/colegio/notas/listarNotas"
-						method="post">
+					<form action="http://localhost:8080/colegio/notas/listarNotas" method="post">
 						<label for="id">Id nota</label> 
 						<input type="text" id="id" name="id"> 
 						<label for="idAlumno">Id Alumno</label> 

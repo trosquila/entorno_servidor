@@ -38,6 +38,10 @@ public class AlumnoDTO {
 		this.nombre = nombre;
 	}
 
+	public AlumnoDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
