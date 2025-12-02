@@ -17,13 +17,13 @@
     <div class="container">
         <h2>Buscar nota a modificar</h2>
         <div class="form">
-            <form action="http://localhost:8080/colegio/notas/formularioActualizarMatriculas" method="post">
+            <form action="http://localhost:8080/colegio/matriculaciones/formularioActualizarMatriculas" method="post">
                 <div id="formulario">
                     <label for="alumno">Alumno</label>
-                    <input type="text" name="alumno">
+                    <input type="text" name="nombreAlumno">
 
                     <label for="asignatura">Asignatura:</label>
-                    <input type="text" id="asignatura" name="asignatura"><br>
+                    <input type="text" id="asignatura" name="nombreAsignatura"><br>
 
                     <label for="fecha">Fecha (dejar vacío para fecha actual):</label>
                     <input type="date" name="fecha">

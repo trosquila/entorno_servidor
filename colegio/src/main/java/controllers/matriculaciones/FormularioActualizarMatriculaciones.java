@@ -7,16 +7,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import servicios.IAlumnosService;
-import servicios.IAsignaturasService;
+
 import servicios.IMatriculacionesService;
-import serviciosImp.AlumnosServiceImp;
-import serviciosImp.AsiganturasServicelmp;
+
 import serviciosImp.MatriculacionesServiceImp;
 
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +51,7 @@ public class FormularioActualizarMatriculaciones extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        
         RequestDispatcher d = getServletContext()
-                .getRequestDispatcher("/WEB-INF/vistas/matriculaciones/insertarMatriculacion.jsp");
+                .getRequestDispatcher("/WEB-INF/vistas/matriculaciones/actualizarMatricula.jsp");
         d.forward(request, response);
 	}
 
@@ -64,13 +62,9 @@ public class FormularioActualizarMatriculaciones extends HttpServlet {
 		// Recuperar datos del formulario
         String nombreAlumno = request.getParameter("nombreAlumno");
         String nombreAsignatura = request.getParameter("nombreAsignatura");
-        String activoParam = request.getParameter("asignatura");
         String fecha = request.getParameter("fecha");
         
         int activo = 0;
-        if(activoParam == "on") {
-        	activo = 1;
-        }
         // Insertar matriculación
       IMatriculacionesService service = new MatriculacionesServiceImp();
        ArrayList<MatriculacionesDTO> listaMatriculas;
@@ -91,7 +85,7 @@ public class FormularioActualizarMatriculaciones extends HttpServlet {
         
         
         RequestDispatcher d = getServletContext()
-                .getRequestDispatcher("/WEB-INF/vistas/matriculaciones/listarMatriculas.jsp");
+                .getRequestDispatcher("/WEB-INF/vistas/matriculaciones/actualizarMatricula.jsp");
         d.forward(request, response);
 	}
 
