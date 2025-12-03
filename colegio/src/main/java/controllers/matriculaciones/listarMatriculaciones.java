@@ -55,11 +55,12 @@ public class listarMatriculaciones extends HttpServlet {
 		// Recuperar datos del formulario
         String nombreAlumno = request.getParameter("nombreAlumno");
         String nombreAsignatura = request.getParameter("nombreAsignatura");
-        String activoParam = request.getParameter("asignatura");
+        String activoParam = request.getParameter("activo");
         String fecha = request.getParameter("fecha");
+        System.out.println(activoParam);
         
         int activo = 0;
-        if(activoParam == "on") {
+        if(activoParam != null) {
         	activo = 1;
         }
         // Insertar matriculación

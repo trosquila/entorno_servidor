@@ -14,9 +14,9 @@ import dao.IMatriculacionesDAO;
 import dto.AlumnoDTO;
 import dto.AsignaturasDTO;
 import dto.CajaDTO;
-import dto.DesplegableDTO;
+
 import dto.MatriculacionesDTO;
-import dto.NotasDTO;
+
 import utils.DBUtils;
 
 public class MatriculacionesDAOImpl implements IMatriculacionesDAO{
@@ -113,10 +113,10 @@ public class MatriculacionesDAOImpl implements IMatriculacionesDAO{
 			notasResultSet = ps.executeQuery();
 
 			while (notasResultSet.next()) {
-				AlumnoDTO nombreAlumno2 = new AlumnoDTO(notasResultSet.getString(2));
-				AsignaturasDTO nombreAsignatura2 = new AsignaturasDTO(notasResultSet.getString(3));
-				CajaDTO cajaDTO = new CajaDTO(notasResultSet.getInt(5));
-				MatriculacionesDTO a = new MatriculacionesDTO(notasResultSet.getInt(1),nombreAsignatura2, nombreAlumno2, notasResultSet.getString(3), notasResultSet.getInt(4), cajaDTO);
+				AlumnoDTO nombreAlumno2 = new AlumnoDTO(notasResultSet.getString(3));
+				AsignaturasDTO nombreAsignatura2 = new AsignaturasDTO(notasResultSet.getString(2));
+				CajaDTO cajaDTO = new CajaDTO(notasResultSet.getInt(6));
+				MatriculacionesDTO a = new MatriculacionesDTO(notasResultSet.getInt(1),nombreAsignatura2, nombreAlumno2, notasResultSet.getString(4), notasResultSet.getInt(5), cajaDTO);
 				listaMatriculas.add(a);
 				System.out.println(a.toString());
 			}

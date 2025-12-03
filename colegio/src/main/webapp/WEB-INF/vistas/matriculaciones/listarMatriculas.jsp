@@ -36,10 +36,10 @@
                         </div>
                     </div>
 
-                    <c:if test="${empty listaAsignaturas}">
+                    <c:if test="${empty listaMatriculas}">
 							<h2>No hay resultados que mostrar con esos filtros</h2>
 						</c:if>
-						<c:if test="${not empty listaAsignaturas}">
+						<c:if test="${not empty listaMatriculas}">
 							<table>
 								<tr>
 									<th>ASIGNATURA</th>
@@ -48,15 +48,15 @@
 									<th>ACTIVADO</th>
 									<th>IMPORTE</th>
 								</tr>
-								<c:forEach items="${listaMatriculas}" var="listaMatriculas">
-									<tr>
-										<td>${listaMatriculas.asignaturaDTO.nombre}</td>
-										<td>${listaMatriculas.alumnoDTO.nombre}</td>
-										<td>${listaAsignaturas.fecha}</td>
-										<td>${listaAsignaturas.activo}</td>
-										<td>${listaMatriculas.cajaDTO.importe}</td>
-									</tr>
-								</c:forEach>
+								<c:forEach items="${listaMatriculas}" var="matricula">
+    <tr>
+        <td>${matricula.asignaturasDTO.nombre}</td>
+        <td>${matricula.alumnoDTO.nombre}</td>
+        <td>${matricula.fecha}</td>
+        <td>${matricula.activo}</td>
+        <td>${matricula.cajaDTO.importe}</td>
+    </tr>
+</c:forEach>
 							</table>
 						</c:if>
             </body>
