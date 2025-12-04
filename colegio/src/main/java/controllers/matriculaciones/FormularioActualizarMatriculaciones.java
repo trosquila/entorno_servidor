@@ -65,7 +65,7 @@ public class FormularioActualizarMatriculaciones extends HttpServlet {
         String fecha = request.getParameter("fecha");
         
         int activo = 0;
-        // Insertar matriculación
+        // Listar matriculación
       IMatriculacionesService service = new MatriculacionesServiceImp();
        ArrayList<MatriculacionesDTO> listaMatriculas;
        listaMatriculas = service.listarMatriculas(nombreAlumno, nombreAsignatura, fecha, activo);

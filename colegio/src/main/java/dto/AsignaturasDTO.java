@@ -20,6 +20,13 @@ public class AsignaturasDTO {
 		this.nombre = nombre;
 
 	}
+	public AsignaturasDTO(String nombre, int id) {
+		super();
+		this.nombre = nombre;
+		this.id = id;
+
+	}
+
 
 	public int getId() {
 		return id;

@@ -37,29 +37,31 @@
     <!-- Mostrar lista de notas recuperadas -->
     <c:forEach items="${listaMatriculas}" var="listaMatriculas">
         <div class="form">
-            <form action="http://localhost:8080/colegio/notas/actualizarNotas" method="post">
+            <form action="http://localhost:8080/colegio/matriculaciones/actualizarMatricula" method="post">
                 <div id="formulario">
                     <input type="hidden" name="id" value="${listaMatriculas.id}" />
 
-                   <label for="curso">Alumno</label>
-                    <select name="asignatura" id="asignatura">
+                   <label for="curso">Alumno: </label>
+                    <select name="idAlumno" id="idAlumno">
                         <c:forEach items="${listaAlumnos}" var="listaAlumnos">
-							<option value="${listaAlumnos.id}">  ${listaAlumnos.nombre} </option>
+							<option value="${listaAlumnos.id}" <c:if test="${listaAlumnos.id == listaMatriculas.id}">selected</c:if>>  ${listaAlumnos.nombre} </option>
 						</c:forEach>
                     </select><br>
                     
                     <label for="curso">Asignatura</label>
                     <select name="asignatura" id="asignatura">
-                        <c:forEach items="${listaAsignaturas}" var="listaAsignaturas">
-							<option value="${listaAsignaturas.id}">  ${listaAsignaturas.nombre} </option>
-						</c:forEach>
-                    </select><br>
-
-                    <label for="fecha">Fecha:</label>
+				    	<c:forEach items="${listaAsignaturas}" var="asignatura">
+						        <option value="${asignatura.id}"
+						            <c:if test="${asignatura.id == listaMatriculas.asignaturasDTO.id}">selected</c:if>>
+						            ${asignatura.nombre}
+						        </option>
+						    </c:forEach>
+					</select><br>
+				                    <label for="fecha">Fecha:</label>
                     <input type="date" name="fecha" value="${listaMatriculas.fecha}">
                     
-                     <label for="nota">Nota:</label>
-                    <input type="number" id="nota" name="nota" value="${listaMatriculas.cajaDTO.importe}"><br>
+                     <label for="nota">Importe:</label>
+                    <input type="number" id="importe" name="importe" value="${listaMatriculas.cajaDTO.importe}"><br>
                     
 
                     <input type="submit" value="Editar">

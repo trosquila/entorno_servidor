@@ -11,4 +11,6 @@ public interface IMatriculacionesDAO {
 
 	ArrayList<MatriculacionesDTO> listarMatriculas(String nombreAlumno, String nombreAsignatura, String fecha, int activo);
 
+	int actualizarMatricula(int idMatricula, int idAsignatura, int idAlumno, int importe, String fecha);
+
 }

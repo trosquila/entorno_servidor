@@ -22,4 +22,10 @@ public class MatriculacionesServiceImp implements IMatriculacionesService {
 		return notas.listarMatriculas(nombreAlumno, nombreAsignatura, fecha,  activo);
 	}
 
+	@Override
+	public int actualizarMatricula(int idMatricula, int idAsignatura, int idAlumno, int importe, String fecha) {
+		IMatriculacionesDAO notas = new MatriculacionesDAOImpl();
+		return notas.actualizarMatricula( idMatricula,  idAsignatura,  idAlumno,  importe,  fecha);
+	}
+
 }

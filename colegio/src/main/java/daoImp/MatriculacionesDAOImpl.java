@@ -86,8 +86,8 @@ public class MatriculacionesDAOImpl implements IMatriculacionesDAO{
 	@Override
 	public ArrayList<MatriculacionesDTO> listarMatriculas(String nombreAlumno, String nombreAsignatura, String fecha, int activo) {
 		
-		
-		String sql = "select matriculaciones.id, asignaturas.nombre, alumnos.nombre, matriculaciones.fecha, matriculaciones.activo, caja.importe FROM matriculaciones "
+		String matriculaActiva = "";
+		String sql = "select matriculaciones.id, asignaturas.nombre, alumnos.nombre, matriculaciones.fecha, matriculaciones.activo, caja.importe, asignaturas.id , alumnos.id FROM matriculaciones "
 				+ "inner join alumnos on alumnos.id = matriculaciones.id_alumno "
 				+ "inner join asignaturas on asignaturas.id = matriculaciones.id_asignatura "
 				+ "inner join caja on caja.idmatricula = matriculaciones.id "
@@ -103,7 +103,7 @@ public class MatriculacionesDAOImpl implements IMatriculacionesDAO{
 
 			ps.setString(1, "%" + nombreAlumno + "%");
 			ps.setString(2, "%" + nombreAsignatura + "%");
-			ps.setString(3, "%" + activo + "%");
+			ps.setString(3, "%" + matriculaActiva + "%");
 			if(fecha != "") {
 				ps.setString(5, "%" + fecha + "%");
 			}
@@ -114,7 +114,7 @@ public class MatriculacionesDAOImpl implements IMatriculacionesDAO{
 
 			while (notasResultSet.next()) {
 				AlumnoDTO nombreAlumno2 = new AlumnoDTO(notasResultSet.getString(3));
-				AsignaturasDTO nombreAsignatura2 = new AsignaturasDTO(notasResultSet.getString(2));
+				AsignaturasDTO nombreAsignatura2 = new AsignaturasDTO(notasResultSet.getString(2), notasResultSet.getInt(7));
 				CajaDTO cajaDTO = new CajaDTO(notasResultSet.getInt(6));
 				MatriculacionesDTO a = new MatriculacionesDTO(notasResultSet.getInt(1),nombreAsignatura2, nombreAlumno2, notasResultSet.getString(4), notasResultSet.getInt(5), cajaDTO);
 				listaMatriculas.add(a);
@@ -127,6 +127,64 @@ public class MatriculacionesDAOImpl implements IMatriculacionesDAO{
 		}
 
 		return listaMatriculas;
+	}
+
+	@Override
+	public int actualizarMatricula(int idMatricula, int idAsignatura, int idAlumno, int importe, String fecha) {
+		  String sql1 = "UPDATE matriculaciones SET id_asignatura=?, id_alumno=?, fecha=? WHERE id=?";
+		    String sql2 = "UPDATE caja SET importe=? WHERE idmatricula=?";
+
+		    int resultado = 0;
+
+		    Connection connection = DBUtils.conexion();
+
+		    try {
+		        connection.setAutoCommit(false);
+
+
+		        PreparedStatement ps1 = connection.prepareStatement(sql1);
+		        ps1.setInt(1, idAsignatura);
+		        ps1.setInt(2, idAlumno);
+		        ps1.setString(3, fecha);
+		        ps1.setInt(4, idMatricula);
+
+		        int filas1 = ps1.executeUpdate();
+
+		        if (filas1 == 0) {
+		            throw new SQLException("No se pudo actualizar la tabla matriculaciones");
+		        }
+
+		        // UPDATE caja
+		        PreparedStatement ps2 = connection.prepareStatement(sql2);
+		        ps2.setInt(1, importe);
+		        ps2.setInt(2, idMatricula);
+
+		        int filas2 = ps2.executeUpdate();
+
+		        if (filas2 == 0) {
+		            throw new SQLException("No se pudo actualizar la tabla caja");
+		        }
+
+		        connection.commit();
+		        resultado = 1;
+
+		    } catch (SQLException e) {
+		        try {
+		            connection.rollback();
+		        } catch (SQLException rollbackException) {
+		            rollbackException.printStackTrace();
+		        }
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            connection.setAutoCommit(true);
+		            connection.close();
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		    }
+
+		    return resultado;
 	}
 
 }
