@@ -31,9 +31,9 @@ public class MatriculacionesDAOImpl implements IMatriculacionesDAO{
 		Connection connection = DBUtils.conexion();
 		PreparedStatement statement;
 		try {
-			connection.setAutoCommit(false); // Empieza la transacción
+			connection.setAutoCommit(false);
 			statement = connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
-			// Seteo de los parámetros de la primera SQL (matriculaciones)
+		
 			statement.setString(1, idAsignatura);
 			statement.setString(2, idAlumno);
 			statement.setString(3, fecha);
@@ -43,11 +43,8 @@ public class MatriculacionesDAOImpl implements IMatriculacionesDAO{
 			    throw new SQLException("Ha fallado la inserción de la matriculación");
 			
 
-			// Este método nos devolverá la clave generada dentro un ResultSet
-			// El resulset en la primera posición nos encontraremos la clave generada
 			ResultSet clavesGeneradas = statement.getGeneratedKeys();
 			
-			// Recorremos el resultset para obtener la clave.
 			int idMatriculacion;
 			if (clavesGeneradas.next()) {
 			    idMatriculacion = clavesGeneradas.getInt(1);
@@ -55,7 +52,6 @@ public class MatriculacionesDAOImpl implements IMatriculacionesDAO{
 			    throw new SQLException("Insert fallido, no se ha obtenido id.");
 			}
 			
-			// Con el idMatriculacion obtenido hago el insert en la tabla caja
 			PreparedStatement statement2 = connection.prepareStatement(sql2);
 			statement2.setInt(1, idMatriculacion);
 			statement2.setString(2, tasa);
@@ -66,16 +62,16 @@ public class MatriculacionesDAOImpl implements IMatriculacionesDAO{
 			if (filasInsertadasCaja == 0)
 			    throw new SQLException("Ha fallado la inserción en caja");
 			
-			  connection.commit(); // Si todo va bien, confirmamos la transacción
+			  connection.commit();
 			  resultado = filasInsertadasCaja;
 
 		} catch (SQLException e) {
-				connection.rollback(); // Si hay error, deshacemos todos los cambios
+				connection.rollback(); 
 				e.printStackTrace();
 
 		} finally {
 			if (connection != null) {
-		        connection.setAutoCommit(true); // Restauramos el autocommit
+		        connection.setAutoCommit(true);
 		        connection.close();
 		    }
 			
@@ -104,8 +100,8 @@ public class MatriculacionesDAOImpl implements IMatriculacionesDAO{
 			ps.setString(1, "%" + nombreAlumno + "%");
 			ps.setString(2, "%" + nombreAsignatura + "%");
 			ps.setString(3, "%" + matriculaActiva + "%");
-			if(fecha != "") {
-				ps.setString(5, "%" + fecha + "%");
+			if(fecha != ""  && !fecha.isEmpty()) {
+				ps.setString(5, "%" + fecha + "%" );
 			}
 
 			logger.debug("Query a ejecutar: " + ps);
@@ -185,6 +181,52 @@ public class MatriculacionesDAOImpl implements IMatriculacionesDAO{
 		    }
 
 		    return resultado;
+	}
+
+	@Override
+	public int borrarMatricula(String id) {
+		 String sql1 = "DELETE FROM caja WHERE idmatricula = ?";
+		    String sql2 = "DELETE FROM matriculaciones WHERE id = ?";
+		    int resultado = 0;
+
+		    Connection connection = DBUtils.conexion();
+
+		    try {
+		        connection.setAutoCommit(false);
+
+		        PreparedStatement ps1 = connection.prepareStatement(sql1);
+		        ps1.setString(1, id);
+		        int filasCaja = ps1.executeUpdate();
+
+		        PreparedStatement ps2 = connection.prepareStatement(sql2);
+		        ps2.setString(1, id);
+		        int filasMatriculas = ps2.executeUpdate();
+
+		        if (filasMatriculas == 0) {
+		            throw new SQLException("No se pudo borrar la matrícula con id: " + id);
+		        }
+
+		        connection.commit();
+		        resultado = filasMatriculas;
+
+		    } catch (SQLException e) {
+		        try {
+		            connection.rollback();
+		        } catch (SQLException rollbackException) {
+		            rollbackException.printStackTrace();
+		        }
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            connection.setAutoCommit(true);
+		            connection.close();
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		    }
+
+		    return resultado;
+
 	}
 
 }

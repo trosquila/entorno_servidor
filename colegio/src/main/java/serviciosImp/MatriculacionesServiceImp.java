@@ -28,4 +28,10 @@ public class MatriculacionesServiceImp implements IMatriculacionesService {
 		return notas.actualizarMatricula( idMatricula,  idAsignatura,  idAlumno,  importe,  fecha);
 	}
 
+	@Override
+	public int borrarMatricula(String id) {
+		IMatriculacionesDAO notas = new MatriculacionesDAOImpl();
+		return notas.borrarMatricula(id);
+	}
+
 }

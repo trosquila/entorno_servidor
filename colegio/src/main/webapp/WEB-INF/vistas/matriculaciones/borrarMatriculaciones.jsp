@@ -4,26 +4,25 @@
 <%@ page isELIgnored="false"%>
 <html>
 <head>
-	 <link rel="stylesheet" href="/colegio/css/index.css">
-	 <link rel="stylesheet" href="/colegio/css/formularios.css">
-	 <link rel="stylesheet" href="/colegio/css/tablas.css">
+<link rel="stylesheet" href="/colegio/css/index.css">
+<link rel="stylesheet" href="/colegio/css/formularios.css">
+<link rel="stylesheet" href="/colegio/css/tablas.css">
 </head>
 <body>
-	<%@include file="/menu.html" %>
+	<%@include file="/menu.html"%>
 	<div class="container">
 		<h2>Borrar Asignaturas</h2>
 		<div class="form">
-		<form action="http://localhost:8080/colegio/matriculaciones/formularioBorrarMatriculas" method="post">
-					 <label for="alumno">Nombre Alumno</label>
-                    <input type="text" name="alumno">
+			<form
+				action="http://localhost:8080/colegio/matriculaciones/formularioBorrarMatriculaciones"
+				method="post">
+				<label for="alumno">Nombre Alumno</label> <input type="text"
+					name="alumno"> <label for="asignatura">Asignatura:</label>
+				<input type="text" id="asignatura" name="asignatura"><br>
 
-                    <label for="asignatura">Asignatura:</label>
-                    <input type="text" id="asignatura" name="asignatura"><br>
-
-                    <label for="fecha">Fecha (dejar vacío para fecha actual):</label>
-                    <input type="date" name="fecha">
-
-                    <input type="submit" value="Enviar">
+				<label for="fecha">Fecha (dejar vacío para fecha actual):</label> <input
+					type="date" name="fecha"> <input type="submit"
+					value="Enviar">
 			</form>
 		</div>
 	</div>
@@ -31,16 +30,19 @@
 		<h2>No hay resultados que mostrar con esos filtros</h2>
 	</c:if>
 	<c:if test="${not empty lista}">
-		<c:forEach items="${lista}" var="lista">
-			<p><span>Alumno: </span>  ${lista.alumnoDTO.nombre}</p>
-			<p><span>Asignatura: </span>  ${lista.asignaturaDTO.nombre} </p>
-			<p><span>Fecha: </span>  $lista.fecha} </p>
-			<p><span>Tasa: </span>  ${lista.cajaDTO.importe} </p>
-			<form action="http://localhost:8080/colegio/matriculaciones/borrarMatriculas" method="POST" >
-				<input type="hidden" name="id" value="${lista.id}">
-				<input type ="submit" value="Borrar">
-			</form>
-		</c:forEach>
-	</c:if>
+    <c:forEach items="${lista}" var="matricula">
+        <div class="form">
+            <p><span>Alumno: </span> ${matricula.alumnoDTO.nombre}</p>
+            <p><span>Asignatura: </span> ${matricula.asignaturasDTO.nombre}</p>
+            <p><span>Fecha: </span> ${matricula.fecha}</p>
+            <p><span>Tasa: </span> ${matricula.cajaDTO.importe}</p>
+            <form action="http://localhost:8080/colegio/matriculaciones/borrarMatriculas" method="POST">
+                <input type="hidden" name="id" value="${matricula.id}">
+                <input type="submit" value="Borrar">
+            </form>
+        </div>
+    </c:forEach>
+</c:if>
+
 </body>
 </html>

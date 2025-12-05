@@ -13,4 +13,6 @@ public interface IMatriculacionesService {
 
 	int actualizarMatricula(int idMatricula, int idAsignatura, int idAlumno, int importe, String fecha);
 
+	int borrarMatricula(String id);
+
 }

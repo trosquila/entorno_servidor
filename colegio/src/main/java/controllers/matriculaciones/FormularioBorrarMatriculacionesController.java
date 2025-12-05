@@ -21,7 +21,7 @@ import dto.MatriculacionesDTO;
 /**
  * Servlet implementation class FormularioBorrarAlumnosController
  */
-@WebServlet("/matriculaciones/formularioBorraMatriculaciones")
+@WebServlet("/matriculaciones/formularioBorrarMatriculaciones")
 public class FormularioBorrarMatriculacionesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,7 +38,7 @@ public class FormularioBorrarMatriculacionesController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/borrarAlumnos.jsp");
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/matriculaciones/borrarMatriculaciones.jsp");
         d.forward(request, response);
 	}
 
@@ -47,22 +47,19 @@ public class FormularioBorrarMatriculacionesController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DesplegableUtils.recuperarDesplegableMunicipios(request);
-		String id = request.getParameter("id");
         String alumno = request.getParameter("alumno");
         String asignatura = request.getParameter("asignatura");
-        String date = request.getParameter("date");
-        String activo =  request.getParameter("activo");
+        String date = request.getParameter("fecha");
         
 
         
-        ArrayList<MatriculacionesDTO> listaMatriculaciones = new ArrayList<>();
+        ArrayList<MatriculacionesDTO> listaMatriculas = new ArrayList<>();
         
         IMatriculacionesService service = new MatriculacionesServiceImp();
-        ArrayList<MatriculacionesDTO> listaMatriculas;
-        listaMatriculas = service.listarMatriculas(nombreAlumno, nombreAsignatura, fecha, activo);
-        request.setAttribute("lista", listaAlumnos);
+        listaMatriculas = service.listarMatriculas( alumno, asignatura, date, 0);
+        request.setAttribute("lista", listaMatriculas);
         
-        RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/borrarAlumnos.jsp");
+        RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/matriculaciones/borrarMatriculaciones.jsp");
         d.forward(request, response);
 	}
 
