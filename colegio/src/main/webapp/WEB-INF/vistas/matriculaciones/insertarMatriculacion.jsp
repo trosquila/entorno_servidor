@@ -22,23 +22,23 @@
                                 <label for="alumno">Alumno</label>
                                 <select name="alumno" id="alumno" required>
                                     <option value="">Seleccione un alumno</option>
-                                    <c:forEach items="${listaAlumnos}" var="alumno">
-                                        <option value="${alumno.id}">${alumno.nombre} ${alumno.apellido}</option>
+                                    <c:forEach items="${desplegableAlumnos}" var="alumno">
+                                        <option value="${alumno.id}">${alumno.descripcion}</option>
                                     </c:forEach>
                                 </select><br>
 
                                 <label for="asignatura">Asignatura</label>
                                 <select name="asignatura" id="asignatura" required>
                                     <option value="">Seleccione una asignatura</option>
-                                    <c:forEach items="${listaAsignaturas}" var="asignatura">
+                                    <c:forEach items="${desplegableAsignaturas}" var="asignatura">
                                         <option value="${asignatura.id}">
-                                            ${asignatura.nombre}
+                                            ${asignatura.descripcion}
                                         </option>
                                     </c:forEach>
                                 </select><br>
 
                                 <label for="tasa">Tasa a pagar (€)</label>
-                                <input type="number" id="tasa" name="tasa" required><br>
+                                <input type="number" id="tasa" name="tasa" readonly required><br>
 
                                 <label for="fecha">Fecha (dejar vacío para fecha actual)</label>
                                 <input type="date" id="fecha" name="fecha"><br>
@@ -48,7 +48,14 @@
                         </div>
                     </div>
 
- 
+                    <c:if test="${not empty resultado}">
+                        <c:if test="${resultado > 0}">
+                            <h2 style="color: green;">Matriculación insertada correctamente</h2>
+                        </c:if>
+                        <c:if test="${resultado == 0}">
+                            <h2 style="color: red;">Error al insertar la matriculación</h2>
+                        </c:if>
+                    </c:if>
             </body>
             
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

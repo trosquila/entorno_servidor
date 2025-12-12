@@ -50,33 +50,33 @@ public class ListadoAlumnosController extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException {
-			String id = request.getParameter("id");
-	        String nombre = request.getParameter("nombre");
-	        String apellido = request.getParameter("apellido");
-	        String familiaNumerosa = request.getParameter("famNumerosa");
-	        String activo =  request.getParameter("activo");
-	        
-	        logger.info(activo);
-	        
-	        if(familiaNumerosa != null)
-	        	familiaNumerosa = "1";
-	        else
-	        	familiaNumerosa = "0";
-	        
-	        if(activo != null)
-	        	activo = "1";
-	        else
-	        	activo = "0";
-	        
-	        IAlumnosService a = new AlumnosServiceImp();
-	        ArrayList<AlumnoDTO> listaAlumnos = new ArrayList<>();
-	        
-	        listaAlumnos = a.obtenerAlumnosPorIdNombreApellido(id, nombre, apellido, Integer.parseInt(familiaNumerosa), Integer.parseInt(activo));
-	        
-	        request.setAttribute("lista", listaAlumnos);
-	        RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/listadoAlumnos.jsp");
-	        d.forward(request, response);
-		}
+			throws ServletException, IOException {
+		String id = request.getParameter("id");
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String familiaNumerosa = request.getParameter("famNumerosa");
+        String activo =  request.getParameter("activo");
+        
+        logger.info(activo);
+        
+        if(familiaNumerosa != null)
+        	familiaNumerosa = "1";
+        else
+        	familiaNumerosa = "0";
+        
+        if(activo != null)
+        	activo = "1";
+        else
+        	activo = "0";
+        
+        IAlumnosService a = new AlumnosServiceImp();
+        ArrayList<AlumnoDTO> listaAlumnos = new ArrayList<>();
+        
+        listaAlumnos = a.obtenerAlumnosPorIdNombreApellido(id, nombre, apellido, Integer.parseInt(familiaNumerosa), Integer.parseInt(activo));
+        
+        request.setAttribute("lista", listaAlumnos);
+        RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/listadoAlumnos.jsp");
+        d.forward(request, response);
+	}
 
 }

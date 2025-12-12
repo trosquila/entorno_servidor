@@ -2,21 +2,22 @@ package dao;
 
 import java.util.ArrayList;
 
-import dto.NotasDTO;
+import dto.NotaDTO;
 
 public interface INotasDAO {
 
-	ArrayList<NotasDTO> obtenerTodasNotas(String id, String idAlumno, String idAsignatura, String nota, String fecha,
-			String activo);
+    ArrayList<NotaDTO> obtenerTodasNotas();
 
-	Integer insertarNota(int idAlumno, int idAsignatura, int nota, String fecha);
+    ArrayList<NotaDTO> obtenerNotasPorFiltros(String idAlumno, String nombreAlumno, String asignatura, String nota,
+            String fecha, int activo);
 
-	ArrayList<NotasDTO> obtenerNotasModificar(String alumno, String asignatura, String fecha);
+    ArrayList<NotaDTO> obtenerNotasPorFiltrosSinFecha(String idAlumno, String nombreAlumno, String asignatura,
+            String nota, int activo);
 
-	int obtenerNotasModificar(int id, int idAsignatura, int nota, String fecha);
+    int insertarNota(String idAlumno, String idAsignatura, String nota, String fecha);
 
-	int borrarNota(String id);
+    int actualizarNota(String id, String idAlumno, String idAsignatura, String nota, String fecha);
 
-	int actualizarNota(int id, int idAsignatura, int nota, String fecha);
+    int borrarNota(String id);
 
 }

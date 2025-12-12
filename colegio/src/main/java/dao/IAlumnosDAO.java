@@ -11,5 +11,8 @@ public interface IAlumnosDAO {
 	int insertarAlumno(String id, String nombre, String apellido, String idMunicipio, int familiaNumerosa, int activo);
 	int actualizarAlumno(String id, String nombre, String apellido, String idMunicipio, int familiaNumerosa, int activo);
 	int borrarAlumno(String id);
+	
+    boolean esFamiliaNumerosa(String idAlumno);
+	int contarAsignaturasMatriculadas(String idAlumno);
 
 }

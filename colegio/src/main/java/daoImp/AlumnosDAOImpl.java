@@ -131,7 +131,7 @@ public class AlumnosDAOImpl implements IAlumnosDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return resultado;
 	}
 
 	@Override
@@ -152,6 +152,58 @@ public class AlumnosDAOImpl implements IAlumnosDAO {
 			e.printStackTrace();
 		}
 		return resultado;
+	}
+
+	@Override
+	public boolean esFamiliaNumerosa(String idAlumno) {
+		String sql = "SELECT familia_numerosa FROM alumnos WHERE id = ?";
+		boolean esFamiliaNumerosa = false;
+
+		try {
+			Connection connection = DBUtils.conexion();
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, idAlumno);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				esFamiliaNumerosa = rs.getBoolean("familia_numerosa");
+			}
+
+			connection.close();
+			logger.debug("Alumno " + idAlumno + " es familia numerosa: " + esFamiliaNumerosa);
+		} catch (SQLException e) {
+			logger.error("Error al verificar si es familia numerosa", e);
+			e.printStackTrace();
+		}
+
+		return esFamiliaNumerosa;
+	}
+
+	@Override
+	public int contarAsignaturasMatriculadas(String idAlumno) {
+		String sql = "SELECT COUNT(*) as total FROM matriculaciones WHERE id_alumnos = ?";
+		int count = 0;
+
+		try {
+			Connection connection = DBUtils.conexion();
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, idAlumno);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt("total");
+			}
+
+			connection.close();
+			logger.debug("Alumno " + idAlumno + " tiene " + count + " asignaturas matriculadas");
+		} catch (SQLException e) {
+			logger.error("Error al contar asignaturas matriculadas", e);
+			e.printStackTrace();
+		}
+
+		return count;
 	}
 
 }

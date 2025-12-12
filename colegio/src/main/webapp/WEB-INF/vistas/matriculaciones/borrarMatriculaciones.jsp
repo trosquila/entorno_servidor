@@ -1,48 +1,51 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core"%>
-<%@ page isELIgnored="false"%>
-<html>
-<head>
-<link rel="stylesheet" href="/colegio/css/index.css">
-<link rel="stylesheet" href="/colegio/css/formularios.css">
-<link rel="stylesheet" href="/colegio/css/tablas.css">
-</head>
-<body>
-	<%@include file="/menu.html"%>
-	<div class="container">
-		<h2>Borrar Asignaturas</h2>
-		<div class="form">
-			<form
-				action="http://localhost:8080/colegio/matriculaciones/formularioBorrarMatriculaciones"
-				method="post">
-				<label for="alumno">Nombre Alumno</label> <input type="text"
-					name="alumno"> <label for="asignatura">Asignatura:</label>
-				<input type="text" id="asignatura" name="asignatura"><br>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+        <%@ page isELIgnored="false" %>
+            <!DOCTYPE html>
+            <html>
 
-				<label for="fecha">Fecha (dejar vacío para fecha actual):</label> <input
-					type="date" name="fecha"> <input type="submit"
-					value="Enviar">
-			</form>
-		</div>
-	</div>
-	<c:if test="${empty lista}">
-		<h2>No hay resultados que mostrar con esos filtros</h2>
-	</c:if>
-	<c:if test="${not empty lista}">
-    <c:forEach items="${lista}" var="matricula">
-        <div class="form">
-            <p><span>Alumno: </span> ${matricula.alumnoDTO.nombre}</p>
-            <p><span>Asignatura: </span> ${matricula.asignaturasDTO.nombre}</p>
-            <p><span>Fecha: </span> ${matricula.fecha}</p>
-            <p><span>Tasa: </span> ${matricula.cajaDTO.importe}</p>
-            <form action="http://localhost:8080/colegio/matriculaciones/borrarMatriculas" method="POST">
-                <input type="hidden" name="id" value="${matricula.id}">
-                <input type="submit" value="Borrar">
-            </form>
-        </div>
-    </c:forEach>
-</c:if>
+            <head>
+                <meta charset="UTF-8">
+                <link rel="stylesheet" href="/colegio/css/index.css">
+                <link rel="stylesheet" href="/colegio/css/formularios.css">
+                <title>Borrar Matriculaciones</title>
+            </head>
 
-</body>
-</html>
+            <body>
+                <h1>Borrar matriculaciones</h1>
+                <%@include file="/menu.html" %>
+                    <div class="container">
+                        <h2>Buscar Matriculaciones</h2>
+                        <div class="form">
+                            <form action="http://localhost:8080/colegio/matriculaciones/formularioBorrarMatriculaciones"
+                                method="post">
+
+                                <label for="nombreAlumno">Nombre Alumno</label>
+                                <input type="text" id="nombreAlumno" name="nombreAlumno"><br>
+                                <label for="asignatura">Asignatura</label>
+                                <input type="text" id="asignatura" name="asignatura"><br>
+                                <label for="fecha">Fecha</label>
+                                <input type="date" id="fecha" name="fecha"><br>
+                                <input type="submit" value="Buscar">
+                            </form>
+                        </div>
+                    </div>
+
+                    <c:forEach items="${lista}" var="matriculacion">
+                        <div class="form">
+                            <form action="http://localhost:8080/colegio/matriculaciones/borrarMatriculacion"
+                                method="post">
+                                <input type="hidden" name="id" value="${matriculacion.id}">
+
+                                <p><strong>Alumno:</strong> ${matriculacion.nombreAlumno}</p>
+                                <p><strong>Asignatura:</strong> ${matriculacion.nombreAsignatura}</p>
+                                <p><strong>Fecha:</strong> ${matriculacion.fecha}</p>
+                                <p><strong>Tasa:</strong> ${matriculacion.tasa}</p>
+
+                                <input type="submit" value="Borrar">
+                            </form>
+                        </div>
+                    </c:forEach>
+            </body>
+
+            </html>

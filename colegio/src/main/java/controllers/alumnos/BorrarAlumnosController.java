@@ -43,7 +43,7 @@ public class BorrarAlumnosController extends HttpServlet {
 	    IAlumnosService a = new AlumnosServiceImp();
 	    a.borrarAlumno(id);
 	    
-        RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/asignaturas/borrarAsignatura.jsp");
+        RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/borrarAlumnos.jsp");
         d.forward(request, response);
 	}
 

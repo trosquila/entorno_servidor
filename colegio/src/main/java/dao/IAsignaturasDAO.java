@@ -1,23 +1,21 @@
 package dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import dto.AsignaturasDTO;
+import dto.AsignaturaDTO;
 
 public interface IAsignaturasDAO {
-	ArrayList<AsignaturasDTO> obtenerTodasAsignaturasFiltradas(int id, String nombre, int curso, int tasa, int activo);
 
-	Integer insertarAsignatura(int id, String nombre, int curso, int tasa, int activo);
+    ArrayList<AsignaturaDTO> obtenerTodasAsignaturas();
 
-	ArrayList<AsignaturasDTO> obtenerAsignaturasModificar(String id, String nombre, String curso, String tasa);
+    ArrayList<AsignaturaDTO> obtenerAsignaturasPorFiltros(String id, String nombre, String curso, String tasa,
+            int activo);
 
-	int actualizarAsignatura(int id, String nombre, int curso, int tasa);
+    int insertarAsignatura(String id, String nombre, String curso, String tasa, int activo);
 
-	ArrayList<AsignaturasDTO> obtenerAsignaturasBorrar(String id, String nombre, String curso, String tasa);
+    int actualizarAsignatura(String id, String nombre, String curso, String tasa, int activo);
 
-	int borrarAsignatura(String id);
-
-	List<AsignaturasDTO> obtenerAsignaturas();
-	
+    int borrarAsignatura(String id);
+    
+    double obtenerTasaAsignatura(String idAsignatura);
 }

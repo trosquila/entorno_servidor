@@ -6,51 +6,48 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import servicios.IMatriculacionesService;
 import serviciosImp.MatriculacionesServiceImp;
 
 import java.io.IOException;
 
-
 /**
- * Servlet implementation class ActualizarAlumnosController
+ * Servlet implementation class BorrarMatriculacionesController
  */
-@WebServlet("/matriculaciones/borrarMatriculas")
+@WebServlet("/matriculaciones/borrarMatriculacion")
 public class BorrarMatriculacionesController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
     public BorrarMatriculacionesController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.getWriter().append("Served at: ").append(request.getContextPath());
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		
-        IMatriculacionesService	service = new MatriculacionesServiceImp();
-        int resultado = service.borrarMatricula(id);
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String id = request.getParameter("id");
 
-        request.setAttribute("resultado", resultado);
+        IMatriculacionesService m = new MatriculacionesServiceImp();
+        m.borrarMatriculacion(id);
 
-        RequestDispatcher dispatcher = getServletContext()
+        RequestDispatcher d = getServletContext()
                 .getRequestDispatcher("/WEB-INF/vistas/matriculaciones/borrarMatriculaciones.jsp");
-        dispatcher.forward(request, response);
-
-	}
+        d.forward(request, response);
+    }
 
 }

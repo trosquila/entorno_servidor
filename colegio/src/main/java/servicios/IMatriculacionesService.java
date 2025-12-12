@@ -1,18 +1,23 @@
 package servicios;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dto.MatriculacionesDTO;
+import dto.MatriculacionDTO;
 
 public interface IMatriculacionesService {
+	public double calcularTasa(String idAlumno, String idAsignatura);
 
-	Integer insertarMatriculacion(String idAsignatura, String idAlumno, String fecha, String tasa) throws SQLException;
+	int insertarMatriculacion(String idAsignatura, String idAlumno,
+			String fecha, String tasa);
 
-	ArrayList<MatriculacionesDTO> listarMatriculas(String nombreAlumno, String nombreAsignatura, String fecha, int activo);
+	ArrayList<MatriculacionDTO> obtenerMatriculacionesPorFiltros(String nombreAsignatura, String nombreAlumno,
+			String fecha, int activo);
 
-	int actualizarMatricula(int idMatricula, int idAsignatura, int idAlumno, int importe, String fecha);
+	ArrayList<MatriculacionDTO> obtenerMatriculacionesPorFiltrosSinFecha(String nombreAsignatura, String nombreAlumno,
+			int activo);
 
-	int borrarMatricula(String id);
+	int actualizarMatriculacion(String id, String idAsignatura, String idAlumno,
+			String fecha, String tasa);
 
+	int borrarMatriculacion(String id);
 }

@@ -6,8 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import servicios.IAsignaturasService;
-import serviciosImp.AsiganturasServicelmp;
+import serviciosImp.AsignaturasServiceImp;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,82 +14,66 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controllers.alumnos.ListadoAlumnosController;
-import dto.AsignaturasDTO;
+import dto.AsignaturaDTO;
+import servicios.IAsignaturasService;
 
 /**
  * Servlet implementation class ListadoAsignaturasController
  */
-@WebServlet("/asignaturas/listarAsignaturas")
+@WebServlet("/asignaturas/listadoAsignaturas")
 public class ListadoAsignaturasController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private static Logger logger = LoggerFactory.getLogger(ListadoAlumnosController.class);
+    private static final long serialVersionUID = 1L;
+    private static Logger logger = LoggerFactory.getLogger(ListadoAsignaturasController.class);
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public ListadoAsignaturasController() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ListadoAsignaturasController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/asignaturas/listadoAsignaturas.jsp");
-		d.forward(request, response);
-	}
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String idParam = request.getParameter("id");
-		String nombre = request.getParameter("nombre");
-		String cursoParam = request.getParameter("curso");
-		String tasaParam = request.getParameter("tasa");
-		String activoParam = request.getParameter("activo");
-		
-		int id;
-		int curso;
-		int tasa;
-		int activo;
-		if(activoParam == null) {
-			activo = 0;
-		}else {
-			activo = 1;
-		}
-		try {
-		    id = Integer.parseInt(idParam);
-		} catch (NumberFormatException | NullPointerException e) {
-			id = 0;
-		}
-		try {
-		    curso = Integer.parseInt(cursoParam);
-		} catch (NumberFormatException | NullPointerException e) {
-			curso = 0;
-		}
-		try {
-			tasa = Integer.parseInt(tasaParam);
-		} catch (NumberFormatException | NullPointerException e) {
-			tasa = 0;
-		}
+        RequestDispatcher d = getServletContext()
+                .getRequestDispatcher("/WEB-INF/vistas/asignaturas/listadoAsignaturas.jsp");
+        d.forward(request, response);
 
-		IAsignaturasService a = new AsiganturasServicelmp();
-		ArrayList<AsignaturasDTO> listaAsignaturas = new ArrayList<>();
+    }
 
-		
-		
-		listaAsignaturas = a.obtenerTodasAsignaturasFiltradas(id, nombre, curso, tasa, activo);
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String id = request.getParameter("id");
+        String nombre = request.getParameter("nombre");
+        String curso = request.getParameter("curso");
+        String tasa = request.getParameter("tasa");
+        String activo = request.getParameter("activo");
 
-		request.setAttribute("listaAsignaturas", listaAsignaturas);
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/asignaturas/listadoAsignaturas.jsp");
-		d.forward(request, response);
-	}
+        logger.info(activo);
+
+        if (activo != null)
+            activo = "1";
+        else
+            activo = "0";
+
+        IAsignaturasService a = new AsignaturasServiceImp();
+        ArrayList<AsignaturaDTO> listaAsignaturas = new ArrayList<>();
+
+        listaAsignaturas = a.obtenerAsignaturasPorFiltros(id, nombre, curso, tasa, Integer.parseInt(activo));
+
+        request.setAttribute("lista", listaAsignaturas);
+        RequestDispatcher d = getServletContext()
+                .getRequestDispatcher("/WEB-INF/vistas/asignaturas/listadoAsignaturas.jsp");
+        d.forward(request, response);
+    }
 
 }

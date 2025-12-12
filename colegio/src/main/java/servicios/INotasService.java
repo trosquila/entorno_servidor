@@ -1,20 +1,22 @@
 package servicios;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dto.NotasDTO;
+import dto.NotaDTO;
 
 public interface INotasService {
+    public ArrayList<NotaDTO> obtenerNotas() throws SQLException;
 
-	ArrayList<NotasDTO> obtenerTodasNotas(String id, String idAlumno, String idAsignatura, String nota, String fecha,String activo);
+    public ArrayList<NotaDTO> obtenerNotasPorFiltros(String idAlumno, String nombreAlumno, String asignatura,
+            String nota, String fecha, int activo);
 
-	Integer insertarNota(int idAlumno, int idAsignatura, int nota, String fecha);
+    public ArrayList<NotaDTO> obtenerNotasPorFiltrosSinFecha(String idAlumno, String nombreAlumno, String asignatura,
+            String nota, int activo);
 
-	ArrayList<NotasDTO> obtenerNotasModificar(String alumno, String asignatura, String fecha);
+    public int insertarNota(String idAlumno, String idAsignatura, String nota, String fecha);
 
-	int actualizarNota(int id, int idAsignatura, int nota, String fecha);
+    public int actualizarNota(String id, String idAlumno, String idAsignatura, String nota, String fecha);
 
-	int borrarNota(String id);
-
-
+    public int borrarNota(String id);
 }

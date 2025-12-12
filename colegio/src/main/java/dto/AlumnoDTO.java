@@ -34,13 +34,8 @@ public class AlumnoDTO {
 		this.nombre = nombre;
 		this.apellido = apellido;
 	}
-	public AlumnoDTO(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public AlumnoDTO() {
-		// TODO Auto-generated constructor stub
-	}
+	
+	//Getters, setters... 
 
 	public int getId() {
 		return id;
