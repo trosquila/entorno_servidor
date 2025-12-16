@@ -32,14 +32,38 @@ public class DesplegablesDAOImplHib implements IDesplegableDAO {
 
 	@Override
 	public ArrayList<DesplegableDTO> desplegableAlumnos() {
-		// TODO Auto-generated method stub
-		return null;
+	     String hql = "SELECT new dto.DesplegableDTO(a.id, CONCAT(a.id, ' - ', a.nombre)) " +
+                 "FROM AlumnoEntity a WHERE a.activo = 1 ORDER BY a.nombre";
+
+    SessionFactory factory = DBUtils.creadorSessionFactory();
+    Session s = factory.getCurrentSession();
+    s.beginTransaction();
+
+    Query<DesplegableDTO> query = s.createQuery(hql, DesplegableDTO.class);
+    List<DesplegableDTO> lista = query.getResultList();
+
+    s.getTransaction().commit();
+    s.close();
+
+    return new ArrayList<>(lista);
 	}
 
 	@Override
 	public ArrayList<DesplegableDTO> desplegableAsignaturas() {
-		// TODO Auto-generated method stub
-		return null;
+	       String hql = "SELECT new dto.DesplegableDTO(a.id, a.nombre) " +
+                   "FROM AsignaturaEntity a WHERE a.activo = 1 ORDER BY a.nombre";
+
+      SessionFactory factory = DBUtils.creadorSessionFactory();
+      Session s = factory.getCurrentSession();
+      s.beginTransaction();
+
+      Query<DesplegableDTO> query = s.createQuery(hql, DesplegableDTO.class);
+      List<DesplegableDTO> lista = query.getResultList();
+
+      s.getTransaction().commit();
+      s.close();
+
+      return new ArrayList<>(lista);
 	}
 
 }

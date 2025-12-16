@@ -3,7 +3,6 @@ package utils;
 import java.util.ArrayList;
 
 import dao.IDesplegableDAO;
-import daoImp.DesplegableDAOImp;
 import daoImp.Hib.DesplegablesDAOImplHib;
 import dto.DesplegableDTO;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,13 +16,13 @@ public class DesplegableUtils {
 	}
 
 	public static void recuperarDesplegableAlumnos(HttpServletRequest request) {
-		IDesplegableDAO desplegableAlumnos = new DesplegableDAOImp();
+		IDesplegableDAO desplegableAlumnos = new DesplegablesDAOImplHib();
 		ArrayList<DesplegableDTO> listaAlumnos = desplegableAlumnos.desplegableAlumnos();
 		request.setAttribute("desplegableAlumnos", listaAlumnos);
 	}
 
 	public static void recuperarDesplegableAsignaturas(HttpServletRequest request) {
-		IDesplegableDAO desplegableAsignaturas = new DesplegableDAOImp();
+		IDesplegableDAO desplegableAsignaturas = new DesplegablesDAOImplHib();
 		ArrayList<DesplegableDTO> listaAsignaturas = desplegableAsignaturas.desplegableAsignaturas();
 		request.setAttribute("desplegableAsignaturas", listaAsignaturas);
 	}
