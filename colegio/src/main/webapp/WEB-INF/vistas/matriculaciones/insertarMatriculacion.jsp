@@ -38,7 +38,7 @@
                                 </select><br>
 
                                 <label for="tasa">Tasa a pagar (€)</label>
-                                <input type="number" id="tasa" name="tasa" readonly required><br>
+                                <input type="number" id="tasa" name="tasa"  required><br>
 
                                 <label for="fecha">Fecha (dejar vacío para fecha actual)</label>
                                 <input type="date" id="fecha" name="fecha"><br>

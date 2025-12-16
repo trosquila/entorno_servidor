@@ -26,7 +26,7 @@ public class DesplegableDAOImp implements IDesplegableDAO {
                 DesplegableDTO a = new DesplegableDTO(rs.getInt(1), rs.getString(5));
                 listaMunicipios.add(a);
             }
-
+            connection.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -55,7 +55,6 @@ public class DesplegableDAOImp implements IDesplegableDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return listaAlumnos;
     }
 

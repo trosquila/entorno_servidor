@@ -9,9 +9,10 @@ import org.slf4j.LoggerFactory;
 import dao.IAlumnosDAO;
 import dao.IAsignaturasDAO;
 import dao.IMatriculacionesDAO;
-import daoImp.AlumnosDAOImpl;
-import daoImp.AsignaturasDAOImpl;
 import daoImp.MatriculacionesDAOImpl;
+import daoImp.Hib.AlumnosDAOImplHib;
+import daoImp.Hib.AsinaturasDAOImplHib;
+import daoImp.Hib.MatriculasDAOImplHib;
 import dto.MatriculacionDTO;
 import servicios.IMatriculacionesService;
 
@@ -20,8 +21,8 @@ public class MatriculacionesServiceImp implements IMatriculacionesService {
 
 	@Override
 	public double calcularTasa(String idAlumno, String idAsignatura) {
-		IAsignaturasDAO asignaturasDAO = new AsignaturasDAOImpl();
-		IAlumnosDAO alumnosDAO = new AlumnosDAOImpl();
+		IAsignaturasDAO asignaturasDAO = new AsinaturasDAOImplHib();
+		IAlumnosDAO alumnosDAO = new AlumnosDAOImplHib();
 
 		// Obtener tasa base de la asignatura
 		double tasaBase = asignaturasDAO.obtenerTasaAsignatura(idAsignatura);
@@ -58,7 +59,7 @@ public class MatriculacionesServiceImp implements IMatriculacionesService {
 
 	@Override
 	public int insertarMatriculacion(String idAsignatura, String idAlumno, String fecha, String tasa) {
-		IMatriculacionesDAO matriculaciones = new MatriculacionesDAOImpl();
+		IMatriculacionesDAO matriculaciones = new MatriculasDAOImplHib();
 		try {
 			return matriculaciones.insertarMatriculacion(idAsignatura, idAlumno, fecha, tasa);
 		} catch (SQLException e) {
@@ -70,20 +71,20 @@ public class MatriculacionesServiceImp implements IMatriculacionesService {
 	@Override
 	public ArrayList<MatriculacionDTO> obtenerMatriculacionesPorFiltros(String nombreAsignatura, String nombreAlumno,
 			String fecha, int activo) {
-		IMatriculacionesDAO matriculaciones = new MatriculacionesDAOImpl();
+		IMatriculacionesDAO matriculaciones = new MatriculasDAOImplHib();
 		return matriculaciones.obtenerMatriculacionesPorFiltros(nombreAsignatura, nombreAlumno, fecha, activo);
 	}
 
 	@Override
 	public ArrayList<MatriculacionDTO> obtenerMatriculacionesPorFiltrosSinFecha(String nombreAsignatura,
 			String nombreAlumno, int activo) {
-		IMatriculacionesDAO matriculaciones = new MatriculacionesDAOImpl();
+		IMatriculacionesDAO matriculaciones = new MatriculasDAOImplHib();
 		return matriculaciones.obtenerMatriculacionesPorFiltrosSinFecha(nombreAsignatura, nombreAlumno, activo);
 	}
 
 	@Override
 	public int actualizarMatriculacion(String id, String idAsignatura, String idAlumno, String fecha, String tasa) {
-		IMatriculacionesDAO matriculaciones = new MatriculacionesDAOImpl();
+		IMatriculacionesDAO matriculaciones = new MatriculasDAOImplHib();
 		try {
 			return matriculaciones.actualizarMatriculacion(id, idAsignatura, idAlumno, fecha, tasa);
 		} catch (SQLException e) {
@@ -94,7 +95,7 @@ public class MatriculacionesServiceImp implements IMatriculacionesService {
 
 	@Override
 	public int borrarMatriculacion(String id) {
-		IMatriculacionesDAO matriculaciones = new MatriculacionesDAOImpl();
+		IMatriculacionesDAO matriculaciones = new MatriculasDAOImplHib();
 		try {
 			return matriculaciones.borrarMatriculacion(id);
 		} catch (SQLException e) {

@@ -83,6 +83,8 @@ public class MunicipiosEntity {
 	public void setDc(String dc) {
 		this.dc = dc;
 	}
-    
+	public MunicipiosEntity() {
+
+	}
     
 }

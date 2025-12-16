@@ -11,7 +11,7 @@
         <property name="connection.password">root</property> <!-- Aqui pon tu contraseña -->
 
 		<!--  Seteamos el pool de conexiones a 1 -->
-        <property name="connection.pool_size">1</property>
+        <property name="connection.pool_size">10</property>
         
 		<!--  Dialecto SQL a usar, cada BBDD (Oracle,MySQL, Postgresql) tienen el suyo -->
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -27,6 +27,9 @@
         <mapping class="entities.AlumnoEntity"></mapping>
         <mapping class="entities.AsignaturaEntity"></mapping>
         <mapping class="entities.MunicipiosEntity"></mapping>
+        <mapping class="entities.NotasEntity"></mapping>
+        <mapping class="entities.CajaEntity"></mapping>
+        <mapping class="entities.MatriculasEntity"></mapping>
 
     </session-factory>
 </hibernate-configuration>
