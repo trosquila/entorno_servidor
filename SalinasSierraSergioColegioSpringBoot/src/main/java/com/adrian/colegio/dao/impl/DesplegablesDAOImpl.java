@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import com.adrian.colegio.dao.interfaces.IDesplegablesDAO;
 import com.adrian.colegio.dtos.DesplegableDTO;
+import com.adrian.colegio.entities.AsignaturaEntity;
 import com.adrian.colegio.entities.MunicipioEntity;
+import com.adrian.colegio.repositorios.AsignaturaRepository;
 import com.adrian.colegio.repositorios.MunicipioRepository;
 
 @Repository
@@ -15,6 +17,8 @@ public class DesplegablesDAOImpl implements IDesplegablesDAO {
 
 	@Autowired // Inyectamos el repository
 	private MunicipioRepository municipioRepository;
+	@Autowired 
+	private AsignaturaRepository asignaturaRepository;
 
 	@Override
 	public ArrayList<DesplegableDTO> desplegableMunicipios() {
@@ -41,8 +45,19 @@ public class DesplegablesDAOImpl implements IDesplegablesDAO {
 
 	@Override
 	public ArrayList<DesplegableDTO> desplegableAsignaturas() {
-		// TODO Auto-generated method stub
-		return null;
+		//Utilizamos el método que nos "regala" Spring data JPA
+		Iterable<AsignaturaEntity> listaEntidadesAsignaturas = asignaturaRepository.findAll();
+		ArrayList<DesplegableDTO> listaAsignaturas = mapeoEntidadAsignaturas(listaEntidadesAsignaturas);
+		return listaAsignaturas;
+
+	}
+
+	private ArrayList<DesplegableDTO> mapeoEntidadAsignaturas(Iterable<AsignaturaEntity> listaEntidadesAsignaturas) {
+		ArrayList<DesplegableDTO> listaCombos = new ArrayList<>();
+		for (AsignaturaEntity signaturasEntity : listaEntidadesAsignaturas) {
+			listaCombos.add(new DesplegableDTO(signaturasEntity.getId(), signaturasEntity.getNombre()));
+		}
+		return listaCombos;
 	}
 
 }
