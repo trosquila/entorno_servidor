@@ -22,10 +22,9 @@ public class AsignaturaServiceImpl implements IAsignaturaService{
 	}
 
 	@Override
-	public ArrayList<AsignaturaDTO> obtenerAsignaturasPorFiltros(String id, String nombre, String curso, String tasa,
-			int activo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<AsignaturaDTO> obtenerAsignaturasPorFiltros(Integer id, String nombre, Integer curso, Integer tasa, Integer activo) {
+			
+		return asignaturasDAO.obtenerAsignaturasPorFiltros(id, nombre, curso, tasa, activo);
 	}
 
 	@Override
@@ -34,9 +33,9 @@ public class AsignaturaServiceImpl implements IAsignaturaService{
 	}
 
 	@Override
-	public int actualizarAsignatura(String id, String nombre, String curso, String tasa, int activo) {
+	public int actualizarAsignatura(Integer id, String nombre, Integer curso, Integer tasa, Integer activo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return asignaturasDAO.actualizarAsignatura(id, nombre, curso, tasa, activo);
 	}
 
 	@Override

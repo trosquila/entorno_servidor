@@ -1,5 +1,6 @@
 package com.adrian.colegio.controladores;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.adrian.colegio.dao.interfaces.IDesplegablesDAO;
+import com.adrian.colegio.dtos.AsignaturaDTO;
 import com.adrian.colegio.dtos.DesplegableDTO;
 import com.adrian.colegio.repositorios.AsignaturaRepository;
 import com.adrian.colegio.servicio.interfaces.IAsignaturaService;
@@ -38,10 +40,10 @@ public class AsignaturasController {
 	}
 	
 	@PostMapping("/insertarAsignatura")
-	public String insertarAlumno(@RequestParam("id") Integer id,
+	public String insertarAlumno(@RequestParam("id") int id,
 								@RequestParam("nombre") String nombre,
-								@RequestParam("curso") Integer curso,
-								@RequestParam("tasa") Integer tasa,
+								@RequestParam("curso") int curso,
+								@RequestParam("tasa") int tasa,
 								ModelMap model
 			) {
 		
@@ -50,6 +52,64 @@ public class AsignaturasController {
 		Integer resultado = asignaturaService.insertarAsignatura(id, nombre, curso, tasa, 1);
 		model.addAttribute("resultado", resultado);
 		return "asignaturas/insertarAsignatura";
+		
+	}
+	
+	@GetMapping("/listadoAsignaturas")
+	public String formularioListarAsignatura(ModelMap model) {
+		ArrayList<DesplegableDTO> listaAsignaturas =
+				desplegables.desplegableAsignaturas();
+		model.addAttribute("desplegableMunicipios", listaAsignaturas);
+
+		return "asignaturas/listadoAsignaturas";
+	}
+	
+	@PostMapping("/listadoAsignaturas")
+	public String listadoAlumnos(
+			  @RequestParam(value = "id", required = false) Integer id,
+			    @RequestParam(value = "nombre", required = false) String nombre,
+			    @RequestParam(value = "curso", required = false) Integer curso,
+			    @RequestParam(value = "tasa", required = false) Integer tasa,
+			    @RequestParam(value = "activo", required = false) Integer activo,
+			    ModelMap model) {
+
+		ArrayList<AsignaturaDTO> listaAsignaturas = asignaturaService.obtenerAsignaturasPorFiltros(id, nombre, curso, tasa, activo);
+		model.addAttribute("lista", listaAsignaturas);
+		return "asignaturas/listadoAsignaturas";
+	}
+
+	@GetMapping(value = "/formularioActualizarAsignaturas")
+	public String formularioModificarAsignaturas(ModelMap model) {
+		return "asignaturas/actualizarAsignaturas";
+	}
+	
+	@PostMapping(value = "/formularioActualizarAsignaturas")
+	public String formularioModificarAsignaturas(
+			@RequestParam(value = "id", required = false) Integer id,
+		    @RequestParam(value = "nombre", required = false) String nombre,
+		    @RequestParam(value = "curso", required = false) Integer curso,
+		    @RequestParam(value = "tasa", required = false) Integer tasa,
+		    @RequestParam(value = "activo", required = false) Integer activo,
+		    ModelMap model) throws SQLException {
+		ArrayList<AsignaturaDTO> listaMunicipios = asignaturaService.obtenerAsignaturasPorFiltros(id, nombre, curso, tasa, activo);
+		model.addAttribute("desplegableMunicipios", listaMunicipios);
+		model.addAttribute("lista", listaMunicipios);
+		return "asignaturas/actualizarAsignaturas";
+	}
+
+	@PostMapping(value = "/actualizarAsignatura")
+	public String modificarAsignatura(
+				@RequestParam(value = "id", required = false) Integer id,
+			    @RequestParam(value = "nombre", required = false) String nombre,
+			    @RequestParam(value = "curso", required = false) Integer curso,
+			    @RequestParam(value = "tasa", required = false) Integer tasa,
+			    ModelMap model
+			) {
+		
+		Integer resultado = asignaturaService.actualizarAsignatura(id, nombre, curso, tasa, 1);
+		model.addAttribute("resultado", resultado);
+		
+		return "asignaturas/actualizarAsignaturas";
 		
 	}
 }

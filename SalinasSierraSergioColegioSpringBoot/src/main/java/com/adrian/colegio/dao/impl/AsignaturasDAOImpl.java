@@ -14,7 +14,7 @@ public class AsignaturasDAOImpl implements IAsignaturasDAO{
 	@Autowired
 	AsignaturaRepository asignaturaRepository;
 	@Override
-	public ArrayList<AsignaturaDTO> obtenerAsignaturasPorFiltros(int id, String nombre, int curso, int tasa, int activo) {
+	public ArrayList<AsignaturaDTO> obtenerAsignaturasPorFiltros(Integer id, String nombre, Integer curso, Integer tasa, Integer activo) {
 		return asignaturaRepository.buscaAsignaturaporIDyNombre(id, nombre, curso, tasa, activo);
 	}
 
@@ -26,11 +26,12 @@ public class AsignaturasDAOImpl implements IAsignaturasDAO{
 	}
 
 	@Override
-	public int actualizarAsignatura(String id, String nombre, String curso, String tasa, int activo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int actualizarAsignatura(Integer id, String nombre, Integer curso, Integer tasa, Integer activo) {
+		AsignaturaEntity asigntura = new AsignaturaEntity(id, nombre, curso, tasa, activo);
+		asignaturaRepository.save(asigntura);
+		return asigntura.getId();
 	}
-
+	
 	@Override
 	public int borrarAsignatura(String id) {
 		// TODO Auto-generated method stub

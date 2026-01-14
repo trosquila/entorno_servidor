@@ -12,16 +12,16 @@ import com.adrian.colegio.entities.AsignaturaEntity;
 public interface AsignaturaRepository extends CrudRepository<AsignaturaEntity, Integer>{
 	@Query("select new com.adrian.colegio.dtos.AsignaturaDTO (a.id,a.nombre,a.curso,a.tasa,a.activo) "
 			+ "FROM com.adrian.colegio.entities.AsignaturaEntity a "
-			+ "WHERE CAST (a.id AS STRING) LIKE CONCAT ('%',:id,'%') "
-			+ "AND a.nombre LIKE CONCAT ('%',:nombre,'%') "
-			+ "AND CAST (a.curso AS STRING) LIKE CONCAT ('%',:curso,'%') "
-			+ "AND CAST (a.tasa AS STRING) LIKE CONCAT ('%',:tasa,'%') "
+			+ "WHERE (:id IS NULL OR CAST(a.id AS string) LIKE CONCAT('%', :id, '%')) "
+			+ "AND (:nombre IS NULL OR a.nombre LIKE CONCAT('%', :nombre, '%')) "  
+			+ "AND (:curso IS NULL OR CAST(a.curso AS string) LIKE CONCAT('%', :curso, '%')) "
+			+ "AND (:tasa IS NULL OR CAST(a.tasa AS string) LIKE CONCAT('%', :tasa, '%')) "
 			+ "AND a.activo = :activo ")
 			ArrayList<AsignaturaDTO>buscaAsignaturaporIDyNombre(@Param("id") Integer id,
 			@Param("nombre") String nombre,
-			@Param("curso") int curso,
-			@Param("tasa") int tasa,
-			@Param("activo") int activo);
+			@Param("curso") Integer curso,
+			@Param("tasa") Integer tasa,
+			@Param("activo") Integer activo);
 
 }
 
