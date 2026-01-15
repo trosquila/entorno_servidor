@@ -15,5 +15,5 @@ public interface IAsignaturaService {
 
     public int actualizarAsignatura(Integer id, String nombre, Integer curso, Integer tasa, Integer activo);
 
-    public int borrarAsignatura(String id);
+    public int borrarAsignatura(Integer id);
 }

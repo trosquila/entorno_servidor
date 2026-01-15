@@ -39,9 +39,8 @@ public class AsignaturaServiceImpl implements IAsignaturaService{
 	}
 
 	@Override
-	public int borrarAsignatura(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int borrarAsignatura(Integer id) {
+		return asignaturasDAO.borrarAsignatura(id);
 	}
 
 }

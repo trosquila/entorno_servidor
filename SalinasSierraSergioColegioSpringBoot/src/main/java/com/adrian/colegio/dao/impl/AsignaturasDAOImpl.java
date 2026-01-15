@@ -33,9 +33,11 @@ public class AsignaturasDAOImpl implements IAsignaturasDAO{
 	}
 	
 	@Override
-	public int borrarAsignatura(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int borrarAsignatura(Integer id) {
+		AsignaturaEntity asigntura = asignaturaRepository.findById(id).get();
+		asigntura.setActivo(0);
+		asignaturaRepository.save(asigntura);
+		return asigntura.getId();
 	}
 
 	@Override

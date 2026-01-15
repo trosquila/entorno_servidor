@@ -91,9 +91,8 @@ public class AsignaturasController {
 		    @RequestParam(value = "tasa", required = false) Integer tasa,
 		    @RequestParam(value = "activo", required = false) Integer activo,
 		    ModelMap model) throws SQLException {
-		ArrayList<AsignaturaDTO> listaMunicipios = asignaturaService.obtenerAsignaturasPorFiltros(id, nombre, curso, tasa, activo);
-		model.addAttribute("desplegableMunicipios", listaMunicipios);
-		model.addAttribute("lista", listaMunicipios);
+		ArrayList<AsignaturaDTO> listaAsignaturas = asignaturaService.obtenerAsignaturasPorFiltros(id, nombre, curso, tasa, activo);
+		model.addAttribute("lista", listaAsignaturas);
 		return "asignaturas/actualizarAsignaturas";
 	}
 
@@ -112,4 +111,32 @@ public class AsignaturasController {
 		return "asignaturas/actualizarAsignaturas";
 		
 	}
+	
+	@GetMapping(value = "/formularioBorrarAsignaturas")
+	public String getFormularioEliminarAlumnos() {
+		return "asignaturas/borrarAsignaturas";
+	}
+	
+	@PostMapping(value = "/formularioBorrarAsignaturas")
+	public String formularioEliminarAlumnos(
+		@RequestParam(value = "id", required = false) Integer id,
+		@RequestParam(value = "nombre", required = false) String nombre,
+		@RequestParam(value = "curso", required = false) Integer curso,
+		@RequestParam(value = "tasa", required = false) Integer tasa,
+		@RequestParam(value = "activo", required = false) Integer activo, 
+		ModelMap model) {
+	
+		ArrayList<AsignaturaDTO> listaAsignaturas = asignaturaService.obtenerAsignaturasPorFiltros(id, nombre, curso, tasa, activo);
+		model.addAttribute("lista", listaAsignaturas);
+			return "asignaturas/borrarAsignaturas";
+		}
+	
+		@PostMapping(value = "/borrarAsignatura")
+		public String eliminarAlumnos(@RequestParam("id") Integer id, ModelMap model) {
+			
+			Integer resultado = asignaturaService.borrarAsignatura(id);
+			model.addAttribute("resultado", resultado);
+			return "asignaturas/borrarAsignaturas";
+	}
+
 }
