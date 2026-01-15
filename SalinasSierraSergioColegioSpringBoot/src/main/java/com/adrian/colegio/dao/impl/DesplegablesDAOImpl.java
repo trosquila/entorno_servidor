@@ -9,8 +9,10 @@ import com.adrian.colegio.dao.interfaces.IDesplegablesDAO;
 import com.adrian.colegio.dtos.DesplegableDTO;
 import com.adrian.colegio.entities.AsignaturaEntity;
 import com.adrian.colegio.entities.MunicipioEntity;
+import com.adrian.colegio.entities.NotaEntity;
 import com.adrian.colegio.repositorios.AsignaturaRepository;
 import com.adrian.colegio.repositorios.MunicipioRepository;
+import com.adrian.colegio.repositorios.NotaRepository;
 
 @Repository
 public class DesplegablesDAOImpl implements IDesplegablesDAO {
@@ -19,6 +21,8 @@ public class DesplegablesDAOImpl implements IDesplegablesDAO {
 	private MunicipioRepository municipioRepository;
 	@Autowired 
 	private AsignaturaRepository asignaturaRepository;
+	@Autowired 
+	private NotaRepository notaRepository;
 
 	@Override
 	public ArrayList<DesplegableDTO> desplegableMunicipios() {
@@ -54,10 +58,11 @@ public class DesplegablesDAOImpl implements IDesplegablesDAO {
 
 	private ArrayList<DesplegableDTO> mapeoEntidadAsignaturas(Iterable<AsignaturaEntity> listaEntidadesAsignaturas) {
 		ArrayList<DesplegableDTO> listaCombos = new ArrayList<>();
-		for (AsignaturaEntity signaturasEntity : listaEntidadesAsignaturas) {
-			listaCombos.add(new DesplegableDTO(signaturasEntity.getId(), signaturasEntity.getNombre()));
+		for (AsignaturaEntity asignaturasEntity : listaEntidadesAsignaturas) {
+			listaCombos.add(new DesplegableDTO(asignaturasEntity.getId(), asignaturasEntity.getNombre()));
 		}
 		return listaCombos;
 	}
+	
 
 }

@@ -10,4 +10,5 @@ public interface IDesplegablesDAO {
 	ArrayList<DesplegableDTO> desplegableAlumnos();
 
 	ArrayList<DesplegableDTO> desplegableAsignaturas();
+
 }
