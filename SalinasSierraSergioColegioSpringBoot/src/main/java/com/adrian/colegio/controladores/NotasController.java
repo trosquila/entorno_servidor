@@ -28,8 +28,13 @@ public class NotasController {
     // INSERTAR
     @GetMapping("/insertarNota")
     public String formularioInsertarNota(ModelMap model) {
-        model.addAttribute("alumnos", desplegables.desplegableAlumnos());
-        model.addAttribute("asignaturas", desplegables.desplegableAsignaturas());
+    	ArrayList<DesplegableDTO> listaAsignaturas =
+				desplegables.desplegableAsignaturas();
+		model.addAttribute("desplegableAsignaturas", listaAsignaturas);
+		
+		ArrayList<DesplegableDTO> listaAlumnos = desplegables.desplegableAlumnos();
+		model.addAttribute("desplegableAlumnos", listaAlumnos);
+        
         return "notas/insertarNota";
     }
 
@@ -41,12 +46,19 @@ public class NotasController {
         @RequestParam(value = "fecha", required = false) String fecha,
         ModelMap model
     ) {
+    	
+		ArrayList<DesplegableDTO> listaAsignaturas =
+				desplegables.desplegableAsignaturas();
+		model.addAttribute("desplegableAsignaturas", listaAsignaturas);
+		
+		ArrayList<DesplegableDTO> listaAlumnos = desplegables.desplegableAlumnos();
+		model.addAttribute("desplegableAlumnos", listaAlumnos);
+		
         Integer resultado = notasService.insertarNota(idAlumno, idAsignatura, nota, fecha);
         model.addAttribute("resultado", resultado);
         return "notas/insertarNota";
     }
 
-    // LISTAR
     @GetMapping("/listadoNotas")
     public String formularioListadoNotas() {
         return "notas/listadoNotas";
@@ -64,7 +76,19 @@ public class NotasController {
         model.addAttribute("lista", lista);
         return "notas/listadoNotas";
     }
-
+    
+    @GetMapping("/formularioActualizarNotas")
+    public String formularioActualizarNotas(
+            @RequestParam(value = "idNota", required = false) Integer idNota,
+            @RequestParam(value = "idAlumno", required = false) Integer idAlumno,
+            @RequestParam(value = "idAsignatura", required = false) Integer idAsignatura,
+            ModelMap model) {
+    	ArrayList<NotaDTO> listaNotas = notasService.obtenerNotasPorFiltros(idNota, idAlumno, idAsignatura);
+    	model.addAttribute("lista", listaNotas);
+    	model.addAttribute("resultado", null);
+        return "notas/actualizarNotas";
+    }
+    
     // BORRAR
     @PostMapping("/borrarNota")
     public String borrarNota(@RequestParam("id") Integer id, ModelMap model) {

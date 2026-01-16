@@ -7,9 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.adrian.colegio.dao.interfaces.IDesplegablesDAO;
 import com.adrian.colegio.dtos.DesplegableDTO;
+import com.adrian.colegio.entities.AlumnoEntity;
 import com.adrian.colegio.entities.AsignaturaEntity;
 import com.adrian.colegio.entities.MunicipioEntity;
 import com.adrian.colegio.entities.NotaEntity;
+import com.adrian.colegio.repositorios.AlumnoRepository;
 import com.adrian.colegio.repositorios.AsignaturaRepository;
 import com.adrian.colegio.repositorios.MunicipioRepository;
 import com.adrian.colegio.repositorios.NotaRepository;
@@ -21,6 +23,8 @@ public class DesplegablesDAOImpl implements IDesplegablesDAO {
 	private MunicipioRepository municipioRepository;
 	@Autowired 
 	private AsignaturaRepository asignaturaRepository;
+	@Autowired 
+	private AlumnoRepository alumnoRepository;
 	@Autowired 
 	private NotaRepository notaRepository;
 
@@ -43,9 +47,18 @@ public class DesplegablesDAOImpl implements IDesplegablesDAO {
 
 	@Override
 	public ArrayList<DesplegableDTO> desplegableAlumnos() {
-		// TODO Auto-generated method stub
-		return null;
+		Iterable<AlumnoEntity> listaEntidadesAlumnos = alumnoRepository.findAll();
+		ArrayList<DesplegableDTO> listaAlumnos = mapeoEntidadAlumnos(listaEntidadesAlumnos);
+		return listaAlumnos;
 	}
+	private ArrayList<DesplegableDTO> mapeoEntidadAlumnos(Iterable<AlumnoEntity> listaEntidadesAlumnos) {
+		ArrayList<DesplegableDTO> listaCombos = new ArrayList<>();
+		for (AlumnoEntity alumnosEntity : listaEntidadesAlumnos) {
+			listaCombos.add(new DesplegableDTO(alumnosEntity.getId(), alumnosEntity.getNombre()));
+		}
+		return listaCombos;
+	}
+	
 
 	@Override
 	public ArrayList<DesplegableDTO> desplegableAsignaturas() {
