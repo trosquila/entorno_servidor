@@ -101,6 +101,9 @@ public class NotasController {
             @RequestParam(value = "fecha", required = false) String fecha,
             ModelMap model) {
 
+    	 fecha = (fecha != null && fecha.trim().isEmpty()) ? null : fecha;
+    	    nombreAlumno = (nombreAlumno != null && nombreAlumno.trim().isEmpty()) ? null : nombreAlumno;
+    	    asignatura = (asignatura != null && asignatura.trim().isEmpty()) ? null : asignatura;
 
         ArrayList<NotaDTO> listaNotas = notasService.buscarNotas(null, nombreAlumno, asignatura, null, fecha, 1);
         ArrayList<DesplegableDTO> listaAsignaturas = desplegables.desplegableAsignaturas();
