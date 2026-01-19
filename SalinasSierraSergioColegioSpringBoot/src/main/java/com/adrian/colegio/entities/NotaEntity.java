@@ -12,77 +12,76 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "notas")
 public class NotaEntity {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+	@ManyToOne
+	@JoinColumn(name = "id_alumnos")
+	private AlumnoEntity alumno;
 
-    @ManyToOne
-    @JoinColumn(name = "id_alumnos")
-    private AlumnoEntity alumno;
+	@ManyToOne
+	@JoinColumn(name = "id_asignaturas")
+	private AsignaturaEntity asignatura;
 
-    @ManyToOne
-    @JoinColumn(name = "id_asignaturas")
-    private AsignaturaEntity asignatura;
+	@Column(name = "nota")
+	private Integer nota;
 
-    @Column(name = "nota")
-    private Integer nota;
+	@Column(name = "fecha")
+	private String fecha;
 
-    @Column(name = "fecha")
-    private String fecha;
+	public NotaEntity() {
+		super();
+	}
 
-    public NotaEntity() {
-        super();
-    }
+	public NotaEntity(Integer id, AlumnoEntity alumno, AsignaturaEntity asignatura, Integer nota, String fecha) {
+		super();
+		this.id = id;
+		this.alumno = alumno;
+		this.asignatura = asignatura;
+		this.nota = nota;
+		this.fecha = fecha;;
+	}
 
-    public NotaEntity(Integer id, AlumnoEntity alumno, AsignaturaEntity asignatura, Integer nota, String fecha) {
-        super();
-        this.id = id;
-        this.alumno = alumno;
-        this.asignatura = asignatura;
-        this.nota = nota;
-        this.fecha = fecha;
-    }
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public AlumnoEntity getAlumno() {
+		return alumno;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setAlumno(AlumnoEntity alumno) {
+		this.alumno = alumno;
+	}
 
-    public AlumnoEntity getAlumno() {
-        return alumno;
-    }
+	public AsignaturaEntity getAsignatura() {
+		return asignatura;
+	}
 
-    public void setAlumno(AlumnoEntity alumno) {
-        this.alumno = alumno;
-    }
+	public void setAsignatura(AsignaturaEntity asignatura) {
+		this.asignatura = asignatura;
+	}
 
-    public AsignaturaEntity getAsignatura() {
-        return asignatura;
-    }
+	public Integer getNota() {
+		return nota;
+	}
 
-    public void setAsignatura(AsignaturaEntity asignatura) {
-        this.asignatura = asignatura;
-    }
+	public void setNota(Integer nota) {
+		this.nota = nota;
+	}
 
-    public Integer getNota() {
-        return nota;
-    }
+	public String getFecha() {
+		return fecha;
+	}
 
-    public void setNota(Integer nota) {
-        this.nota = nota;
-    }
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
 }

@@ -25,14 +25,15 @@ public interface NotaRepository extends CrudRepository<NotaEntity, Integer> {
 		       "AND (:asignatura IS NULL OR LOWER(n.asignatura.nombre) LIKE LOWER(CONCAT('%', :asignatura, '%'))) " +
 		       "AND (:nota IS NULL OR n.nota = :nota) " +
 		       "AND (:fecha IS NULL OR n.fecha = :fecha) " +
-		       "AND (:activo IS NULL OR n.activo = :activo)")
-		ArrayList<NotaDTO> buscarNotasAvanzado(
-		        @Param("idAlumno") Integer idAlumno,
-		        @Param("nombreAlumno") String nombreAlumno,
-		        @Param("asignatura") String asignatura,
-		        @Param("nota") Integer nota,
-		        @Param("fecha") String fecha,
-		        @Param("activo") Integer activo
-		);
+		       "AND (:activo IS NULL OR n.alumno.activo = :activo)")
+	ArrayList<NotaDTO> buscarNotasAvanzado(
+	        @Param("idAlumno") Integer idAlumno,
+	        @Param("nombreAlumno") String nombreAlumno,
+	        @Param("asignatura") String asignatura,
+	        @Param("nota") Integer nota,
+	        @Param("fecha") String fecha,
+	        @Param("activo") Integer activo
+	);
+
 
 }
