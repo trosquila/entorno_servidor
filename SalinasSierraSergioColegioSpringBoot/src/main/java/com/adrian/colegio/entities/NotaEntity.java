@@ -27,7 +27,7 @@ public class NotaEntity {
     private AsignaturaEntity asignatura;
 
     @Column(name = "nota")
-    private String nota;
+    private Integer nota;
 
     @Column(name = "fecha")
     private String fecha;
@@ -36,7 +36,7 @@ public class NotaEntity {
         super();
     }
 
-    public NotaEntity(Integer id, AlumnoEntity alumno, AsignaturaEntity asignatura, String nota, String fecha) {
+    public NotaEntity(Integer id, AlumnoEntity alumno, AsignaturaEntity asignatura, Integer nota, String fecha) {
         super();
         this.id = id;
         this.alumno = alumno;
@@ -70,11 +70,11 @@ public class NotaEntity {
         this.asignatura = asignatura;
     }
 
-    public String getNota() {
+    public Integer getNota() {
         return nota;
     }
 
-    public void setNota(String nota) {
+    public void setNota(Integer nota) {
         this.nota = nota;
     }
 

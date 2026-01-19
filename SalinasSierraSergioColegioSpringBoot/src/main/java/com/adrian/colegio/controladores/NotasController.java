@@ -42,7 +42,7 @@ public class NotasController {
     public String insertarNota(
         @RequestParam("alumno") Integer idAlumno,
         @RequestParam("asignatura") Integer idAsignatura,
-        @RequestParam("nota") String nota,
+        @RequestParam("nota") Integer nota,
         @RequestParam(value = "fecha", required = false) String fecha,
         ModelMap model
     ) {
@@ -78,17 +78,43 @@ public class NotasController {
     }
     
     @GetMapping("/formularioActualizarNotas")
-    public String formularioActualizarNotas(
+    public String formularioActualizarNotas(ModelMap model) {
+  
+        return "notas/actualizarNotas";
+    }
+    
+    @PostMapping("/formularioActualizarNotas")
+    public String formularioModificarNotas(
             @RequestParam(value = "idNota", required = false) Integer idNota,
             @RequestParam(value = "idAlumno", required = false) Integer idAlumno,
             @RequestParam(value = "idAsignatura", required = false) Integer idAsignatura,
             ModelMap model) {
+    	
+    	ArrayList<DesplegableDTO> listaAsignaturas =
+				desplegables.desplegableAsignaturas();
+		model.addAttribute("desplegableAsignaturas", listaAsignaturas);
+		
+		ArrayList<DesplegableDTO> listaAlumnos = desplegables.desplegableAlumnos();
+		model.addAttribute("desplegableAlumnos", listaAlumnos);
+    	
     	ArrayList<NotaDTO> listaNotas = notasService.obtenerNotasPorFiltros(idNota, idAlumno, idAsignatura);
     	model.addAttribute("lista", listaNotas);
     	model.addAttribute("resultado", null);
         return "notas/actualizarNotas";
     }
-    
+    @PostMapping("/actualizarNota")
+    public String modificarNotas(
+    		  @RequestParam(value = "id", required = false) Integer idNota,
+    		  @RequestParam(value = "alumno", required = false) Integer idAlumno,
+              @RequestParam(value = "asignatura", required = false) Integer idAsignatura,
+              @RequestParam(value = "nota", required = false) Integer nota,
+              @RequestParam(value = "fecha", required = false) String fecha,
+              ModelMap model){
+    	Integer resultado = notasService.actualizarNota(idNota, idAlumno, idAsignatura, nota, fecha);
+		model.addAttribute("resultado", resultado);
+		return null;
+    	
+    }
     // BORRAR
     @PostMapping("/borrarNota")
     public String borrarNota(@RequestParam("id") Integer id, ModelMap model) {

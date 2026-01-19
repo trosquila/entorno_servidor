@@ -19,12 +19,12 @@ public class NotasServiceImpl implements INotasService {
 	}
 
 	@Override
-	public int insertarNota(Integer idAlumno, Integer idAsignatura, String nota, String fecha) {
+	public int insertarNota(Integer idAlumno, Integer idAsignatura, Integer nota, String fecha) {
 		return notasDAO.insertarNota(idAlumno, idAsignatura, nota, fecha);
 	}
 
 	@Override
-	public int actualizarNota(Integer id, Integer idAlumno, Integer idAsignatura, String nota, String fecha) {
+	public int actualizarNota(Integer id, Integer idAlumno, Integer idAsignatura, Integer nota, String fecha) {
 		return notasDAO.actualizarNota(id, idAlumno, idAsignatura, nota, fecha);
 	}
 
@@ -34,9 +34,7 @@ public class NotasServiceImpl implements INotasService {
 	}
 
 	@Override
-	public ArrayList<NotaDTO> buscarNotas(Integer idAlumno, String nombreAlumno, String asignatura, String nota,
-			String fecha) {
-
+	public ArrayList<NotaDTO> buscarNotas(Integer idAlumno, String nombreAlumno, String asignatura, Integer nota, String fecha) {
 		return notasDAO.buscarNotas(idAlumno, nombreAlumno, asignatura, nota, fecha);
 	}
 }

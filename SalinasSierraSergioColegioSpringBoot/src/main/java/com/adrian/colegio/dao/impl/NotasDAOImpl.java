@@ -33,7 +33,7 @@ public class NotasDAOImpl implements INotasDAO {
     }
 
     @Override
-    public int insertarNota(Integer idAlumno, Integer idAsignatura, String nota, String fecha) {
+    public int insertarNota(Integer idAlumno, Integer idAsignatura, Integer nota, String fecha) {
 
         AlumnoEntity alumno = alumnoRepository.findById(idAlumno).get();
         AsignaturaEntity asignatura = asignaturaRepository.findById(idAsignatura).get();
@@ -48,7 +48,7 @@ public class NotasDAOImpl implements INotasDAO {
     }
 
     @Override
-    public int actualizarNota(Integer id, Integer idAlumno, Integer idAsignatura, String nota, String fecha) {
+    public int actualizarNota(Integer id, Integer idAlumno, Integer idAsignatura, Integer nota, String fecha) {
 
         AlumnoEntity alumno = alumnoRepository.findById(idAlumno).get();
         AsignaturaEntity asignatura = asignaturaRepository.findById(idAsignatura).get();
@@ -65,9 +65,11 @@ public class NotasDAOImpl implements INotasDAO {
     }
 
 	@Override
-	public ArrayList<NotaDTO> buscarNotas(Integer idAlumno, String nombreAlumno, String asignatura, String nota,
+	public ArrayList<NotaDTO> buscarNotas(Integer idAlumno, String nombreAlumno, String asignatura, Integer nota,
 			String fecha) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 }

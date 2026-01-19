@@ -2,60 +2,83 @@ package com.adrian.colegio.dtos;
 
 public class NotaDTO {
 
-	private Integer idAlumno;
-	private String nombreAlumno;
-	private String nombreAsignatura;
-	private String nota;
-	private String fecha;
+    private Integer id;
+    private Integer idAlumno;
+    private Integer idAsignatura;
+    private String nombreAlumno;
+    private String nombreAsignatura;
+    private Integer nota;  
+    private String fecha;
 
-	public NotaDTO(Integer idAlumno, String nombreAlumno, String nombreAsignatura, String nota, String fecha) {
-		this.idAlumno = idAlumno;
-		this.nombreAlumno = nombreAlumno;
-		this.nombreAsignatura = nombreAsignatura;
-		this.nota = nota;
-		this.fecha = fecha;
-	}
+    public NotaDTO(Integer id, Integer idAlumno, Integer idAsignatura,
+                   String nombreAlumno, String nombreAsignatura,
+                   Integer nota, String fecha) {
 
-	public NotaDTO() {
-	}
+        this.id = id;
+        this.idAlumno = idAlumno;
+        this.idAsignatura = idAsignatura;
+        this.nombreAlumno = nombreAlumno;
+        this.nombreAsignatura = nombreAsignatura;
+        this.nota = nota;
+        this.fecha = fecha;
+    }
 
-	public Integer getIdAlumno() {
-		return idAlumno;
-	}
+    public NotaDTO() {
+    }
 
-	public void setIdAlumno(Integer idAlumno) {
-		this.idAlumno = idAlumno;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getNombreAlumno() {
-		return nombreAlumno;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setNombreAlumno(String nombreAlumno) {
-		this.nombreAlumno = nombreAlumno;
-	}
+    public Integer getIdAlumno() {
+        return idAlumno;
+    }
 
-	public String getNombreAsignatura() {
-		return nombreAsignatura;
-	}
+    public void setIdAlumno(Integer idAlumno) {
+        this.idAlumno = idAlumno;
+    }
 
-	public void setNombreAsignatura(String nombreAsignatura) {
-		this.nombreAsignatura = nombreAsignatura;
-	}
+    public Integer getIdAsignatura() {
+        return idAsignatura;
+    }
 
-	public String getNota() {
-		return nota;
-	}
+    public void setIdAsignatura(Integer idAsignatura) {
+        this.idAsignatura = idAsignatura;
+    }
 
-	public void setNota(String nota) {
-		this.nota = nota;
-	}
+    public String getNombreAlumno() {
+        return nombreAlumno;
+    }
 
-	public String getFecha() {
-		return fecha;
-	}
+    public void setNombreAlumno(String nombreAlumno) {
+        this.nombreAlumno = nombreAlumno;
+    }
 
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
+    public String getNombreAsignatura() {
+        return nombreAsignatura;
+    }
+
+    public void setNombreAsignatura(String nombreAsignatura) {
+        this.nombreAsignatura = nombreAsignatura;
+    }
+
+    public Integer getNota() {
+        return nota;
+    }
+
+    public void setNota(Integer nota) {
+        this.nota = nota;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
 }
