@@ -29,7 +29,7 @@ public class NotasDAOImpl implements INotasDAO {
 
     @Override
     public ArrayList<NotaDTO> obtenerNotasPorFiltros(Integer idNota, Integer idAlumno, Integer idAsignatura) {
-        return notaRepository.buscarNotas(idNota, idAlumno, idAsignatura);
+        return null;
     }
 
     @Override
@@ -64,12 +64,10 @@ public class NotasDAOImpl implements INotasDAO {
         return id;
     }
 
-	@Override
-	public ArrayList<NotaDTO> buscarNotas(Integer idAlumno, String nombreAlumno, String asignatura, Integer nota,
-			String fecha) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public ArrayList<NotaDTO> buscarNotas(Integer idAlumno, String nombreAlumno, String asignatura, Integer nota, String fecha, Integer activo) {
+        return notaRepository.buscarNotasAvanzado( idAlumno,  nombreAlumno,  asignatura,  nota,  fecha,  activo);
+    }
 
 
 }

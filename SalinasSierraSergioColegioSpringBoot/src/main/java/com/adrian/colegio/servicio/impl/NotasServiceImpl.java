@@ -34,7 +34,7 @@ public class NotasServiceImpl implements INotasService {
 	}
 
 	@Override
-	public ArrayList<NotaDTO> buscarNotas(Integer idAlumno, String nombreAlumno, String asignatura, Integer nota, String fecha) {
-		return notasDAO.buscarNotas(idAlumno, nombreAlumno, asignatura, nota, fecha);
+	public ArrayList<NotaDTO> buscarNotas(Integer idAlumno, String nombreAlumno, String asignatura, Integer nota, String fecha, Integer activo) {
+		return notasDAO.buscarNotas( idAlumno,  nombreAlumno,  asignatura,  nota,  fecha,  activo);
 	}
 }

@@ -15,5 +15,5 @@ public interface INotasService {
 
     int borrarNota(Integer id);
     
-    ArrayList<NotaDTO> buscarNotas(Integer idAlumno, String nombreAlumno, String asignatura, Integer nota, String fecha);
+    ArrayList<NotaDTO> buscarNotas(Integer idAlumno, String nombreAlumno, String asignatura, Integer nota, String fecha, Integer activo);
 }

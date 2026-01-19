@@ -66,13 +66,16 @@ public class NotasController {
 
     @PostMapping("/listadoNotas")
     public String listadoNotas(
-        @RequestParam(value = "idNota", required = false) Integer idNota,
-        @RequestParam(value = "idAlumno", required = false) Integer idAlumno,
-        @RequestParam(value = "idAsignatura", required = false) Integer idAsignatura,
-        ModelMap model
+    		@RequestParam(value = "idAlumno", required = false) Integer idAlumno,
+            @RequestParam(value = "nombreAlumno", required = false) String nombreAlumno,
+            @RequestParam(value = "asignatura", required = false) String asignatura,
+            @RequestParam(value = "nota", required = false) Integer nota,
+            @RequestParam(value = "fecha", required = false) String fecha,
+            @RequestParam(value = "activo", required = false) Integer activo,
+            ModelMap model
+
     ) {
-        ArrayList<NotaDTO> lista =
-            notasService.obtenerNotasPorFiltros(idNota, idAlumno, idAsignatura);
+        ArrayList<NotaDTO> lista = notasService.buscarNotas(idAlumno, nombreAlumno, asignatura, nota, fecha, activo);
         model.addAttribute("lista", lista);
         return "notas/listadoNotas";
     }
@@ -85,23 +88,19 @@ public class NotasController {
     
     @PostMapping("/formularioActualizarNotas")
     public String formularioModificarNotas(
-            @RequestParam(value = "idNota", required = false) Integer idNota,
-            @RequestParam(value = "idAlumno", required = false) Integer idAlumno,
-            @RequestParam(value = "idAsignatura", required = false) Integer idAsignatura,
+            @RequestParam(value = "nombreAlumno", required = false) String nombreAlumno,
+            @RequestParam(value = "asignatura", required = false) String asignatura,
+            @RequestParam(value = "fecha", required = false) String fecha,
             ModelMap model) {
-    	
-    	ArrayList<DesplegableDTO> listaAsignaturas =
-				desplegables.desplegableAsignaturas();
-		model.addAttribute("desplegableAsignaturas", listaAsignaturas);
-		
-		ArrayList<DesplegableDTO> listaAlumnos = desplegables.desplegableAlumnos();
-		model.addAttribute("desplegableAlumnos", listaAlumnos);
-    	
-    	ArrayList<NotaDTO> listaNotas = notasService.obtenerNotasPorFiltros(idNota, idAlumno, idAsignatura);
-    	model.addAttribute("lista", listaNotas);
-    	model.addAttribute("resultado", null);
+
+        ArrayList<NotaDTO> listaNotas = notasService.buscarNotas(null, nombreAlumno, asignatura, null, fecha,1);
+
+        model.addAttribute("lista", listaNotas);
+
         return "notas/actualizarNotas";
     }
+    
+    
     @PostMapping("/actualizarNota")
     public String modificarNotas(
     		  @RequestParam(value = "id", required = false) Integer idNota,

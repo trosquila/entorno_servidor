@@ -18,7 +18,6 @@ import com.adrian.colegio.repositorios.MunicipioRepository;
 import com.adrian.colegio.servicio.interfaces.IAlumnosService;
 
 @Controller
-//Con esta anotación le decimos que el resto de mapeos irán precedidos de /alumnos
 @RequestMapping("/alumnos")
 public class AlumnosController {
 
@@ -31,9 +30,7 @@ public class AlumnosController {
 	@Autowired
 	MunicipioRepository municipioRepository;
 	
-	//-----------------
-	//INSERTAR ALUMNO
-	//-----------------
+
 	@GetMapping("/insertarAlumno")
 	public String formularioInsertarAlumno(ModelMap model) {
 		ArrayList<DesplegableDTO> listaMunicipios = desplegables.desplegableMunicipios();
@@ -63,9 +60,7 @@ public class AlumnosController {
 		return "alumnos/insertarAlumno";
 	}
 	
-	//-----------------
-	//LISTADO ALUMNOS
-	//-----------------
+
 	@GetMapping("/listadoAlumnos")
 	public String formularioListadoAlumnos() {
 		return "alumnos/listadoAlumnos";
@@ -88,19 +83,12 @@ public class AlumnosController {
 
 		return "alumnos/listadoAlumnos";
 	}
-	
-	
-	//-------------------------
-	//MODIFICAR ALUMNO
-	//-------------------------
-	
-	//Método que simplemente nos mostrará el formulario
+
 	@GetMapping(value = "/formularioActualizarAlumnos")
 	public String formularioModificarAlumnos(ModelMap model) {
 	    return "alumnos/actualizarAlumnos";
 	}
 
-	//Método que se encarga de la búsqueda de alumnos para actualizar
 	@PostMapping(value = "/formularioActualizarAlumnos")
 	public String formularioModificarAlumnos(@RequestParam(value = "id", required = false) Integer id,
 	                                         @RequestParam(value = "nombre", required = false) String nombre,
@@ -121,7 +109,7 @@ public class AlumnosController {
 	    return "alumnos/actualizarAlumnos";
 	}
 
-	//Método que lleva a cabo la actualización
+
 	@PostMapping(value = "/actualizarAlumno")
 	public String modificarAlumnos(@RequestParam("id") Integer id, 
 	                               @RequestParam("nombre") String nombre,
@@ -145,10 +133,6 @@ public class AlumnosController {
 	}
 	
 	
-	//-------------------------
-	//BORRAR ALUMNO
-	//-------------------------
-	//Método que se usa simplemente para mostrar el formulario.
 	@GetMapping(value = "/formularioBorrarAlumnos")
 	public String getFormularioEliminarAlumnos() {
 	    return "alumnos/borrarAlumnos";
