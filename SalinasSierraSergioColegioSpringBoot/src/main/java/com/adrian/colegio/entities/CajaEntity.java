@@ -4,7 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,21 +15,18 @@ public class CajaEntity {
 	@Column(name = "id")
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_alumno")
-	private AlumnoEntity alumno;
+	@OneToOne
+	@JoinColumn(name = "idMatricula", unique = true)
+	private MatriculaEntity matricula;
 	
 	@Column(name = "importe")
 	private int importe;
 
-	public CajaEntity(int id, AlumnoEntity alumno, int importe) {
+	public CajaEntity(int id, MatriculaEntity matricula, int importe) {
 		super();
 		this.id = id;
-		this.alumno = alumno;
+		this.matricula = matricula;
 		this.importe = importe;
-	}
-
-	public CajaEntity() {
 	}
 
 	public int getId() {
@@ -40,12 +37,12 @@ public class CajaEntity {
 		this.id = id;
 	}
 
-	public AlumnoEntity getAlumno() {
-		return alumno;
+	public MatriculaEntity getMatricula() {
+		return matricula;
 	}
 
-	public void setAlumno(AlumnoEntity alumno) {
-		this.alumno = alumno;
+	public void setMatricula(MatriculaEntity matricula) {
+		this.matricula = matricula;
 	}
 
 	public int getImporte() {
@@ -55,7 +52,6 @@ public class CajaEntity {
 	public void setImporte(int importe) {
 		this.importe = importe;
 	}
-	
 	
 	
 }

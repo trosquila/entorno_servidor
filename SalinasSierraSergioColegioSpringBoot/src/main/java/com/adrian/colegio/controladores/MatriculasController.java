@@ -39,9 +39,20 @@ public class MatriculasController {
 			@RequestParam(value = "nombreAsignatura", required = false) String nombreAsignatura,
 			@RequestParam(value = "nombreAlumno", required = false) String nombreAlumno,
 			@RequestParam(value = "fecha", required = false) String fecha,
-			@RequestParam(value = "fecha", required = false) Integer activo,
+			@RequestParam(value = "activo", required = false) Integer activo,
 			 ModelMap model) {
+		if (fecha != null && fecha.isBlank()) fecha = null;
+
+
+		 	System.out.println("---- VALORES RECIBIDOS ----");
+		    System.out.println("nombreAsignatura = " + nombreAsignatura);
+		    System.out.println("nombreAlumno     = " + nombreAlumno);
+		    System.out.println("fecha            = " + fecha);
+		    System.out.println("activo           = " + activo);
+		    System.out.println("---------------------------");
+
 		ArrayList<MatriculaDTO> listaMatriculas = matriculaService.BuscarMatriculaPorFiltro(nombreAsignatura, nombreAlumno, fecha, activo);
+		model.addAttribute("lista", listaMatriculas);
 		return "matriculaciones/listadoMatriculaciones";
 	}
 }

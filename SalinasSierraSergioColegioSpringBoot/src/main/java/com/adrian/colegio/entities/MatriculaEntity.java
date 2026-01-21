@@ -15,11 +15,11 @@ public class MatriculaEntity {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_alumnos")
+	@JoinColumn(name = "id_alumno")
 	private AlumnoEntity alumno;
 
 	@ManyToOne
-	@JoinColumn(name = "id_asignaturas")
+	@JoinColumn(name = "id_asignatura")
 	private AsignaturaEntity asignatura;
 
 	@Column(name = "fecha")
