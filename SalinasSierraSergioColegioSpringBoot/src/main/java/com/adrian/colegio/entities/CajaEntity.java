@@ -16,7 +16,7 @@ public class CajaEntity {
 	private int id;
 	
 	@OneToOne
-	@JoinColumn(name = "idMatricula", unique = true)
+	@JoinColumn(name = "idmatricula", unique = true)
 	private MatriculaEntity matricula;
 	
 	@Column(name = "importe")

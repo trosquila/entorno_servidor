@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +25,9 @@ public class MatriculaEntity {
 
 	@Column(name = "fecha")
 	private String fecha;
+	
+	@OneToOne(mappedBy = "matricula")
+	private CajaEntity caja;
 	
 	@Column(name = "activo")
 	private int activo;
@@ -78,6 +82,13 @@ public class MatriculaEntity {
 
 	public void setActivo(int activo) {
 		this.activo = activo;
+	}
+	public CajaEntity getCaja() {
+	    return caja;
+	}
+
+	public void setCaja(CajaEntity caja) {
+	    this.caja = caja;
 	}
 	
 	
