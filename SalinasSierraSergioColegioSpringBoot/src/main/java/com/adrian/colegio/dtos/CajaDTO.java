@@ -7,7 +7,7 @@ public class CajaDTO {
     private String nombreAlumno;
     private Integer importe;
 
-    // Este constructor debe coincidir exactamente con el SELECT del Repository
+
     public CajaDTO(Integer id, Integer idAlumno, String nombreAlumno, Integer importe) {
         this.id = id;
         this.idAlumno = idAlumno;

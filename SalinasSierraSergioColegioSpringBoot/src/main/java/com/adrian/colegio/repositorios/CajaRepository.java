@@ -13,8 +13,8 @@ public interface CajaRepository extends CrudRepository<CajaEntity, Integer> {
 
 	@Query("select new com.adrian.colegio.dtos.CajaDTO ( " +
 		       "c.id, " +
-		       "c.matricula.alumno.id, " +        // Corregido
-		       "c.matricula.alumno.nombre, " +    // Corregido
+		       "c.matricula.alumno.id, " +       
+		       "c.matricula.alumno.nombre, " +   
 		       "c.importe ) " +
 		       "FROM CajaEntity c " +
 		       "WHERE (:id IS NULL OR CAST(c.id AS string) LIKE CONCAT('%', :id, '%')) " +

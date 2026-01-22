@@ -9,4 +9,8 @@ public interface IMatriculasDAO {
 	ArrayList<MatriculaDTO> obtenerMatriculasPorFiltros(String nombreAsignatura, String nombreAlumno, String fecha,
 			Integer activo);
 
+	Integer insertarMatricula(Integer idAlumno, Integer idAsignatura, Integer tasa, String fecha);
+
+	
+
 }

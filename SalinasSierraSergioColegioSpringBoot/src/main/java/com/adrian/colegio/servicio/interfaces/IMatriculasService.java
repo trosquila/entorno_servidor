@@ -8,4 +8,6 @@ public interface IMatriculasService {
 
 	ArrayList<MatriculaDTO> BuscarMatriculaPorFiltro(String nombreAsignatura, String nombreAlumno, String fecha, Integer activo);
 
+	Integer insertarMatricula(Integer idAlumno, Integer idAsignatura, Integer tasa, String fecha);
+
 }

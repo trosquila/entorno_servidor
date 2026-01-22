@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.adrian.colegio.dao.interfaces.IDesplegablesDAO;
 import com.adrian.colegio.dao.interfaces.IMatriculasDAO;
+import com.adrian.colegio.dtos.DesplegableDTO;
 import com.adrian.colegio.dtos.MatriculaDTO;
 import com.adrian.colegio.servicio.interfaces.IMatriculasService;
 
@@ -43,16 +44,32 @@ public class MatriculasController {
 			 ModelMap model) {
 		if (fecha != null && fecha.isBlank()) fecha = null;
 
-
-		 	System.out.println("---- VALORES RECIBIDOS ----");
-		    System.out.println("nombreAsignatura = " + nombreAsignatura);
-		    System.out.println("nombreAlumno     = " + nombreAlumno);
-		    System.out.println("fecha            = " + fecha);
-		    System.out.println("activo           = " + activo);
-		    System.out.println("---------------------------");
-
 		ArrayList<MatriculaDTO> listaMatriculas = matriculaService.BuscarMatriculaPorFiltro(nombreAsignatura, nombreAlumno, fecha, activo);
 		model.addAttribute("lista", listaMatriculas);
 		return "matriculaciones/listadoMatriculaciones";
+	}
+	
+	@GetMapping("/insertarMatriculacion")
+	public String formularioInsertarMatricula(ModelMap model) {
+		ArrayList<DesplegableDTO> listaAsignaturas = desplegables.desplegableAsignaturas();
+		model.addAttribute("desplegableAsignaturas", listaAsignaturas);
+
+		ArrayList<DesplegableDTO> listaAlumnos = desplegables.desplegableAlumnos();
+		model.addAttribute("desplegableAlumnos", listaAlumnos);
+		
+		return "matriculaciones/insertarMatriculacion";
+	}
+
+	@PostMapping("/insertarMatriculacion")
+	public String insertarNota(@RequestParam("alumno") Integer idAlumno,
+			@RequestParam("asignatura") Integer idAsignatura,
+			@RequestParam("tasa") Integer tasa,
+			@RequestParam(value = "fecha", required = false) String fecha, ModelMap model) {
+			
+		Integer resultado = matriculaService.insertarMatricula(idAlumno, idAsignatura, tasa, fecha);
+		model.addAttribute("resultado", resultado);
+			
+		
+		return "matriculaciones/insertarMatriculacion";
 	}
 }

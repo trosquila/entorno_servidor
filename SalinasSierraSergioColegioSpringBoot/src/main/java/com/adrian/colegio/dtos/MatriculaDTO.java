@@ -7,10 +7,10 @@ public class MatriculaDTO {
     private String nombreAlumno;
     private String nombreAsignatura;
     private String fecha;
-    private Integer tasa; // Cambiado a Integer para que coincida con CajaEntity.importe
+    private Integer tasa;
     private Integer activo;
 
-    // El constructor que usará JPQL
+
     public MatriculaDTO(Integer id, Integer idAlumno, Integer idAsignatura, String nombreAlumno,
             String nombreAsignatura, String fecha, Integer tasa, Integer activo) {
         this.id = id;
@@ -23,11 +23,11 @@ public class MatriculaDTO {
         this.activo = activo;
     }
 
-    // Constructor vacío necesario para frameworks
+
     public MatriculaDTO() {
     }
 
-    // GETTERS Y SETTERS
+
     public Integer getId() {
         return id;
     }
