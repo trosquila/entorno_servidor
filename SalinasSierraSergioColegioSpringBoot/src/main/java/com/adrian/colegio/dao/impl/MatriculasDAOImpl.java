@@ -5,7 +5,10 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 
+import com.adrian.colegio.dao.interfaces.IDesplegablesDAO;
 import com.adrian.colegio.dao.interfaces.IMatriculasDAO;
 import com.adrian.colegio.dtos.MatriculaDTO;
 import com.adrian.colegio.entities.AlumnoEntity;
@@ -31,6 +34,9 @@ public class MatriculasDAOImpl implements IMatriculasDAO{
 
 	    @Autowired
 	    AsignaturaRepository asignaturaRepository;
+	    
+	    @Autowired
+	    IDesplegablesDAO desplegables;
 
 	@Override
 	public ArrayList<MatriculaDTO> obtenerMatriculasPorFiltros(String nombreAsignatura, String nombreAlumno,
@@ -61,4 +67,24 @@ public class MatriculasDAOImpl implements IMatriculasDAO{
 		return cajaEntity.getId();
 	}
 
+	
+
+
+	@Override
+	public Integer modificarMatricula(Integer idMatricula, Integer idAlumno, Integer idAsignatura, String fecha, Integer tasa, Integer activo) {
+		AlumnoEntity alumno = alumnoRepository.findById(idAlumno).get();
+        AsignaturaEntity asignatura = asignaturaRepository.findById(idAsignatura).get();
+        
+        MatriculaEntity matriculaEntity = new MatriculaEntity(idMatricula,alumno, asignatura, fecha, 1);
+        MatriculaEntity matriculaGuardada = matriculaRepository.save(matriculaEntity);
+        
+        int importe = tasa;
+        CajaEntity cajaEntity = new CajaEntity();
+        cajaEntity.setId(importe);
+        cajaEntity.setMatricula(matriculaGuardada);
+        cajaEntity.setImporte(importe);
+        cajaRepository.save(cajaEntity);
+        
+		return cajaEntity.getId();
+	}
 }

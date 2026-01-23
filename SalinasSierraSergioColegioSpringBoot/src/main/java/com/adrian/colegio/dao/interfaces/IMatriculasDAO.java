@@ -11,6 +11,9 @@ public interface IMatriculasDAO {
 
 	Integer insertarMatricula(Integer idAlumno, Integer idAsignatura, Integer tasa, String fecha);
 
+	Integer modificarMatricula(Integer idMatricula, Integer idAlumno, Integer idAsignatura, String fecha, Integer tasa,
+			Integer activo);
+
 	
 
 }

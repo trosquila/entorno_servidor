@@ -24,4 +24,10 @@ public class MatriculaServiceImpl implements IMatriculasService{
 		return matriculasDAO.insertarMatricula( idAlumno,  idAsignatura,  tasa, fecha);
 	}
 
+	@Override
+	public Integer actualizarMatricula(Integer idMatricula, Integer idAlumno, Integer idAsignatura, String fecha,
+			Integer tasa, Integer activo) {
+		return matriculasDAO.modificarMatricula(idMatricula, idAlumno, idAsignatura, fecha, tasa, activo);
+	}
+
 }

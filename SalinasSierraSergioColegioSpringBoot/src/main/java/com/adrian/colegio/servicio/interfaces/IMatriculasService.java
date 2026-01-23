@@ -10,4 +10,7 @@ public interface IMatriculasService {
 
 	Integer insertarMatricula(Integer idAlumno, Integer idAsignatura, Integer tasa, String fecha);
 
+	Integer actualizarMatricula(Integer idMatricula, Integer idAlumno, Integer idAsignatura, String fecha, Integer tasa,
+			Integer activo);
+
 }
