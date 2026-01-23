@@ -53,9 +53,12 @@ public class MatriculasDAOImpl implements IMatriculasDAO{
         MatriculaEntity matriculaGuardada = matriculaRepository.save(matriculaEntity);
         
         int importe = tasa;
-        CajaEntity cajaEntity = new CajaEntity(matriculaGuardada, importe);
+        CajaEntity cajaEntity = new CajaEntity();
+        cajaEntity.setMatricula(matriculaGuardada);
+        cajaEntity.setImporte(importe);
         cajaRepository.save(cajaEntity);
-		return matriculaGuardada.getId();
+        
+		return cajaEntity.getId();
 	}
 
 }
