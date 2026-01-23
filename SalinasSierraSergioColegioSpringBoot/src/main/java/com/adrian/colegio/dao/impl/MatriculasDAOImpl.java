@@ -16,6 +16,8 @@ import com.adrian.colegio.repositorios.AlumnoRepository;
 import com.adrian.colegio.repositorios.AsignaturaRepository;
 import com.adrian.colegio.repositorios.CajaRepository;
 import com.adrian.colegio.repositorios.MatriculaRepository;
+
+import jakarta.transaction.Transactional;
 @Repository
 public class MatriculasDAOImpl implements IMatriculasDAO{
 	  @Autowired
@@ -37,15 +39,23 @@ public class MatriculasDAOImpl implements IMatriculasDAO{
 	}
 
 	@Override
+	@Transactional
 	public Integer insertarMatricula(Integer idAlumno, Integer idAsignatura, Integer tasa, String fecha) {
-		AlumnoEntity alumno = alumnoRepository.findById(idAlumno).get();
-        AsignaturaEntity asignatura = asignaturaRepository.findById(idAsignatura).get();
-        CajaEntity cajaEntity = new CajaEntity();
 		if (fecha == null || fecha.isEmpty()) {
             fecha = LocalDate.now().toString();
         }
-		MatriculaEntity matriculaEntity = new MatriculaEntity(null, alumno, asignatura, fecha, 1);
-		return 0;
+		
+		
+		AlumnoEntity alumno = alumnoRepository.findById(idAlumno).get();
+        AsignaturaEntity asignatura = asignaturaRepository.findById(idAsignatura).get();
+        
+        MatriculaEntity matriculaEntity = new MatriculaEntity(alumno, asignatura, fecha, 1);
+        MatriculaEntity matriculaGuardada = matriculaRepository.save(matriculaEntity);
+        
+        int importe = tasa;
+        CajaEntity cajaEntity = new CajaEntity(matriculaGuardada, importe);
+        cajaRepository.save(cajaEntity);
+		return matriculaGuardada.getId();
 	}
 
 }

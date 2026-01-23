@@ -16,7 +16,7 @@ public class CajaEntity {
 	private int id;
 	
 	@OneToOne
-	@JoinColumn(name = "idmatricula", unique = true)
+	@JoinColumn(name = "idmatricula")
 	private MatriculaEntity matricula;
 	
 	@Column(name = "importe")
@@ -25,6 +25,10 @@ public class CajaEntity {
 	public CajaEntity(int id, MatriculaEntity matricula, int importe) {
 		super();
 		this.id = id;
+		this.matricula = matricula;
+		this.importe = importe;
+	}
+	public CajaEntity(MatriculaEntity matricula, int importe) {
 		this.matricula = matricula;
 		this.importe = importe;
 	}

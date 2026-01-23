@@ -40,6 +40,12 @@ public class MatriculaEntity {
 		this.fecha = fecha;
 		this.activo = activo;
 	}
+	public MatriculaEntity(AlumnoEntity alumno, AsignaturaEntity asignatura, String fecha, int activo) {
+		this.alumno = alumno;
+		this.asignatura = asignatura;
+		this.fecha = fecha;
+		this.activo = activo;
+	}
 
 	public MatriculaEntity() {
 	}
