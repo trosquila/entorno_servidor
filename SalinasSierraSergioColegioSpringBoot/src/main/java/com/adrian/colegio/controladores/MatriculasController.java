@@ -14,7 +14,6 @@
 	import com.adrian.colegio.dao.interfaces.IMatriculasDAO;
 	import com.adrian.colegio.dtos.DesplegableDTO;
 	import com.adrian.colegio.dtos.MatriculaDTO;
-	import com.adrian.colegio.dtos.NotaDTO;
 	import com.adrian.colegio.servicio.interfaces.IMatriculasService;
 	
 	@Controller

@@ -32,7 +32,6 @@ public class MatriculaServiceImpl implements IMatriculasService{
 
 	@Override
 	public Integer borrarMatricula(Integer idMatricula) {
-		// TODO Auto-generated method stub
 		return matriculasDAO.borrarMatricula(idMatricula);
 	}
 

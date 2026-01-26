@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import com.adrian.colegio.dao.interfaces.IDesplegablesDAO;
 import com.adrian.colegio.dao.interfaces.IMatriculasDAO;
@@ -66,9 +64,6 @@ public class MatriculasDAOImpl implements IMatriculasDAO{
         
 		return cajaEntity.getId();
 	}
-
-	
-
 
 	@Override
 	public Integer modificarMatricula(Integer idMatricula, Integer idAlumno, Integer idAsignatura, String fecha, Integer tasa, Integer activo) {
