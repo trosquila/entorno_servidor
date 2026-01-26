@@ -18,8 +18,8 @@ public interface CajaRepository extends CrudRepository<CajaEntity, Integer> {
 		       "c.importe ) " +
 		       "FROM CajaEntity c " +
 		       "WHERE (:id IS NULL OR CAST(c.id AS string) LIKE CONCAT('%', :id, '%')) " +
-		       "AND (:idAlumno IS NULL OR CAST(c.matricula.alumno.id AS string) LIKE CONCAT('%', :idAlumno, '%')) " + // Corregido
-		       "AND (:nombreAlumno IS NULL OR c.matricula.alumno.nombre LIKE CONCAT('%', :nombreAlumno, '%')) " +       // Corregido
+		       "AND (:idAlumno IS NULL OR CAST(c.matricula.alumno.id AS string) LIKE CONCAT('%', :idAlumno, '%')) " + 
+		       "AND (:nombreAlumno IS NULL OR c.matricula.alumno.nombre LIKE CONCAT('%', :nombreAlumno, '%')) " +
 		       "AND (:importe IS NULL OR CAST(c.importe AS string) LIKE CONCAT('%', :importe, '%'))")
 		ArrayList<CajaDTO> buscaCajaAvanzada(
 		        @Param("id") Integer id,

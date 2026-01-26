@@ -30,4 +30,10 @@ public class MatriculaServiceImpl implements IMatriculasService{
 		return matriculasDAO.modificarMatricula(idMatricula, idAlumno, idAsignatura, fecha, tasa, activo);
 	}
 
+	@Override
+	public Integer borrarMatricula(Integer idMatricula) {
+		// TODO Auto-generated method stub
+		return matriculasDAO.borrarMatricula(idMatricula);
+	}
+
 }

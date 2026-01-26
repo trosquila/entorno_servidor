@@ -13,4 +13,6 @@ public interface IMatriculasService {
 	Integer actualizarMatricula(Integer idMatricula, Integer idAlumno, Integer idAsignatura, String fecha, Integer tasa,
 			Integer activo);
 
+	Integer borrarMatricula(Integer idMatricula);
+
 }

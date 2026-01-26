@@ -75,16 +75,26 @@ public class MatriculasDAOImpl implements IMatriculasDAO{
 		AlumnoEntity alumno = alumnoRepository.findById(idAlumno).get();
         AsignaturaEntity asignatura = asignaturaRepository.findById(idAsignatura).get();
         
-        MatriculaEntity matriculaEntity = new MatriculaEntity(idMatricula,alumno, asignatura, fecha, 1);
-        MatriculaEntity matriculaGuardada = matriculaRepository.save(matriculaEntity);
+        MatriculaEntity matriculaEntity = matriculaRepository.findById(idMatricula).get();
+        matriculaEntity.setAlumno(alumno);
+        matriculaEntity.setAsignatura(asignatura);
+        matriculaEntity.setFecha(fecha);
+        
+       matriculaRepository.save(matriculaEntity);
         
         int importe = tasa;
-        CajaEntity cajaEntity = new CajaEntity();
-        cajaEntity.setId(importe);
-        cajaEntity.setMatricula(matriculaGuardada);
+        CajaEntity cajaEntity = matriculaEntity.getCaja();
         cajaEntity.setImporte(importe);
         cajaRepository.save(cajaEntity);
         
 		return cajaEntity.getId();
+	}
+
+	@Override
+	public Integer borrarMatricula(Integer idMatricula) {
+		 MatriculaEntity matriculaEntity = matriculaRepository.findById(idMatricula).get();
+		 matriculaEntity.setActivo(0);
+		 matriculaRepository.save(matriculaEntity);
+		return matriculaEntity.getId();
 	}
 }

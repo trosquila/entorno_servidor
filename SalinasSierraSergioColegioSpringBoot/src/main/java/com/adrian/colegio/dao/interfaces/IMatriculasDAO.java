@@ -14,6 +14,8 @@ public interface IMatriculasDAO {
 	Integer modificarMatricula(Integer idMatricula, Integer idAlumno, Integer idAsignatura, String fecha, Integer tasa,
 			Integer activo);
 
+	Integer borrarMatricula(Integer idMatricula);
+
 	
 
 }
