@@ -31,9 +31,9 @@ public class PiratasController {
 		if (fecha != null && fecha.isBlank())
 			fecha = null;
 
-		ArrayList<PirataDTO> listaPiratas = matriculaService.BuscarMatriculaPorFiltro(nombreAsignatura,
+		/*ArrayList<PirataDTO> listaPiratas = matriculaService.BuscarMatriculaPorFiltro(nombreAsignatura,
 				nombreAlumno, fecha, activo);
-		model.addAttribute("lista", listaPiratas);
+		model.addAttribute("lista", listaPiratas);*/
 		return "matriculaciones/listadoMatriculaciones";
 	}
 }
