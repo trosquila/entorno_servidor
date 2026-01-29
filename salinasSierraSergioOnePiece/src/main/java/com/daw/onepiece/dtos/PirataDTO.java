@@ -8,11 +8,19 @@ public class PirataDTO {
 	private String frutaDelDiablo;
 	private LocalDate fechaNacimiento;
 	private Boolean activo;
+
+	// Para formularios/edición
 	private Integer islaId;
+
+	// Para el listado
+	private String islaNombre;
+	private String tripulacion;
+	private String rol;
 
 	public PirataDTO() {
 	}
 
+	// Constructor “general” (el que ya tenías)
 	public PirataDTO(Integer id, String nombre, String frutaDelDiablo, LocalDate fechaNacimiento, Boolean activo,
 			Integer islaId) {
 		this.id = id;
@@ -23,6 +31,32 @@ public class PirataDTO {
 		this.islaId = islaId;
 	}
 
+	// Constructor para el LISTADO con joins (IMPORTANTE: mismo orden que en la
+	// query)
+	public PirataDTO(Integer id, String nombre, String frutaDelDiablo, LocalDate fechaNacimiento, Boolean activo,
+			String tripulacion, String rol, String islaNombre) {
+		this.id = id;
+		this.nombre = nombre;
+		this.frutaDelDiablo = frutaDelDiablo;
+		this.fechaNacimiento = fechaNacimiento;
+		this.activo = activo;
+		this.tripulacion = tripulacion;
+		this.rol = rol;
+		this.islaNombre = islaNombre;
+	}
+	public PirataDTO(Integer id, String nombre, String frutaDelDiablo, LocalDate fechaNacimiento, Boolean activo,
+            Integer islaId, String islaNombre, String tripulacion, String rol) {
+this.id = id;
+this.nombre = nombre;
+this.frutaDelDiablo = frutaDelDiablo;
+this.fechaNacimiento = fechaNacimiento;
+this.activo = activo;
+this.islaId = islaId;
+this.islaNombre = islaNombre;
+this.tripulacion = tripulacion;
+this.rol = rol;
+}
+	// getters/setters...
 	public Integer getId() {
 		return id;
 	}
@@ -69,5 +103,29 @@ public class PirataDTO {
 
 	public void setIslaId(Integer islaId) {
 		this.islaId = islaId;
+	}
+
+	public String getIslaNombre() {
+		return islaNombre;
+	}
+
+	public void setIslaNombre(String islaNombre) {
+		this.islaNombre = islaNombre;
+	}
+
+	public String getTripulacion() {
+	    return tripulacion;
+	}
+
+	public void setTripulacion(String tripulacion) {
+	    this.tripulacion = tripulacion;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 }

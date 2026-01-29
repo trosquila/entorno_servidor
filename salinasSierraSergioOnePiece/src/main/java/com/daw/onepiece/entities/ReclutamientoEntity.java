@@ -27,7 +27,7 @@ public class ReclutamientoEntity {
     @Column(name = "rol")
     private String rol;
 
-    @Column(name = "esMiembroActual")
+    @Column(name = "esmiembroactual")
     private Boolean esMiembroActual;
 
 	public ReclutamientoEntity(Integer id, PirataEntity pirata, TripulacionEntity tripulacion, String rol,

@@ -31,7 +31,7 @@ public class PiratasController {
 	}
 	
 	@PostMapping("/listadoPiratas")
-	public String formularioListarMatriculaRespuesta(
+	public String formularioListarPiratasRespueta(
 			@RequestParam(value = "id", required = false) Integer idPirata,
 			@RequestParam(value = "nombre", required = false) String nombrePirata,
 			@RequestParam(value = "frutaDiablo", required = false) String frutaDiablo,
@@ -42,5 +42,11 @@ public class PiratasController {
 		System.out.println(listaPiratas);
 		model.addAttribute("lista", listaPiratas);
 		return "piratas/listadoPiratas";
+	}
+	
+	@GetMapping("/insertarPirata")
+	public String formularioInsertarPiratas(ModelMap model) {
+		
+		return "piratas/insertarPirata";
 	}
 }
