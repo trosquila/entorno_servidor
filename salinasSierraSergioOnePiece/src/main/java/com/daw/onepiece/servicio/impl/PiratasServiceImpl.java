@@ -1,0 +1,21 @@
+package com.daw.onepiece.servicio.impl;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.daw.onepiece.dao.interfaces.IPiratasDAO;
+import com.daw.onepiece.dtos.PirataDTO;
+import com.daw.onepiece.servicio.interfaces.IPirataService;
+@Service
+public class PiratasServiceImpl implements IPirataService{
+	@Autowired
+	private IPiratasDAO pirataDAO;
+	
+	@Override
+	public ArrayList<PirataDTO> BuscarPirataPorFiltro(Integer idPirata, String nombrePirata, String frutaDiablo, Boolean activo) {
+		return pirataDAO.recogerPiratasPorFiltro(idPirata, nombrePirata, frutaDiablo, activo);
+	}
+
+}

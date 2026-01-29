@@ -2,6 +2,7 @@ package com.daw.onepiece.controladores;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,12 +10,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.daw.onepiece.dao.interfaces.IPiratasDAO;
 import com.daw.onepiece.dtos.PirataDTO;
-
+import com.daw.onepiece.servicio.interfaces.IPirataService;
 
 @Controller
 @RequestMapping("/piratas")
 public class PiratasController {
+	
+	@Autowired
+	IPiratasDAO pirata;
+	
+	@Autowired
+	IPirataService pirataService;
 	
 	@GetMapping("/listadoPiratas")
 	public String formularioListarPiratas(ModelMap model) {
@@ -22,18 +30,17 @@ public class PiratasController {
 		return "piratas/listadoPiratas";
 	}
 	
-	@PostMapping("/listadoMatriculaciones")
+	@PostMapping("/listadoPiratas")
 	public String formularioListarMatriculaRespuesta(
-			@RequestParam(value = "nombreAsignatura", required = false) String nombreAsignatura,
-			@RequestParam(value = "nombreAlumno", required = false) String nombreAlumno,
-			@RequestParam(value = "fecha", required = false) String fecha,
-			@RequestParam(value = "activo", required = false) Integer activo, ModelMap model) {
-		if (fecha != null && fecha.isBlank())
-			fecha = null;
+			@RequestParam(value = "id", required = false) Integer idPirata,
+			@RequestParam(value = "nombre", required = false) String nombrePirata,
+			@RequestParam(value = "frutaDiablo", required = false) String frutaDiablo,
+			@RequestParam(value = "activo", required = false) Integer activoForm, ModelMap model) {
 
-		/*ArrayList<PirataDTO> listaPiratas = matriculaService.BuscarMatriculaPorFiltro(nombreAsignatura,
-				nombreAlumno, fecha, activo);
-		model.addAttribute("lista", listaPiratas);*/
-		return "matriculaciones/listadoMatriculaciones";
+		Boolean activo = (activoForm != null) ? (activoForm == 1) : null;
+		ArrayList<PirataDTO> listaPiratas = pirataService.BuscarPirataPorFiltro(idPirata, nombrePirata, frutaDiablo, activo);
+		System.out.println(listaPiratas);
+		model.addAttribute("lista", listaPiratas);
+		return "piratas/listadoPiratas";
 	}
 }

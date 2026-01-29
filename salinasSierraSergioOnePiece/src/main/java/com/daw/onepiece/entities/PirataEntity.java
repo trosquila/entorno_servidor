@@ -18,13 +18,13 @@ public class PirataEntity {
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(name = "frutaDelDiablo")
+    @Column(name = "frutadeldiablo")
     private String frutaDelDiablo;
 
-    @Column(name = "fechaNacimiento")
+    @Column(name = "fechanacimiento")
     private LocalDate fechaNacimiento;
 
-    @Column(name = "estaActivo")
+    @Column(name = "estaactivo")
     private Boolean activo;
 
     @ManyToOne(fetch = FetchType.LAZY)
