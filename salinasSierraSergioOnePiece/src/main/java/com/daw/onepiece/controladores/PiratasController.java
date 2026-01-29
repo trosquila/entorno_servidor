@@ -1,5 +1,6 @@
 package com.daw.onepiece.controladores;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.daw.onepiece.dao.interfaces.IDesplegablesDAO;
 import com.daw.onepiece.dao.interfaces.IPiratasDAO;
+import com.daw.onepiece.dtos.DesplegableDTO;
+import com.daw.onepiece.dtos.IslaDTO;
 import com.daw.onepiece.dtos.PirataDTO;
 import com.daw.onepiece.servicio.interfaces.IPirataService;
 
@@ -23,6 +27,9 @@ public class PiratasController {
 	
 	@Autowired
 	IPirataService pirataService;
+	
+	@Autowired
+	IDesplegablesDAO desplegables;
 	
 	@GetMapping("/listadoPiratas")
 	public String formularioListarPiratas(ModelMap model) {
@@ -46,7 +53,33 @@ public class PiratasController {
 	
 	@GetMapping("/insertarPirata")
 	public String formularioInsertarPiratas(ModelMap model) {
-		
+		ArrayList<DesplegableDTO> listaIslas = desplegables.desplegableIslas();
+		model.addAttribute("desplegableIslas", listaIslas);
+		return "piratas/insertarPirata";
+	}
+	@PostMapping("/insertarPirata")
+	public String insertarPirata(
+            @RequestParam("nombre") String nombre,
+            @RequestParam(value = "frutaDiablo", required = false) String frutaDiablo,
+            @RequestParam(value = "fechaNacimiento", required = false) String fechaNacimientoStr,
+            @RequestParam("islas") Integer islaId,
+            @RequestParam(value = "activo", required = false) Integer activoForm,
+            ModelMap model
+    ) {
+
+        boolean activo = (activoForm != null && activoForm == 1);
+
+        LocalDate fechaNacimiento;
+        if (fechaNacimientoStr == null || fechaNacimientoStr.isBlank()) {
+            fechaNacimiento = LocalDate.now();
+        } else {
+            fechaNacimiento = LocalDate.parse(fechaNacimientoStr);
+        }
+
+        if (frutaDiablo != null && frutaDiablo.isBlank()) {
+            frutaDiablo = null;
+        }
+        Integer result = pirataService.guardarNuevoNakama(nombre, frutaDiablo, fechaNacimiento, activo, islaId );
 		return "piratas/insertarPirata";
 	}
 }

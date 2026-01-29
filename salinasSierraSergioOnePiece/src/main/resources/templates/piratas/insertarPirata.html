@@ -63,7 +63,7 @@
                                     <select class="form-select" id="islas" name="islas" required>
                                         <option value="">Selecciona una isla...</option>
                                         <option th:each="isla : ${desplegableIslas}" th:value="${isla.id}"
-                                            th:text="${isla.nombre}">
+                                            th:text="${isla.descripcion}">
                                         </option>
                                     </select>
                                 </div>

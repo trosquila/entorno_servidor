@@ -1,5 +1,6 @@
 package com.daw.onepiece.servicio.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,12 @@ public class PiratasServiceImpl implements IPirataService{
 	@Override
 	public ArrayList<PirataDTO> BuscarPirataPorFiltro(Integer idPirata, String nombrePirata, String frutaDiablo, Boolean activo) {
 		return pirataDAO.recogerPiratasPorFiltro(idPirata, nombrePirata, frutaDiablo, activo);
+	}
+
+	@Override
+	public Integer guardarNuevoNakama(String nombre, String frutaDiablo, LocalDate fechaNacimiento, boolean activo, Integer islaId) {
+		
+		return pirataDAO.guardarNuevoNakama(nombre, frutaDiablo, fechaNacimiento, activo, islaId);
 	}
 
 }

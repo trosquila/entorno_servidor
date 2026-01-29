@@ -36,8 +36,7 @@ public class PirataEntity {
     
     public PirataEntity() {}
 
-	public PirataEntity(Integer id, String nombre, String frutaDelDiablo, LocalDate fechaNacimiento, Boolean activo,
-			IslaEntity isla, List<ReclutamientoEntity> reclutamientos) {
+	public PirataEntity(Integer id, String nombre, String frutaDelDiablo, LocalDate fechaNacimiento, Boolean activo, IslaEntity isla, List<ReclutamientoEntity> reclutamientos) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -47,6 +46,15 @@ public class PirataEntity {
 		this.isla = isla;
 		this.reclutamientos = reclutamientos;
 	}
+	public PirataEntity(String nombre, String frutaDelDiablo, LocalDate fechaNacimiento, Boolean activo, IslaEntity isla) {
+		super();
+		this.nombre = nombre;
+		this.frutaDelDiablo = frutaDelDiablo;
+		this.fechaNacimiento = fechaNacimiento;
+		this.activo = activo;
+		this.isla = isla;
+	}
+
 
 	public Integer getId() {
 		return id;
