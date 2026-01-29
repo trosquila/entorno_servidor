@@ -82,4 +82,31 @@ public class PiratasController {
         Integer result = pirataService.guardarNuevoNakama(nombre, frutaDiablo, fechaNacimiento, activo, islaId );
 		return "piratas/insertarPirata";
 	}
+	
+	
+	@GetMapping("/formularioActualizarPiratas")
+	public String formularioModificarPiratas(ModelMap model) {
+		return "piratas/actualizarPiratas";
+	}
+	
+	@PostMapping("/formularioActualizarPiratas")
+	public String formularioModificarPiratasMostrarListas(  
+			@RequestParam("id") String id,
+			@RequestParam("nombre") String nombrePirata,
+            @RequestParam(value = "frutaDiablo", required = false) String frutaDiablo,
+            @RequestParam(value = "activo", required = false) Integer activoForm,
+            ModelMap model
+    ) {
+		Boolean activo = (activoForm != null) ? (activoForm == 1) : null;
+		
+	    Integer idPirata = null;
+	    if (id != null && !id.isBlank()) {
+	        idPirata = Integer.valueOf(id);
+	    }
+		
+		ArrayList<PirataDTO> listaPiratas = pirataService.BuscarPirataPorFiltro(idPirata, nombrePirata, frutaDiablo, activo);
+		
+		model.addAttribute("lista", listaPiratas);
+		return "piratas/actualizarPiratas";
+	}
 }

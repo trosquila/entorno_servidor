@@ -8,11 +8,7 @@ public class PirataDTO {
 	private String frutaDelDiablo;
 	private LocalDate fechaNacimiento;
 	private Boolean activo;
-
-	// Para formularios/edición
 	private Integer islaId;
-
-	// Para el listado
 	private String islaNombre;
 	private String tripulacion;
 	private String rol;
@@ -20,7 +16,6 @@ public class PirataDTO {
 	public PirataDTO() {
 	}
 
-	// Constructor “general” (el que ya tenías)
 	public PirataDTO(Integer id, String nombre, String frutaDelDiablo, LocalDate fechaNacimiento, Boolean activo,
 			Integer islaId) {
 		this.id = id;
@@ -31,8 +26,7 @@ public class PirataDTO {
 		this.islaId = islaId;
 	}
 
-	// Constructor para el LISTADO con joins (IMPORTANTE: mismo orden que en la
-	// query)
+
 	public PirataDTO(Integer id, String nombre, String frutaDelDiablo, LocalDate fechaNacimiento, Boolean activo,
 			String tripulacion, String rol, String islaNombre) {
 		this.id = id;
@@ -56,7 +50,6 @@ this.islaNombre = islaNombre;
 this.tripulacion = tripulacion;
 this.rol = rol;
 }
-	// getters/setters...
 	public Integer getId() {
 		return id;
 	}
