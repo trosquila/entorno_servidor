@@ -31,5 +31,11 @@ public class PiratasDAOImpl implements IPiratasDAO{
 		piratasRepository.save(pirata);
 		return pirata.getId();
 	}
+	@Override
+	public Integer modificarNakama(Integer idPirata, String nombrePirata, String frutaDiablo, String fechaNacimiento,
+			Integer idIsla, Boolean activo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

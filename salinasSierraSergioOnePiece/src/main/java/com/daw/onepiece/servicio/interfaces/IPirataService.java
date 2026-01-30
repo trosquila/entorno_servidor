@@ -11,4 +11,7 @@ public interface IPirataService {
 
 	Integer guardarNuevoNakama(String nombre, String frutaDiablo, LocalDate fechaNacimiento, boolean activo, Integer islaId);
 
+	Integer ModificarPirata(Integer idPirata, String nombrePirata, String frutaDiablo, String fechaNacimiento,
+			Integer idIsla, Boolean activo);
+
 }

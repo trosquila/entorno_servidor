@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.daw.onepiece.dao.interfaces.IDesplegablesDAO;
 import com.daw.onepiece.dao.interfaces.IPiratasDAO;
 import com.daw.onepiece.dtos.DesplegableDTO;
-import com.daw.onepiece.dtos.IslaDTO;
 import com.daw.onepiece.dtos.PirataDTO;
 import com.daw.onepiece.servicio.interfaces.IPirataService;
 
@@ -107,6 +106,23 @@ public class PiratasController {
 		ArrayList<PirataDTO> listaPiratas = pirataService.BuscarPirataPorFiltro(idPirata, nombrePirata, frutaDiablo, activo);
 		
 		model.addAttribute("lista", listaPiratas);
+		return "piratas/actualizarPiratas";
+	}
+	@PostMapping("/actualizarPirata")
+	public String modificarPiratas(  
+			@RequestParam("id") Integer idPirata,
+		    @RequestParam("nombre") String nombrePirata,
+		    @RequestParam(value = "frutaDiablo", required = false) String frutaDiablo,
+		    @RequestParam("fechaNacimiento") String fechaNacimiento,
+		    @RequestParam("isla") Integer idIsla,
+		    @RequestParam(value = "activo", required = false) Integer activoForm,
+            ModelMap model
+    ) {
+		Boolean activo = (activoForm != null) ? (activoForm == 1) : null;
+		
+		Integer result = pirataService.ModificarPirata(idPirata, nombrePirata, frutaDiablo, fechaNacimiento, idIsla, activo);
+			
+		model.addAttribute("result", result);
 		return "piratas/actualizarPiratas";
 	}
 }

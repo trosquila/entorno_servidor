@@ -25,4 +25,10 @@ public class PiratasServiceImpl implements IPirataService{
 		return pirataDAO.guardarNuevoNakama(nombre, frutaDiablo, fechaNacimiento, activo, islaId);
 	}
 
+	@Override
+	public Integer ModificarPirata(Integer idPirata, String nombrePirata, String frutaDiablo, String fechaNacimiento,
+			Integer idIsla, Boolean activo) {
+		return pirataDAO.modificarNakama( idPirata, nombrePirata, frutaDiablo, fechaNacimiento, idIsla,  activo);
+	}
+
 }
