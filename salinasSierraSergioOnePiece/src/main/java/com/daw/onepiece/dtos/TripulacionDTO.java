@@ -4,16 +4,18 @@ public class TripulacionDTO {
 	private Integer id;
 	private String nombre;
 	private String barco;
-	private Boolean estaActiva;
+	private Long cantidadMiembros;
+	private Boolean activo;
 
 	public TripulacionDTO() {
 	}
 
-	public TripulacionDTO(Integer id, String nombre, String barco, Boolean estaActiva) {
+	public TripulacionDTO(Integer id, String nombre, String barco, Long cantidadMiembros , Boolean activo) {
 		this.id = id;
 		this.nombre = nombre;
 		this.barco = barco;
-		this.estaActiva = estaActiva;
+		this.activo = activo;
+		this.cantidadMiembros = cantidadMiembros;
 	}
 	
 	public TripulacionDTO(Integer id, String nombre) {
@@ -44,12 +46,18 @@ public class TripulacionDTO {
 	public void setBarco(String barco) {
 		this.barco = barco;
 	}
-
-	public Boolean getEstaActiva() {
-		return estaActiva;
+	public Long getCantidadMiembros() {
+		return cantidadMiembros;
 	}
 
-	public void setEstaActiva(Boolean estaActiva) {
-		this.estaActiva = estaActiva;
+	public void setCantidadMiembros(Long cantidadMiembros) {
+		this.cantidadMiembros = cantidadMiembros;
+	}
+	public Boolean getActivo() {
+	    return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+	    this.activo = activo;
 	}
 }

@@ -80,12 +80,12 @@
                                         <td th:text="${tripulacion.id}"></td>
                                         <td><strong th:text="${tripulacion.nombre}"></strong></td>
                                         <td th:text="${tripulacion.barco}"></td>
-                                        <td><span class="badge bg-info" th:text="${tripulacion.numeroMiembros}"></span>
+                                        <td><span class="badge bg-info" th:text="${tripulacion.cantidadMiembros}"></span>
                                         </td>
                                         <td>
-                                            <span th:if="${tripulacion.estaActiva == 1}"
+                                            <span th:if="${tripulacion.activo == true}"
                                                 class="badge bg-success">Activa</span>
-                                            <span th:if="${tripulacion.estaActiva == 0}"
+                                            <span th:if="${tripulacion.activo == false}"
                                                 class="badge bg-danger">Inactiva</span>
                                         </td>
                                         <td>

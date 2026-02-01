@@ -19,8 +19,8 @@ public class TripulacionEntity {
 	@Column(name = "barco")
 	private String barco;
 
-	@Column(name = "estaActiva")
-	private Boolean estaActiva;
+	@Column(name = "estaactiva")
+	private Boolean estaactiva;
 
 	@OneToMany(mappedBy = "tripulacion")
 	private List<ReclutamientoEntity> reclutamientos = new ArrayList<>();
@@ -28,11 +28,11 @@ public class TripulacionEntity {
 	public TripulacionEntity() {
 	}
 
-	public TripulacionEntity(Integer id, String nombre, String barco, Boolean estaActiva) {
+	public TripulacionEntity(Integer id, String nombre, String barco, Boolean estaactiva) {
 		this.id = id;
 		this.nombre = nombre;
 		this.barco = barco;
-		this.estaActiva = estaActiva;
+		this.estaactiva = estaactiva;
 	}
 
 	public Integer getId() {
@@ -59,12 +59,12 @@ public class TripulacionEntity {
 		this.barco = barco;
 	}
 
-	public Boolean getEstaActiva() {
-		return estaActiva;
+	public Boolean getestaactiva() {
+		return estaactiva;
 	}
 
-	public void setEstaActiva(Boolean estaActiva) {
-		this.estaActiva = estaActiva;
+	public void setestaactiva(Boolean estaactiva) {
+		this.estaactiva = estaactiva;
 	}
 
 	public List<ReclutamientoEntity> getReclutamientos() {
