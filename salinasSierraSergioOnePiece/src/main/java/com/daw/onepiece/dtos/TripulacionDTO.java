@@ -15,6 +15,11 @@ public class TripulacionDTO {
 		this.barco = barco;
 		this.estaActiva = estaActiva;
 	}
+	
+	public TripulacionDTO(Integer id, String nombre) {
+	    this.id = id;
+	    this.nombre = nombre;
+	}
 
 	public Integer getId() {
 		return id;

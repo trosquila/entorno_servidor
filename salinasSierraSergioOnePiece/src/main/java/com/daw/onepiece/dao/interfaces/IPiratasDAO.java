@@ -13,4 +13,6 @@ public interface IPiratasDAO {
 
 	Integer modificarNakama(Integer idPirata, String nombrePirata, String frutaDiablo, String fechaNacimiento, Integer idIsla, Boolean activo);
 
+	Integer borrarNakama(Integer idPirata);
+
 }

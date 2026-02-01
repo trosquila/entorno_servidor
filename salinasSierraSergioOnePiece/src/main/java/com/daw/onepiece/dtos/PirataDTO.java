@@ -8,48 +8,27 @@ public class PirataDTO {
 	private String frutaDelDiablo;
 	private LocalDate fechaNacimiento;
 	private Boolean activo;
-	private Integer islaId;
-	private String islaNombre;
-	private String tripulacion;
-	private String rol;
+
+	private IslaDTO isla;
+
+	private TripulacionDTO tripulacion;
+	private  ReclutamientoDTO reclutamiento;
 
 	public PirataDTO() {
 	}
 
 	public PirataDTO(Integer id, String nombre, String frutaDelDiablo, LocalDate fechaNacimiento, Boolean activo,
-			Integer islaId) {
+			IslaDTO isla, TripulacionDTO tripulacion, ReclutamientoDTO reclutamiento) {
 		this.id = id;
 		this.nombre = nombre;
 		this.frutaDelDiablo = frutaDelDiablo;
 		this.fechaNacimiento = fechaNacimiento;
 		this.activo = activo;
-		this.islaId = islaId;
-	}
-
-
-	public PirataDTO(Integer id, String nombre, String frutaDelDiablo, LocalDate fechaNacimiento, Boolean activo,
-			String tripulacion, String rol, String islaNombre) {
-		this.id = id;
-		this.nombre = nombre;
-		this.frutaDelDiablo = frutaDelDiablo;
-		this.fechaNacimiento = fechaNacimiento;
-		this.activo = activo;
+		this.isla = isla;
 		this.tripulacion = tripulacion;
-		this.rol = rol;
-		this.islaNombre = islaNombre;
+		this.reclutamiento = reclutamiento;
 	}
-	public PirataDTO(Integer id, String nombre, String frutaDelDiablo, LocalDate fechaNacimiento, Boolean activo,
-            Integer islaId, String islaNombre, String tripulacion, String rol) {
-this.id = id;
-this.nombre = nombre;
-this.frutaDelDiablo = frutaDelDiablo;
-this.fechaNacimiento = fechaNacimiento;
-this.activo = activo;
-this.islaId = islaId;
-this.islaNombre = islaNombre;
-this.tripulacion = tripulacion;
-this.rol = rol;
-}
+
 	public Integer getId() {
 		return id;
 	}
@@ -90,35 +69,28 @@ this.rol = rol;
 		this.activo = activo;
 	}
 
-	public Integer getIslaId() {
-		return islaId;
+	public IslaDTO getIsla() {
+		return isla;
 	}
 
-	public void setIslaId(Integer islaId) {
-		this.islaId = islaId;
+	public void setIsla(IslaDTO isla) {
+		this.isla = isla;
 	}
 
-	public String getIslaNombre() {
-		return islaNombre;
+	public TripulacionDTO getTripulacion() {
+		return tripulacion;
 	}
 
-	public void setIslaNombre(String islaNombre) {
-		this.islaNombre = islaNombre;
+	public void setTripulacion(TripulacionDTO tripulacion) {
+		this.tripulacion = tripulacion;
 	}
 
-	public String getTripulacion() {
-	    return tripulacion;
+	public ReclutamientoDTO getreclutamiento() {
+		return reclutamiento;
 	}
 
-	public void setTripulacion(String tripulacion) {
-	    this.tripulacion = tripulacion;
+	public void setreclutamiento(ReclutamientoDTO reclutamiento) {
+		this.reclutamiento = reclutamiento;
 	}
 
-	public String getRol() {
-		return rol;
-	}
-
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
 }

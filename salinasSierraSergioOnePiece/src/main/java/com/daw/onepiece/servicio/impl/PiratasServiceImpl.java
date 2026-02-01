@@ -31,4 +31,9 @@ public class PiratasServiceImpl implements IPirataService{
 		return pirataDAO.modificarNakama( idPirata, nombrePirata, frutaDiablo, fechaNacimiento, idIsla,  activo);
 	}
 
+	@Override
+	public Integer borrarPirata(Integer idPirata) {
+		return pirataDAO.borrarNakama(idPirata);
+	}
+
 }

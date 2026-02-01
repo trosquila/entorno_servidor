@@ -14,4 +14,6 @@ public interface IPirataService {
 	Integer ModificarPirata(Integer idPirata, String nombrePirata, String frutaDiablo, String fechaNacimiento,
 			Integer idIsla, Boolean activo);
 
+	Integer borrarPirata(Integer idPirata);
+
 }

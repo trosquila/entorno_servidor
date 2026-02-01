@@ -17,6 +17,13 @@ public class ReclutamientoDTO {
 		this.rol = rol;
 		this.esMiembroActual = esMiembroActual;
 	}
+	
+	public ReclutamientoDTO(Integer id, String rol, Boolean esMiembroActual) {
+		this.id = id;
+		this.rol = rol;
+		this.esMiembroActual = esMiembroActual;
+	}
+
 
 	public Integer getId() {
 		return id;

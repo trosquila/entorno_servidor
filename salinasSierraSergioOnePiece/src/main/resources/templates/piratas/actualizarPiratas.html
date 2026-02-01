@@ -99,7 +99,7 @@
                                         <label for="isla" class="form-label">Isla de Origen *</label>
                                         <select class="form-select" name="isla" required>
                                             <option th:each="isla : ${desplegableIslas}" th:value="${isla.id}"
-                                                th:text="${isla.nombre}" th:selected="${isla.id == pirata.idIsla}">
+                                                th:text="${isla.descripcion}" th:selected="${isla.id == pirata.isla.id}">
                                             </option>
                                         </select>
                                     </div>

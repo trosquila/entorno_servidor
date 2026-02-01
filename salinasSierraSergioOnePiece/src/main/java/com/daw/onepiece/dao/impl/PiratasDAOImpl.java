@@ -34,8 +34,25 @@ public class PiratasDAOImpl implements IPiratasDAO{
 	@Override
 	public Integer modificarNakama(Integer idPirata, String nombrePirata, String frutaDiablo, String fechaNacimiento,
 			Integer idIsla, Boolean activo) {
-		// TODO Auto-generated method stub
-		return null;
+		PirataEntity pirata = piratasRepository.findById(idPirata).get();
+		IslaEntity isla  = islaRepository.findById(idIsla).get();
+		LocalDate fecha = LocalDate.parse(fechaNacimiento);
+		
+		
+		pirata.setNombre(nombrePirata);
+		pirata.setFrutaDelDiablo(frutaDiablo);
+		pirata.setFechaNacimiento(fecha);
+		pirata.setIsla(isla);
+		pirata.setActivo(activo);
+		piratasRepository.save(pirata);
+		return pirata.getId();
+	}
+	@Override
+	public Integer borrarNakama(Integer idPirata) {
+		PirataEntity pirata = piratasRepository.findById(idPirata).get();
+		pirata.setActivo(false);
+		piratasRepository.save(pirata);
+		return pirata.getId();
 	}
 
 }

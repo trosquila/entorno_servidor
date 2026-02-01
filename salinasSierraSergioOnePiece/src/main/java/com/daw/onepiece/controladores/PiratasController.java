@@ -85,6 +85,8 @@ public class PiratasController {
 	
 	@GetMapping("/formularioActualizarPiratas")
 	public String formularioModificarPiratas(ModelMap model) {
+		ArrayList<DesplegableDTO> listaIslas = desplegables.desplegableIslas();
+		model.addAttribute("desplegableIslas", listaIslas);
 		return "piratas/actualizarPiratas";
 	}
 	
@@ -105,6 +107,9 @@ public class PiratasController {
 		
 		ArrayList<PirataDTO> listaPiratas = pirataService.BuscarPirataPorFiltro(idPirata, nombrePirata, frutaDiablo, activo);
 		
+		
+		ArrayList<DesplegableDTO> listaIslas = desplegables.desplegableIslas();
+		model.addAttribute("desplegableIslas", listaIslas);
 		model.addAttribute("lista", listaPiratas);
 		return "piratas/actualizarPiratas";
 	}
@@ -125,4 +130,30 @@ public class PiratasController {
 		model.addAttribute("result", result);
 		return "piratas/actualizarPiratas";
 	}
+	
+	@GetMapping("/formularioBorrarPiratas")
+	public String formularioBorrarPiratas () {
+		return "piratas/borrarPiratas";
+		
+	}
+	
+	@PostMapping("/formularioBorrarPiratas")
+	public String formularioBorrarPiratasListado (
+			@RequestParam(value = "id", required = false) Integer idPirata,
+			@RequestParam(value = "nombre", required = false) String nombrePirata,
+			ModelMap model
+			) {
+		ArrayList<PirataDTO> listaPiratas = pirataService.BuscarPirataPorFiltro(idPirata, nombrePirata, null, true);
+		model.addAttribute("lista", listaPiratas);
+		return "piratas/borrarPiratas";
+	}
+	
+	
+	@PostMapping("/borrarPirata")
+	public String borrarPirata (@RequestParam(value = "id", required = false) Integer idPirata) {
+		Integer result = pirataService.borrarPirata(idPirata);
+		return "piratas/borrarPiratas";
+		
+	}
+	
 }
