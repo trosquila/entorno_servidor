@@ -44,5 +44,17 @@ public class TripulacionController {
 		model.addAttribute("lista", listaTripulacion);
 		return "tripulaciones/listadoTripulaciones";
 	}
+	
+	@GetMapping("/detallesTripulacion")
+	public String verDetalles(@RequestParam Integer id, ModelMap model) {
 
+	    ArrayList<TripulacionDTO> lista = tripulacionService.BuscarTripulacionPorFiltros(id, null, null, null);
+
+	    TripulacionDTO tripulacion = (lista != null && !lista.isEmpty()) ? lista.get(0) : null;
+
+	    model.addAttribute("tripulacion", tripulacion);
+	    return "tripulaciones/detallesTripulacion";
+	}
+
+	
 }
