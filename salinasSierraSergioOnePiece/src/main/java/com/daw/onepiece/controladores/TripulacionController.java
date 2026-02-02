@@ -64,7 +64,7 @@ public class TripulacionController {
 	    model.addAttribute("tripulacion", tripulacion);
 	    return "tripulaciones/detallesTripulacion";
 	}
-	
+	//en piratas no sale un campo sale su id
 	@PostMapping("/agregarMiembro")
 	public String modificarEnDetalles(
 			@RequestParam(value = "idTripulacion", required = false) Integer idTripulacion,
