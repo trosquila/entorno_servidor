@@ -56,8 +56,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID Pirata</th>
-                                        <th>Nombre</th>
-                                        <th>Rol</th>
+                                        <th>Rol                                        <th>Nombre</th>
+</th>
                                         <th>Fruta del Diablo</th>
                                         <th>Acción</th>
                                     </tr>
@@ -103,7 +103,7 @@
                                     <select class="form-select" id="idPirata" name="idPirata" required>
                                         <option value="">Selecciona un pirata...</option>
                                         <option th:each="pirata : ${piratasActivos}" th:value="${pirata.id}"
-                                            th:text="${pirata.nombre}"></option>
+                                            th:text="${pirata.descripcion}"></option>
                                     </select>
                                     <small class="text-muted">Si el pirata ya pertenece a otra tripulación, será
                                         transferido automáticamente</small>

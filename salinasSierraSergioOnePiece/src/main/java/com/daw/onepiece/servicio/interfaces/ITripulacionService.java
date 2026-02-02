@@ -8,4 +8,6 @@ public interface ITripulacionService {
 
 	ArrayList<TripulacionDTO> BuscarTripulacionPorFiltros(Integer id, String nombre, String nombreBarco, Boolean activo);
 
+	Integer modificarTripulacionEnDetalles(Integer idTripulacion, Integer idPirata, String rol);
+
 }

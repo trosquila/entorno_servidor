@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.daw.onepiece.dao.interfaces.IDesplegablesDAO;
 import com.daw.onepiece.dao.interfaces.ITripulacionDAO;
+import com.daw.onepiece.dtos.DesplegableDTO;
+import com.daw.onepiece.dtos.PirataDTO;
 import com.daw.onepiece.dtos.TripulacionDTO;
+import com.daw.onepiece.servicio.interfaces.IPirataService;
 import com.daw.onepiece.servicio.interfaces.ITripulacionService;
 
 @Controller
@@ -26,7 +29,10 @@ public class TripulacionController {
 	
 	@Autowired
 	IDesplegablesDAO desplegables;
-
+	
+	@Autowired
+	IPirataService pirataService;
+	
 	@GetMapping("/listadoTripulaciones")
 	public String listadoTripulacion() {
 		return "tripulaciones/listadoTripulaciones";
@@ -49,9 +55,27 @@ public class TripulacionController {
 	public String verDetalles(@RequestParam Integer id, ModelMap model) {
 
 	    ArrayList<TripulacionDTO> lista = tripulacionService.BuscarTripulacionPorFiltros(id, null, null, null);
-
 	    TripulacionDTO tripulacion = (lista != null && !lista.isEmpty()) ? lista.get(0) : null;
+	   
+	    ArrayList<DesplegableDTO> listaIslas = desplegables.desplegablePiratas();
+	    
+		model.addAttribute("miembros", tripulacion);
+	    model.addAttribute("piratasActivos", listaIslas);
+	    model.addAttribute("tripulacion", tripulacion);
+	    return "tripulaciones/detallesTripulacion";
+	}
+	
+	@PostMapping("/agregarMiembro")
+	public String modificarEnDetalles(
+			@RequestParam(value = "idTripulacion", required = false) Integer idTripulacion,
+			@RequestParam(value = "idPirata", required = false) Integer idPirata,
+			@RequestParam(value = "rol", required = false) String rol,
+			ModelMap model) {
 
+		Integer result = tripulacionService.modificarTripulacionEnDetalles(idTripulacion, idPirata, rol);
+		
+		ArrayList<TripulacionDTO> lista = tripulacionService.BuscarTripulacionPorFiltros(idTripulacion, null, null, null);
+		TripulacionDTO tripulacion = (lista != null && !lista.isEmpty()) ? lista.get(0) : null;
 	    model.addAttribute("tripulacion", tripulacion);
 	    return "tripulaciones/detallesTripulacion";
 	}

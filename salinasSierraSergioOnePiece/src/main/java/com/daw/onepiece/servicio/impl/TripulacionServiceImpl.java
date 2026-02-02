@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.daw.onepiece.dao.interfaces.ITripulacionDAO;
 import com.daw.onepiece.dtos.TripulacionDTO;
 import com.daw.onepiece.repositorios.TripulacionRepository;
 import com.daw.onepiece.servicio.interfaces.ITripulacionService;
@@ -13,11 +14,18 @@ import com.daw.onepiece.servicio.interfaces.ITripulacionService;
 public class TripulacionServiceImpl implements ITripulacionService{
 	@Autowired
 	private TripulacionRepository tripulacionRepository;
+	@Autowired
+	private ITripulacionDAO tripulacionDAO;
 	
 	@Override
 	public ArrayList<TripulacionDTO> BuscarTripulacionPorFiltros(Integer id, String nombre, String nombreBarco,
 			Boolean activo) {
 		return tripulacionRepository.listarTripulacionPorFiltros(id, nombre, nombreBarco, activo);
+	}
+
+	@Override
+	public Integer modificarTripulacionEnDetalles(Integer idTripulacion, Integer idPirata, String rol) {
+		return tripulacionDAO.modificarTripulacionEnDetalles(idTripulacion, idPirata, rol);
 	}
 
 }

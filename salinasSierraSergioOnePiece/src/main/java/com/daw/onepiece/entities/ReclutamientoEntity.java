@@ -39,6 +39,15 @@ public class ReclutamientoEntity {
 		this.rol = rol;
 		this.esMiembroActual = esMiembroActual;
 	}
+	
+	public ReclutamientoEntity(PirataEntity pirata, TripulacionEntity tripulacion, String rol,
+			Boolean esMiembroActual) {
+		super();
+		this.pirata = pirata;
+		this.tripulacion = tripulacion;
+		this.rol = rol;
+		this.esMiembroActual = esMiembroActual;
+	}
 
 	public ReclutamientoEntity() {
 	}
