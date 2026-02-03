@@ -15,4 +15,7 @@ public interface IPiratasDAO {
 
 	Integer borrarNakama(Integer idPirata);
 
+	ArrayList<PirataDTO> BuscarTripulacionBarco(Integer idTripulacion);
+
+
 }

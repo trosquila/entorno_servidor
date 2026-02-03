@@ -36,4 +36,9 @@ public class PiratasServiceImpl implements IPirataService{
 		return pirataDAO.borrarNakama(idPirata);
 	}
 
+	@Override
+	public ArrayList<PirataDTO> BuscarTripulacionBarco(Integer idTripulacion) {
+		return pirataDAO.BuscarTripulacionBarco(idTripulacion);
+	}
+
 }

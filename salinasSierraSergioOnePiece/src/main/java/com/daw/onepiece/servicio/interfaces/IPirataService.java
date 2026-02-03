@@ -16,4 +16,6 @@ public interface IPirataService {
 
 	Integer borrarPirata(Integer idPirata);
 
+	ArrayList<PirataDTO> BuscarTripulacionBarco(Integer idTripulacion);
+
 }

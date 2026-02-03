@@ -8,7 +8,7 @@ public class PirataDTO {
 	private String frutaDelDiablo;
 	private LocalDate fechaNacimiento;
 	private Boolean activo;
-
+	private String rol;
 	private IslaDTO isla;
 
 	private TripulacionDTO tripulacion;
@@ -25,6 +25,17 @@ public class PirataDTO {
 		this.fechaNacimiento = fechaNacimiento;
 		this.activo = activo;
 		this.isla = isla;
+		this.tripulacion = tripulacion;
+		this.reclutamiento = reclutamiento;
+	}
+	public PirataDTO(Integer id, String nombre, String frutaDelDiablo, LocalDate fechaNacimiento, Boolean activo, String rol, IslaDTO isla, TripulacionDTO tripulacion, ReclutamientoDTO reclutamiento) {
+		this.id = id;
+		this.nombre = nombre;
+		this.frutaDelDiablo = frutaDelDiablo;
+		this.fechaNacimiento = fechaNacimiento;
+		this.activo = activo;
+		this.isla = isla;
+		this.rol = rol;
 		this.tripulacion = tripulacion;
 		this.reclutamiento = reclutamiento;
 	}
@@ -69,6 +80,14 @@ public class PirataDTO {
 		this.activo = activo;
 	}
 
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
 	public IslaDTO getIsla() {
 		return isla;
 	}
@@ -85,12 +104,14 @@ public class PirataDTO {
 		this.tripulacion = tripulacion;
 	}
 
-	public ReclutamientoDTO getreclutamiento() {
+	public ReclutamientoDTO getReclutamiento() {
 		return reclutamiento;
 	}
 
-	public void setreclutamiento(ReclutamientoDTO reclutamiento) {
+	public void setReclutamiento(ReclutamientoDTO reclutamiento) {
 		this.reclutamiento = reclutamiento;
 	}
+
+
 
 }

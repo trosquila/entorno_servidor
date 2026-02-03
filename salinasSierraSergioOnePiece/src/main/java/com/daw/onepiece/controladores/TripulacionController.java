@@ -56,14 +56,19 @@ public class TripulacionController {
 
 	    ArrayList<TripulacionDTO> lista = tripulacionService.BuscarTripulacionPorFiltros(id, null, null, null);
 	    TripulacionDTO tripulacion = (lista != null && !lista.isEmpty()) ? lista.get(0) : null;
-	   
+
+	    ArrayList<PirataDTO> miembros = pirataService.BuscarTripulacionBarco(id);
+
 	    ArrayList<DesplegableDTO> listaIslas = desplegables.desplegablePiratas();
-	    
-		model.addAttribute("miembros", tripulacion);
+
+	    model.addAttribute("miembros", miembros != null ? miembros : new ArrayList<>());
 	    model.addAttribute("piratasActivos", listaIslas);
 	    model.addAttribute("tripulacion", tripulacion);
+
 	    return "tripulaciones/detallesTripulacion";
 	}
+	
+	
 	//en piratas no sale un campo sale su id
 	@PostMapping("/agregarMiembro")
 	public String modificarEnDetalles(
@@ -74,8 +79,15 @@ public class TripulacionController {
 
 		Integer result = tripulacionService.modificarTripulacionEnDetalles(idTripulacion, idPirata, rol);
 		
-		ArrayList<TripulacionDTO> lista = tripulacionService.BuscarTripulacionPorFiltros(idTripulacion, null, null, null);
-		TripulacionDTO tripulacion = (lista != null && !lista.isEmpty()) ? lista.get(0) : null;
+	    ArrayList<TripulacionDTO> lista = tripulacionService.BuscarTripulacionPorFiltros(idTripulacion, null, null, null);
+	    TripulacionDTO tripulacion = (lista != null && !lista.isEmpty()) ? lista.get(0) : null;
+
+	    ArrayList<PirataDTO> miembros = pirataService.BuscarTripulacionBarco(idTripulacion);
+
+	    ArrayList<DesplegableDTO> listaIslas = desplegables.desplegablePiratas();
+
+	    model.addAttribute("miembros", miembros != null ? miembros : new ArrayList<>());
+	    model.addAttribute("piratasActivos", listaIslas);
 	    model.addAttribute("tripulacion", tripulacion);
 	    return "tripulaciones/detallesTripulacion";
 	}

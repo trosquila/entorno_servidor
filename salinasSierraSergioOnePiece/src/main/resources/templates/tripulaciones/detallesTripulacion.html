@@ -56,8 +56,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID Pirata</th>
-                                        <th>Rol                                        <th>Nombre</th>
-</th>
+                                        <th>Nombre</th>
+                                        <th>Rol</th>
                                         <th>Fruta del Diablo</th>
                                         <th>Acción</th>
                                     </tr>
@@ -69,7 +69,7 @@
                                         <td><span class="badge bg-warning text-dark" th:text="${miembro.rol}"></span>
                                         </td>
                                         <td
-                                            th:text="${miembro.frutaDiablo != null ? miembro.frutaDiablo : 'Sin fruta'}">
+                                            th:text="${miembro.frutaDelDiablo  != null ? miembro.frutaDelDiablo : 'Sin fruta'}">
                                         </td>
                                         <td>
                                             <form th:action="@{/tripulaciones/eliminarMiembro}" method="post"

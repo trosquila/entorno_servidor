@@ -54,5 +54,9 @@ public class PiratasDAOImpl implements IPiratasDAO{
 		piratasRepository.save(pirata);
 		return pirata.getId();
 	}
+	@Override
+	public ArrayList<PirataDTO> BuscarTripulacionBarco(Integer idTripulacion) {
+		return piratasRepository.listarMiembrosPorTripulacion(idTripulacion);
+	}
 
 }
