@@ -92,13 +92,24 @@ public class TripulacionController {
 	    return "tripulaciones/detallesTripulacion";
 	}
 	
-	@PostMapping("/borrarTripulacion")
+	@PostMapping("/eliminarMiembro")
 	public String borrarTripulacionDetalles(
 			@RequestParam(value = "idPirata", required = false) Integer idPirata,
 			@RequestParam(value = "idTripulacion", required = false) Integer idTripulacion,
 			ModelMap model) {
 		
-		Integer result = tripulacionSreervice.eliminarMiembroTripulacion(idPirata,idTripulacion);
+		Integer result = tripulacionService.eliminarMiembroTripulacion(idPirata,idTripulacion);
+
+	    ArrayList<TripulacionDTO> lista = tripulacionService.BuscarTripulacionPorFiltros(idTripulacion, null, null, null);
+	    TripulacionDTO tripulacion = (lista != null && !lista.isEmpty()) ? lista.get(0) : null;
+
+	    ArrayList<PirataDTO> miembros = pirataService.BuscarTripulacionBarco(idTripulacion, null, null);
+
+	    ArrayList<DesplegableDTO> listaIslas = desplegables.desplegablePiratas();
+
+	    model.addAttribute("miembros", miembros != null ? miembros : new ArrayList<>());
+	    model.addAttribute("piratasActivos", listaIslas);
+	    model.addAttribute("tripulacion", tripulacion);
 		return "tripulaciones/detallesTripulacion";
 	}
 	

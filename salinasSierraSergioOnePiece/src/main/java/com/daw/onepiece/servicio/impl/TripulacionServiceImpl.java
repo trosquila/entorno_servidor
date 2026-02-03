@@ -28,4 +28,9 @@ public class TripulacionServiceImpl implements ITripulacionService{
 		return tripulacionDAO.modificarTripulacionEnDetalles(idTripulacion, idPirata, rol);
 	}
 
+	@Override
+	public Integer eliminarMiembroTripulacion(Integer idPirata, Integer idTripulacion) {
+		return tripulacionDAO.eliminarMiembroTripulacion(idPirata, idTripulacion);
+	}
+
 }

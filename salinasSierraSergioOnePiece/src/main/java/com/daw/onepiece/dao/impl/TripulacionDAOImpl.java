@@ -32,5 +32,11 @@ public class TripulacionDAOImpl  implements ITripulacionDAO{
 		reclutamientoRepository.save(reclutamiento);
 		return reclutamiento.getId();
 	}
+	
+	@Override
+	public Integer eliminarMiembroTripulacion(Integer idPirata, Integer idTripulacion) {
+		
+		return reclutamientoRepository.ponerMiembroActualAFalso(idPirata, idTripulacion);
+	}
 
 }

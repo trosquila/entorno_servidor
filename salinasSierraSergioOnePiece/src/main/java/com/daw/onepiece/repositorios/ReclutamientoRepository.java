@@ -23,5 +23,18 @@ public interface ReclutamientoRepository extends CrudRepository<ReclutamientoEnt
     + "WHERE r.pirata.id = :idPirata "
     + "AND r.esMiembroActual = true")
     void desactivarReclutamientosDelPirata(@Param("idPirata") Integer idPirata);
-
+    
+    @Modifying
+    @Transactional
+    @Query("""
+        UPDATE ReclutamientoEntity r
+        SET r.esMiembroActual = false
+        WHERE r.pirata.id = :idPirata
+          AND r.tripulacion.id = :idTripulacion
+          AND r.esMiembroActual = true
+    """)
+    Integer ponerMiembroActualAFalso(
+            @Param("idPirata") Integer idPirata,
+            @Param("idTripulacion") Integer idTripulacion
+    );
 }

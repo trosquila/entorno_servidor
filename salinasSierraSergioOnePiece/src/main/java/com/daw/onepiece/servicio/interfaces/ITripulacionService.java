@@ -10,4 +10,6 @@ public interface ITripulacionService {
 
 	Integer modificarTripulacionEnDetalles(Integer idTripulacion, Integer idPirata, String rol);
 
+	Integer eliminarMiembroTripulacion(Integer idPirata, Integer idTripulacion);
+
 }
