@@ -57,7 +57,7 @@ public class TripulacionController {
 	    ArrayList<TripulacionDTO> lista = tripulacionService.BuscarTripulacionPorFiltros(id, null, null, null);
 	    TripulacionDTO tripulacion = (lista != null && !lista.isEmpty()) ? lista.get(0) : null;
 
-	    ArrayList<PirataDTO> miembros = pirataService.BuscarTripulacionBarco(id);
+	    ArrayList<PirataDTO> miembros = pirataService.BuscarTripulacionBarco(id, null, null);
 
 	    ArrayList<DesplegableDTO> listaIslas = desplegables.desplegablePiratas();
 
@@ -69,7 +69,7 @@ public class TripulacionController {
 	}
 	
 	
-	//en piratas no sale un campo sale su id
+	//eliminarPiratas en detalles
 	@PostMapping("/agregarMiembro")
 	public String modificarEnDetalles(
 			@RequestParam(value = "idTripulacion", required = false) Integer idTripulacion,
@@ -82,7 +82,7 @@ public class TripulacionController {
 	    ArrayList<TripulacionDTO> lista = tripulacionService.BuscarTripulacionPorFiltros(idTripulacion, null, null, null);
 	    TripulacionDTO tripulacion = (lista != null && !lista.isEmpty()) ? lista.get(0) : null;
 
-	    ArrayList<PirataDTO> miembros = pirataService.BuscarTripulacionBarco(idTripulacion);
+	    ArrayList<PirataDTO> miembros = pirataService.BuscarTripulacionBarco(idTripulacion, null, null);
 
 	    ArrayList<DesplegableDTO> listaIslas = desplegables.desplegablePiratas();
 
@@ -91,6 +91,44 @@ public class TripulacionController {
 	    model.addAttribute("tripulacion", tripulacion);
 	    return "tripulaciones/detallesTripulacion";
 	}
+	
+	@PostMapping("/borrarTripulacion")
+	public String borrarTripulacionDetalles(
+			@RequestParam(value = "idPirata", required = false) Integer idPirata,
+			@RequestParam(value = "idTripulacion", required = false) Integer idTripulacion,
+			ModelMap model) {
+		
+		Integer result = tripulacionSreervice.eliminarMiembroTripulacion(idPirata,idTripulacion);
+		return "tripulaciones/detallesTripulacion";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/formularioActualizarTripulaciones")
+	public String formularioActualizarTripulaciones() {
+		
+		return "tripulaciones/actualizarTripulaciones";
+	}
+	
+	@PostMapping("/formularioActualizarTripulaciones")
+	public String formularioActualizarTripulacionesListar(
+			@RequestParam(value = "id", required = false) Integer idTripulacion,
+			@RequestParam(value = "nombre", required = false) String nombre,
+			@RequestParam(value = "estaActiva", required = false) Boolean activa,
+			ModelMap model) {
 
+	    ArrayList<TripulacionDTO> lista = tripulacionService.BuscarTripulacionPorFiltros(idTripulacion, nombre, null, activa);
+		model.addAttribute("lista", lista);
+		return "tripulaciones/actualizarTripulaciones";
+	}
 	
 }

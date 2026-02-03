@@ -100,7 +100,7 @@
 											th:text="${pirata.fechaNacimiento != null ? #temporals.format(pirata.fechaNacimiento, 'dd/MM/yyyy') : '—'}"></td>
 
 										<td
-											th:text="${pirata.isla != null ? pirata.isla.id : 'Sin isla'}"></td>
+											th:text="${pirata.isla != null ? pirata.isla.nombre : 'Sin isla'}"></td>
 
 										<td><span th:if="${pirata.activo}"
 											class="badge bg-success">Activo</span> <span

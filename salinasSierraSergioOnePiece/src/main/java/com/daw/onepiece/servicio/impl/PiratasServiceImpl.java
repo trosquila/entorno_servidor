@@ -37,8 +37,8 @@ public class PiratasServiceImpl implements IPirataService{
 	}
 
 	@Override
-	public ArrayList<PirataDTO> BuscarTripulacionBarco(Integer idTripulacion) {
-		return pirataDAO.BuscarTripulacionBarco(idTripulacion);
+	public ArrayList<PirataDTO> BuscarTripulacionBarco(Integer idTripulacion, String nombrePirata, Boolean activo) {
+		return pirataDAO.BuscarTripulacionBarco(idTripulacion, nombrePirata, activo);
 	}
 
 }

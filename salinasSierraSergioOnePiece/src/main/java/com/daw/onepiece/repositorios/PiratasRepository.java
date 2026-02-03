@@ -57,9 +57,13 @@ public interface PiratasRepository extends CrudRepository<PirataEntity, Integer>
 		      LEFT JOIN p.isla i
 		      WHERE (:idTripulacion IS NULL OR :idTripulacion = 0 OR t.id = :idTripulacion)
 		        AND r.esMiembroActual = true
+		        AND (:nombrePirata IS NULL OR :nombrePirata = '' OR LOWER(p.nombre) LIKE LOWER(CONCAT('%', :nombrePirata, '%')))
+		        AND (:activo IS NULL OR p.activo = :activo)
 		      ORDER BY p.id
 		    """)
 		    ArrayList<PirataDTO> listarMiembrosPorTripulacion(
-		      @Param("idTripulacion") Integer idTripulacion
+		      @Param("idTripulacion") Integer idTripulacion,
+		      @Param("nombrePirata") String nombrePirata,
+		      @Param("activo") Boolean activo
 		    );
 	}
