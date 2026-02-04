@@ -1,0 +1,49 @@
+!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login - SSL Demo</title>
+<style>
+body {
+	font-family: Arial;
+	max-width: 400px;
+	margin: 50px auto;
+	padding: 20px;
+}
+
+input {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+button {
+	width: 100%;
+	padding: 10px;
+	background: #007bff;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.error {
+	color: red;
+}
+
+.correcto {
+	color: green;
+	font-size: 18px;
+}
+</style>
+</head>
+<body>
+	<h2>Formulario de Login</h2>
+	<form method="post" action="/login">
+		<input type="text" name="usuario" placeholder="Usuario" required /> <input
+			type="password" name="password" placeholder="Contraseña" required />
+		<button type="submit">Iniciar Sesión</button>
+	</form>
+	<p class="error" th:if="${error}" th:text="${error}"></p>
+	<p class="correcto" th:if="${correcto}" th:text="${correcto}"></p>
+</body>
+</html>
