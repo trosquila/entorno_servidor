@@ -59,11 +59,11 @@ public class TripulacionEntity {
 		this.barco = barco;
 	}
 
-	public Boolean getestaactiva() {
+	public Boolean getEstaactiva() {
 		return estaactiva;
 	}
 
-	public void setestaactiva(Boolean estaactiva) {
+	public void setEstaactiva(Boolean estaactiva) {
 		this.estaactiva = estaactiva;
 	}
 

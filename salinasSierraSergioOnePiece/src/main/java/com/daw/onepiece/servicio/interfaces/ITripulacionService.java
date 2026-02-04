@@ -12,4 +12,8 @@ public interface ITripulacionService {
 
 	Integer eliminarMiembroTripulacion(Integer idPirata, Integer idTripulacion);
 
+	Integer guardarNuevaTripulacion(String nombreTripulacion, String nombreBarco, Boolean activa);
+
+	Integer borrarTripulacion(Integer idTripulacion);
+
 }

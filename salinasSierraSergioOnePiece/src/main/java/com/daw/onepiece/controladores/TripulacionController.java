@@ -113,17 +113,7 @@ public class TripulacionController {
 		return "tripulaciones/detallesTripulacion";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@GetMapping("/formularioActualizarTripulaciones")
 	public String formularioActualizarTripulaciones() {
 		
@@ -142,4 +132,50 @@ public class TripulacionController {
 		return "tripulaciones/actualizarTripulaciones";
 	}
 	
+	@GetMapping("/insertarTripulacion")
+	public String insertarTripulacion() {
+		
+		return "tripulaciones/insertarTripulacion";
+	}
+	
+	@PostMapping("/insertarTripulacion")
+	public String insertarTripulacionPost(
+			@RequestParam(value = "nombre", required = false) String nombreTripulacion,
+			@RequestParam(value = "barco", required = false) String nombreBarco,
+			@RequestParam(value = "estaActiva", required = false) Boolean activa,
+			ModelMap model
+			) {
+			Integer result = tripulacionService.guardarNuevaTripulacion(nombreTripulacion, nombreBarco, activa);
+		return "tripulaciones/insertarTripulacion";
+	}
+	
+	@GetMapping("/formularioBorrarTripulaciones")
+	public String apartadoBorrar() {
+		
+		return "tripulaciones/borrarTripulaciones";
+	}
+	
+	@PostMapping("/formularioBorrarTripulaciones")
+	public String listarBorrar(
+			@RequestParam(value = "id", required = false) Integer idTripulacion,
+			@RequestParam(value = "nombre", required = false) String nombreTripulacion,
+			ModelMap model
+			) {
+		
+		
+		ArrayList<TripulacionDTO> listaTripulacion = tripulacionService.BuscarTripulacionPorFiltros(idTripulacion, nombreTripulacion, null, true);
+		model.addAttribute("lista", listaTripulacion);
+		return "tripulaciones/borrarTripulaciones";
+	}
+	
+	@PostMapping("/borrarTripulacion")
+	public String borrarTripulacion(
+			@RequestParam(value = "id", required = false) Integer idTripulacion,
+			ModelMap model
+			) {
+		
+		
+		Integer result = tripulacionService.borrarTripulacion(idTripulacion);
+		return "tripulaciones/borrarTripulaciones";
+	}
 }

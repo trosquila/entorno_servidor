@@ -39,4 +39,24 @@ public class TripulacionDAOImpl  implements ITripulacionDAO{
 		return reclutamientoRepository.ponerMiembroActualAFalso(idPirata, idTripulacion);
 	}
 
+	@Override
+	public Integer guardarNuevaTripulacion(String nombreTripulacion, String nombreBarco, Boolean activa) {
+		TripulacionEntity tripulacion = new TripulacionEntity();
+		tripulacion.setNombre(nombreTripulacion);
+		tripulacion.setBarco(nombreBarco);
+		tripulacion.setEstaactiva(activa);
+		tripulacionRepository.save(tripulacion);
+		return tripulacion.getId();
+	}
+
+	@Override
+	public Integer borrarTripulacion(Integer idTripulacion) {
+	    // Usamos orElseThrow para controlar si no existe
+	    TripulacionEntity tripulacion = tripulacionRepository.findById(idTripulacion).get();
+	    
+	    tripulacion.setEstaactiva(false); 
+	    
+	    tripulacionRepository.save(tripulacion);
+	    return tripulacion.getId();
+	}
 }
