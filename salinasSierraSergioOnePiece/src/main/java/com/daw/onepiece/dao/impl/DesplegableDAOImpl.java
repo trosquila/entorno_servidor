@@ -9,6 +9,7 @@ import com.daw.onepiece.dao.interfaces.IDesplegablesDAO;
 import com.daw.onepiece.dtos.DesplegableDTO;
 import com.daw.onepiece.entities.IslaEntity;
 import com.daw.onepiece.entities.PirataEntity;
+import com.daw.onepiece.repositorios.DesplegableRepository;
 import com.daw.onepiece.repositorios.IslaRepository;
 import com.daw.onepiece.repositorios.PiratasRepository;
 @Repository
@@ -18,6 +19,9 @@ public class DesplegableDAOImpl implements IDesplegablesDAO{
 	
 	@Autowired
 	PiratasRepository piratasRepository;
+	
+	@Autowired
+	DesplegableRepository desplegableRepository;
 	@Override
 	public ArrayList<DesplegableDTO> desplegableIslas() {
 		Iterable<IslaEntity> listaEntidadesIslas = islaRepository.findAll();
@@ -47,5 +51,10 @@ public class DesplegableDAOImpl implements IDesplegablesDAO{
 			listaCombos.add(new DesplegableDTO(pirataEntity.getId(), pirataEntity.getNombre()));
 		}
 		return listaCombos;
+	}
+
+	@Override
+	public ArrayList<DesplegableDTO> desplegableTripulacion() {
+		return null;
 	}
 }

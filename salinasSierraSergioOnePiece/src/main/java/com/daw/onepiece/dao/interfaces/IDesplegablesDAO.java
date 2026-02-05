@@ -10,4 +10,6 @@ public interface IDesplegablesDAO {
 
 	ArrayList<DesplegableDTO> desplegablePiratas();
 
+	ArrayList<DesplegableDTO> desplegableTripulacion();
+
 }
