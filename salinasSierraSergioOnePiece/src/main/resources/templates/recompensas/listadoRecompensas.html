@@ -35,7 +35,7 @@
                                     <select class="form-select" id="idTripulacion" name="idTripulacion">
                                         <option value="">Todas las tripulaciones</option>
                                         <option th:each="tripulacion : ${tripulacionesActivas}"
-                                            th:value="${tripulacion.id}" th:text="${tripulacion.nombre}"></option>
+                                            th:value="${tripulacion.id}" th:text="${tripulacion.descripcion}"></option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">

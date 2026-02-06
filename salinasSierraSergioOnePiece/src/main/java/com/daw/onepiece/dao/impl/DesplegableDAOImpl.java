@@ -9,9 +9,10 @@ import com.daw.onepiece.dao.interfaces.IDesplegablesDAO;
 import com.daw.onepiece.dtos.DesplegableDTO;
 import com.daw.onepiece.entities.IslaEntity;
 import com.daw.onepiece.entities.PirataEntity;
-import com.daw.onepiece.repositorios.DesplegableRepository;
+import com.daw.onepiece.entities.TripulacionEntity;
 import com.daw.onepiece.repositorios.IslaRepository;
 import com.daw.onepiece.repositorios.PiratasRepository;
+import com.daw.onepiece.repositorios.TripulacionRepository;
 @Repository
 public class DesplegableDAOImpl implements IDesplegablesDAO{
 	@Autowired
@@ -19,9 +20,9 @@ public class DesplegableDAOImpl implements IDesplegablesDAO{
 	
 	@Autowired
 	PiratasRepository piratasRepository;
-	
 	@Autowired
-	DesplegableRepository desplegableRepository;
+	TripulacionRepository tripulacionRepository;
+	
 	@Override
 	public ArrayList<DesplegableDTO> desplegableIslas() {
 		Iterable<IslaEntity> listaEntidadesIslas = islaRepository.findAll();
@@ -55,6 +56,16 @@ public class DesplegableDAOImpl implements IDesplegablesDAO{
 
 	@Override
 	public ArrayList<DesplegableDTO> desplegableTripulacion() {
-		return null;
+		Iterable<TripulacionEntity> listaEntidadesTripulacion = tripulacionRepository.findAll();
+		ArrayList<DesplegableDTO> listaTripulacion = mapeoTripulacionDTO(listaEntidadesTripulacion);
+		return listaTripulacion;
+	}
+
+	private ArrayList<DesplegableDTO> mapeoTripulacionDTO(Iterable<TripulacionEntity> listaEntidadesTripulacion) {
+		ArrayList<DesplegableDTO> listaCombos = new ArrayList<>();
+		for (TripulacionEntity tripulacionEntity : listaEntidadesTripulacion) {
+			listaCombos.add(new DesplegableDTO(tripulacionEntity.getId(), tripulacionEntity.getNombre()));
+		}
+		return listaCombos;
 	}
 }

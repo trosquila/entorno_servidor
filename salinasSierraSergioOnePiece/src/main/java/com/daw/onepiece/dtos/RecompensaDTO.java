@@ -1,16 +1,17 @@
 package com.daw.onepiece.dtos;
 
+import java.math.BigDecimal;
 
 public class RecompensaDTO {
 	private Integer id;
 	private Integer pirataId;
-	private Double cantidad;
+	private BigDecimal cantidad;
 	private Boolean estaVigente;
 
 	public RecompensaDTO() {
 	}
 
-	public RecompensaDTO(Integer id, Integer pirataId, Double cantidad, Boolean estaVigente) {
+	public RecompensaDTO(Integer id, Integer pirataId, BigDecimal cantidad, Boolean estaVigente) {
 		this.id = id;
 		this.pirataId = pirataId;
 		this.cantidad = cantidad;
@@ -33,11 +34,11 @@ public class RecompensaDTO {
 		this.pirataId = pirataId;
 	}
 
-	public Double getCantidad() {
+	public BigDecimal getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(Double cantidad) {
+	public void setCantidad(BigDecimal cantidad) {
 		this.cantidad = cantidad;
 	}
 

@@ -25,6 +25,8 @@ public class RecompensasController {
 	@GetMapping("/listadoRecompensas")
 	public String formularioListarRecompensas(ModelMap model) {
 		ArrayList<DesplegableDTO> tripulacion = desplegables.desplegableTripulacion();
+		model.addAttribute("tripulacionesActivas", tripulacion);
+		System.out.println("lista "+tripulacion);
 		return "recompensas/listadoRecompensas";
 	}
 	@PostMapping("listadoRecompensas")
