@@ -51,7 +51,6 @@ public class TripulacionDAOImpl  implements ITripulacionDAO{
 
 	@Override
 	public Integer borrarTripulacion(Integer idTripulacion) {
-	    // Usamos orElseThrow para controlar si no existe
 	    TripulacionEntity tripulacion = tripulacionRepository.findById(idTripulacion).get();
 	    
 	    tripulacion.setEstaactiva(false); 

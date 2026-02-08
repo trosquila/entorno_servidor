@@ -93,9 +93,9 @@
                                                 th:text="${#numbers.formatInteger(recompensa.cantidad, 0, 'COMMA')} + ' ฿'"></span>
                                         </td>
                                         <td>
-                                            <span th:if="${recompensa.estaVigente == 1}"
+                                            <span th:if="${recompensa.estaVigente == true}"
                                                 class="badge bg-success">Vigente</span>
-                                            <span th:if="${recompensa.estaVigente == 0}" class="badge bg-danger">No
+                                            <span th:if="${recompensa.estaVigente == false}" class="badge bg-danger">No
                                                 Vigente</span>
                                         </td>
                                     </tr>

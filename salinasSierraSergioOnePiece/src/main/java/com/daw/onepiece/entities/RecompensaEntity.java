@@ -18,7 +18,7 @@ public class RecompensaEntity {
     @Column(name = "cantidad", precision = 20, scale = 2)
     private BigDecimal cantidad;
     
-    @Column(name = "estaVigente")
+    @Column(name = "estavigente")
     private Boolean estaVigente;
 
     public RecompensaEntity() {
