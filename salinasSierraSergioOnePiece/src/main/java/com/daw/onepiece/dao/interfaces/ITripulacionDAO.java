@@ -10,4 +10,6 @@ public interface ITripulacionDAO {
 
 	Integer borrarTripulacion(Integer idTripulacion);
 
+	Integer actualizarTripulacion(Integer idTripulacion, String nombre, String barco, Boolean activa);
+
 }

@@ -59,4 +59,17 @@ public class TripulacionDAOImpl  implements ITripulacionDAO{
 	    tripulacionRepository.save(tripulacion);
 	    return tripulacion.getId();
 	}
+
+	@Override
+	public Integer actualizarTripulacion(Integer idTripulacion, String nombre, String barco, Boolean activa) {
+
+	    TripulacionEntity tripulacion = tripulacionRepository.findById(idTripulacion).get();
+
+	    tripulacion.setNombre(nombre);
+	    tripulacion.setBarco(barco);
+	    tripulacion.setEstaactiva(activa);
+
+	    tripulacionRepository.save(tripulacion);
+	    return tripulacion.getId();
+	}
 }

@@ -51,6 +51,7 @@ public class TripulacionController {
 		return "tripulaciones/listadoTripulaciones";
 	}
 	
+	//mas info en listar (el comentario no es de chati es para no liarme)
 	@GetMapping("/detallesTripulacion")
 	public String verDetalles(@RequestParam Integer id, ModelMap model) {
 
@@ -69,7 +70,6 @@ public class TripulacionController {
 	}
 	
 	
-	//eliminarPiratas en detalles
 	@PostMapping("/agregarMiembro")
 	public String modificarEnDetalles(
 			@RequestParam(value = "idTripulacion", required = false) Integer idTripulacion,
@@ -113,6 +113,7 @@ public class TripulacionController {
 		return "tripulaciones/detallesTripulacion";
 	}
 	
+	//fin de más detalles
 
 	@GetMapping("/formularioActualizarTripulaciones")
 	public String formularioActualizarTripulaciones() {
@@ -132,6 +133,27 @@ public class TripulacionController {
 		return "tripulaciones/actualizarTripulaciones";
 	}
 	
+	
+	@PostMapping("/actualizarTripulacion")
+	public String actualizarTripulacion(
+	        @RequestParam("id") Integer idTripulacion,
+	        @RequestParam("nombre") String nombre,
+	        @RequestParam("barco") String barco,
+	        @RequestParam(value = "estaActiva", required = false) Integer activaForm,
+	        ModelMap model
+	) {
+	    Boolean activa = (activaForm != null && activaForm == 1);
+
+	    Integer resultado = tripulacionService.actualizarTripulacion(idTripulacion, nombre, barco, activa);
+
+	    model.addAttribute("resultado", resultado);
+
+	    ArrayList<TripulacionDTO> lista = tripulacionService.BuscarTripulacionPorFiltros(null, null, null, true);
+	    model.addAttribute("lista", lista);
+
+	    return "tripulaciones/actualizarTripulaciones";
+	}
+
 	@GetMapping("/insertarTripulacion")
 	public String insertarTripulacion() {
 		
@@ -148,6 +170,7 @@ public class TripulacionController {
 			Integer result = tripulacionService.guardarNuevaTripulacion(nombreTripulacion, nombreBarco, activa);
 		return "tripulaciones/insertarTripulacion";
 	}
+	
 	
 	@GetMapping("/formularioBorrarTripulaciones")
 	public String apartadoBorrar() {
