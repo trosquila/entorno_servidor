@@ -49,7 +49,8 @@ public interface RecompensaRepository extends CrudRepository<RecompensaEntity, I
     	    LEFT JOIN ReclutamientoEntity rec
     	           ON rec.pirata.id = p.id AND rec.esMiembroActual = true
     	    LEFT JOIN rec.tripulacion t
-    	    WHERE (:nombrePirata IS NULL OR :nombrePirata = ''
+    	    WHERE (:idRecompensa IS NULL OR :idRecompensa = 0 OR r.id = :idRecompensa)
+    	      AND (:nombrePirata IS NULL OR :nombrePirata = ''
     	           OR LOWER(p.nombre) LIKE LOWER(CONCAT('%', :nombrePirata, '%')))
     	      AND (:idTripulacion IS NULL OR :idTripulacion = 0 OR t.id = :idTripulacion)
     	      AND (:cantidad IS NULL OR r.cantidad >= :cantidad)
@@ -57,6 +58,7 @@ public interface RecompensaRepository extends CrudRepository<RecompensaEntity, I
     	    ORDER BY r.cantidad DESC, r.id
     	""")
     	ArrayList<RecompensaDTO> listaRecompensaFiltroPrincipal(
+    	    @Param("idRecompensa") Integer idRecompensa,
     	    @Param("nombrePirata") String nombrePirata,
     	    @Param("idTripulacion") Integer idTripulacion,
     	    @Param("cantidad") Long cantidad,

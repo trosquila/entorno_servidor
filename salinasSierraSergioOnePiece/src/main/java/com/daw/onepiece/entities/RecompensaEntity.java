@@ -31,7 +31,14 @@ public class RecompensaEntity {
         this.estaVigente = estaVigente;
     }
     
-    public Integer getId() {
+    public RecompensaEntity(PirataEntity pirata, BigDecimal cantidad, Boolean estaVigente) {
+
+        this.pirata = pirata;
+        this.cantidad = cantidad;
+        this.estaVigente = estaVigente;
+	}
+
+	public Integer getId() {
         return id;
     }
 

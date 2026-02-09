@@ -63,45 +63,45 @@
                                     th:text="${recompensa.nombrePirata}"></span></h5>
                         </div>
                         <div class="card-body p-4">
-                            <form th:action="@{/recompensas/actualizarRecompensa}" method="post">
-                                <input type="hidden" name="id" th:value="${recompensa.id}">
-
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label">ID de la Recompensa</label>
-                                        <input type="text" class="form-control" th:value="${recompensa.id}" disabled>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="idPirata" class="form-label">Pirata *</label>
-                                        <select class="form-select" name="idPirata" required>
-                                            <option th:each="pirata : ${piratasActivos}" th:value="${pirata.id}"
-                                                th:text="${pirata.nombre}"
-                                                th:selected="${pirata.id == recompensa.idPirata}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="cantidad" class="form-label">Cantidad (Berries) *</label>
-                                        <input type="number" class="form-control" name="cantidad"
-                                            th:value="${recompensa.cantidad}" required min="1">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-check mt-4 pt-2">
-                                            <input class="form-check-input" type="checkbox" name="estaVigente" value="1"
-                                                th:checked="${recompensa.estaVigente == 1}">
-                                            <label class="form-check-label">Recompensa Vigente</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-lg bg-primary text-white">Actualizar
-                                        Recompensa</button>
-                                </div>
-                            </form>
+	                            <form th:action="@{/recompensas/actualizarRecompensa}" method="post">
+	                                <input type="hidden" name="id" th:value="${recompensa.id}">
+	
+	                                <div class="row mb-3">
+	                                    <div class="col-md-6">
+	                                        <label class="form-label">ID de la Recompensa</label>
+	                                        <input type="text" class="form-control" th:value="${recompensa.id}" disabled>
+	                                    </div>
+	                                    <div class="col-md-6">
+	                                        <label for="idPirata" class="form-label">Pirata *</label>
+	                                        <select class="form-select" name="idPirata" required>
+	                                            <option th:each="pirata : ${piratasActivos}" th:value="${pirata.id}"
+	                                                th:text="${pirata.nombre}"
+	                                                th:selected="${pirata.id == recompensa.pirataId}">
+	                                            </option>
+	                                        </select>
+	                                    </div>
+	                                </div>
+	
+	                                <div class="row mb-3">
+	                                    <div class="col-md-6">
+	                                        <label for="cantidad" class="form-label">Cantidad (Berries) *</label>
+	                                        <input type="number" class="form-control" name="cantidad"
+	                                            th:value="${recompensa.cantidad}" required min="1">
+	                                    </div>
+	                                    <div class="col-md-6">
+	                                        <div class="form-check mt-4 pt-2">
+	                                            <input class="form-check-input" type="checkbox" name="estaVigente" value="1"
+	                                                th:checked="${recompensa.estaVigente == true}">
+	                                            <label class="form-check-label">Recompensa Vigente</label>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	
+	                                <div class="d-grid">
+	                                    <button type="submit" class="btn btn-lg bg-primary text-white">Actualizar
+	                                        Recompensa</button>
+	                                </div>
+	                            </form>
                         </div>
                     </div>
                 </div>
