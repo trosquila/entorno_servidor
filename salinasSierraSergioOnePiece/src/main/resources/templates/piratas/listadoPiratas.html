@@ -94,7 +94,7 @@
 										<td
 											th:text="${pirata.frutaDelDiablo != null ? pirata.frutaDelDiablo : 'Sin fruta'}"></td>
 
-										    <td th:text="${pirata.tripulacion}"></td>
+										    <td th:text="${pirata.tripulacion.nombre}"></td>
 
 										<td
 											th:text="${pirata.fechaNacimiento != null ? #temporals.format(pirata.fechaNacimiento, 'dd/MM/yyyy') : '—'}"></td>
