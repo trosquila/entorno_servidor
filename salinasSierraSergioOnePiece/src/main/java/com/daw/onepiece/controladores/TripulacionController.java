@@ -40,9 +40,9 @@ public class TripulacionController {
 	
 	@PostMapping("/listadoTripulaciones")
 	public String listadoTripulacionMostrars(
-			@RequestParam(value = "id", required = false) String nombre,
-			@RequestParam(value = "nombre", required = false) String nombreBarco,
-			@RequestParam(value = "activo", required = false) Integer activoForm, ModelMap model) {
+			@RequestParam(value = "nombre", required = false) String nombre,
+			@RequestParam(value = "barco", required = false) String nombreBarco,
+			@RequestParam(value = "estaActiva", required = false) Integer activoForm, ModelMap model) {
 		
 		Boolean activo = (activoForm != null) ? (activoForm == 1) : null;
 		
