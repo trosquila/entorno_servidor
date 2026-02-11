@@ -27,4 +27,10 @@ public interface AsignaturaRepository extends CrudRepository<AsignaturaEntity, I
 
 	@Query("SELECT a FROM com.adrian.colegio.entities.AsignaturaEntity a WHERE a.activo = 1")
 	Iterable<AsignaturaEntity> buscarAsignaturasActivas();
+
+	@Query("SELECT NEW com.adrian.colegio.dtos.AsignaturaDTO(a.id, a.nombre, a.curso, a.tasa, a.activo) "
+			+ "FROM com.adrian.colegio.entities.AsignaturaEntity a "
+			+ "WHERE a.id = :id")
+	ArrayList<AsignaturaDTO> buscarAsignaturaPorId(@Param("id") Integer id);
+
 }

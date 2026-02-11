@@ -38,4 +38,10 @@ public class AsignaturasServiceImpl implements IAsignaturasService {
 		return asignaturasDAO.borrarAsignatura(id);
 	}
 
+	@Override
+	public ArrayList<AsignaturaDTO> obtenerAsignaturasPorId(Integer id) {
+		
+		return asignaturasDAO.obtenerAsignaturasPorId(id);
+	}
+
 }

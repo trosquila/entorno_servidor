@@ -15,4 +15,6 @@ public interface IAsignaturasService {
 			Integer activo);
 
     int borrarAsignatura(Integer id);
+
+	ArrayList<AsignaturaDTO> obtenerAsignaturasPorId(Integer id);
 }

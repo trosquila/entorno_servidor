@@ -1,0 +1,24 @@
+meta {
+  name: buscarPorGet
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:8080/v1/asignaturas?id=1&nombre=Matematicas&curso=1&tasa=50.0&activo=si
+  body: none
+  auth: inherit
+}
+
+params:query {
+  id: 1
+  nombre: Matematicas
+  curso: 1
+  tasa: 50.0
+  activo: si
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

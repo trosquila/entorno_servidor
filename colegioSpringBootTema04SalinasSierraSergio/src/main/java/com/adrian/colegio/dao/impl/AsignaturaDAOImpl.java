@@ -44,4 +44,10 @@ public class AsignaturaDAOImpl implements IAsignaturasDAO {
 		return asignatura.getId();
 	}
 
+	@Override
+	public ArrayList<AsignaturaDTO>  obtenerAsignaturasPorId(Integer id) {
+		return asignaturaRepository.buscarAsignaturaPorId(id);
+		
+	}
+
 }
