@@ -1,0 +1,25 @@
+meta {
+  name: seleccionarNotas
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8080/v1/notas?idAlumno=&nombreAlumno=&asignatura=&nota=&fecha=&activo=
+  body: none
+  auth: inherit
+}
+
+params:query {
+  idAlumno: 
+  nombreAlumno: 
+  asignatura: 
+  nota: 
+  fecha: 
+  activo: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

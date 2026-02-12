@@ -1,0 +1,26 @@
+meta {
+  name: modificar
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/v1/notas/5
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "id": 5,
+      "idAlumno": 1,
+      "idAsignatura": 2,
+      "nota": "9.5",
+      "fecha": "2026-02-12"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

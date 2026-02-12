@@ -11,8 +11,7 @@ public interface IAsignaturasService {
     int insertarAsignatura(Integer id, String nombre, Integer curso, Double tasa,
 			Integer activo);
 
-    int actualizarAsignatura(Integer id, String nombre, Integer curso, Double tasa,
-			Integer activo);
+    int actualizarAsignatura(Integer id, String nombre, Integer curso, Double tasa, Integer activo);
 
     int borrarAsignatura(Integer id);
 
