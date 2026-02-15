@@ -5,18 +5,20 @@ meta {
 }
 
 post {
-  url: http://localhost:8080/v1/asignaturas
+  url: http://localhost:8080/colegio/v2/asignaturas
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "nombre": "Programación Web",
-    "curso": 2,
-    "tasa": 50,
+    "id": 6,
+    "nombre": "Prueba",
+    "curso": 1,
+    "tasa": 10.5,
     "activo": 1
-  }  
+  }
+  
 }
 
 settings {
