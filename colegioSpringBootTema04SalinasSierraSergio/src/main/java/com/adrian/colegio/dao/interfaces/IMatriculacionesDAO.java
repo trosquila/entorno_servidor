@@ -13,4 +13,6 @@ public interface IMatriculacionesDAO {
     int actualizarMatriculacion(Integer id, Integer idAlumno, Integer idAsignatura, String fecha, Double tasa);
 
     int borrarMatriculacion(Integer id);
+
+	ArrayList<MatriculacionDTO> obtenerMatriculasPorId(Integer id);
 }

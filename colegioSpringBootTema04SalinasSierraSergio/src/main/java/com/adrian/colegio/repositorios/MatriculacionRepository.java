@@ -29,4 +29,17 @@ public interface MatriculacionRepository extends CrudRepository<MatriculacionEnt
 	        @Param("nombreAlumno") String nombreAlumno,
 	        @Param("fecha") String fecha,
 	        @Param("activo") Integer activo);
+
+	  @Query("SELECT NEW com.adrian.colegio.dtos.MatriculacionDTO(" +
+	            "m.id, " +
+	            "m.asignatura.id, " +
+	            "m.asignatura.nombre, " +
+	            "m.alumno.id, " +
+	            "m.alumno.nombre, " +
+	            "m.fecha, " +
+	            "m.activo, " +
+	            "m.caja.importe) " +
+	            "FROM com.adrian.colegio.entities.MatriculacionEntity m " +
+	            "WHERE m.id = :id")
+	    ArrayList<MatriculacionDTO> buscarMatriculacionesPorId(@Param("id") Integer id);
 }

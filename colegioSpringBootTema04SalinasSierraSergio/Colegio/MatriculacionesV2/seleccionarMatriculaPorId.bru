@@ -1,0 +1,16 @@
+meta {
+  name: seleccionarMatriculaPorId
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:8080/colegio/v2/matriculaciones/1
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

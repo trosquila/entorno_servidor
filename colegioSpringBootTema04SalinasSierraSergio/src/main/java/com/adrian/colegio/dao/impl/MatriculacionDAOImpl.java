@@ -109,4 +109,9 @@ public class MatriculacionDAOImpl implements IMatriculacionesDAO {
             return 0;
         }
     }
+
+	@Override
+	public ArrayList<MatriculacionDTO> obtenerMatriculasPorId(Integer id) {
+	       return matriculacionRepository.buscarMatriculacionesPorId(id);
+	}
 }

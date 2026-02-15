@@ -1,0 +1,16 @@
+meta {
+  name: borrarMatricula
+  type: http
+  seq: 6
+}
+
+delete {
+  url: http://localhost:8080/colegio/v2/matriculaciones/1
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

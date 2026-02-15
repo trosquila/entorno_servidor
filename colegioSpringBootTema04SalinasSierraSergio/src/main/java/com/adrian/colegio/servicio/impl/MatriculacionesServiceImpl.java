@@ -35,4 +35,9 @@ public class MatriculacionesServiceImpl implements IMatriculacionesService {
     public int borrarMatriculacion(Integer id) {
         return matriculacionesDAO.borrarMatriculacion(id);
     }
+
+	@Override
+	public ArrayList<MatriculacionDTO> obtenerMatriculasPorId(Integer id) {
+		return matriculacionesDAO.obtenerMatriculasPorId(id);
+	}
 }
