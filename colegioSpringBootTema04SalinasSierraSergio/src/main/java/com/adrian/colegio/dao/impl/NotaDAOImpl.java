@@ -83,4 +83,9 @@ public class NotaDAOImpl implements INotasDAO {
             return 0; // Error al borrar
         }
     }
+
+	@Override
+	public ArrayList<NotaDTO> obtenerNotaPorId(Integer id) {
+		return notaRepository.buscarNotaPorId(id);
+	}
 }

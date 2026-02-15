@@ -1,0 +1,26 @@
+meta {
+  name: ModificarNota
+  type: http
+  seq: 6
+}
+
+put {
+  url: http://localhost:8080/colegio/v2/notas/12
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "id": 12,
+    "idAlumno": 1,
+    "idAsignatura": 6,
+    "nota": "9.0",
+    "fecha": "2026-02-15"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

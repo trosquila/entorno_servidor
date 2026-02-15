@@ -1,0 +1,22 @@
+meta {
+  name: listarNotasPorFiltros
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://localhost:8080/colegio/v2/notas?idAlumno=1&fecha=2026-01-01
+  body: json
+  auth: inherit
+}
+
+params:query {
+  idAlumno: 1
+  fecha: 2026-01-01
+  ~id: 1
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

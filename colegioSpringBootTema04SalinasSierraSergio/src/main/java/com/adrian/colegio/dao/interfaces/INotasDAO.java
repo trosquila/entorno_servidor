@@ -13,4 +13,6 @@ public interface INotasDAO {
     int actualizarNota(Integer id, Integer idAlumno, Integer idAsignatura, Double nota, String fecha);
 
     int borrarNota(Integer id);
+
+	ArrayList<NotaDTO> obtenerNotaPorId(Integer id);
 }

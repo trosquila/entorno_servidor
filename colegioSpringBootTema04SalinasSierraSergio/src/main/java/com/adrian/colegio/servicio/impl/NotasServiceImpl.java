@@ -35,4 +35,10 @@ public class NotasServiceImpl implements INotasService {
     public int borrarNota(Integer id) {
         return notasDAO.borrarNota(id);
     }
+
+	@Override
+	public ArrayList<NotaDTO> obtenerNotaPorId(Integer id) {
+		// TODO Auto-generated method stub
+		return notasDAO.obtenerNotaPorId(id);
+	}
 }

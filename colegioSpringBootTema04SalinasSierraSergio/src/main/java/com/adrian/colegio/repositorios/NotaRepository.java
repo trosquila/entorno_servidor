@@ -32,4 +32,16 @@ public interface NotaRepository extends CrudRepository<NotaEntity, Integer>{
 		    @Param("nota") Double nota,
 		    @Param("fecha") String fecha,
 		    @Param("activo") Integer activo);
+
+    @Query("SELECT NEW com.adrian.colegio.dtos.NotaDTO(" +
+            "n.id, " +
+            "CAST(n.nota AS string), " +
+            "n.asignatura.id, " +
+            "n.asignatura.nombre, " +
+            "n.alumno.id, " +
+            "n.alumno.nombre, " +
+            "n.fecha) " +
+            "FROM com.adrian.colegio.entities.NotaEntity n " +
+            "WHERE n.id = :id")
+     ArrayList<NotaDTO> buscarNotaPorId(@Param("id") Integer id);
 }
