@@ -1,107 +1,113 @@
 package com.adrian.colegio.controladores.rest;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.adrian.colegio.dtos.AsignaturaDTO;
 import com.adrian.colegio.dtos.MatriculacionDTO;
 import com.adrian.colegio.servicio.interfaces.IMatriculacionesService;
 
 @RestController
-@RequestMapping("/colegio/v2")
+@RequestMapping("/colegio/v1") // <- requerido por el profesor
 public class MatriculacionesRestControllerV2 {
 
     @Autowired
     private IMatriculacionesService matriculacionesService;
-    
-    @GetMapping(value = "/matriculaciones", params = {"nombreAsignatura", "nombreAlumno", "fecha", "activo"})
+
+    // 1. Listar todas (SIN filtros)
+    @GetMapping(value = "/matriculaciones", params = {"!asignatura", "!nombreAlumno", "!fecha", "!activo"})
     public ResponseEntity<List<MatriculacionDTO>> listarTodas() {
         return ResponseEntity.ok(
             matriculacionesService.obtenerMatriculacionesPorFiltros(null, null, null, null)
         );
     }
 
+    // 3. Buscar con filtros (opcionales)
     @GetMapping("/matriculaciones")
     public ResponseEntity<List<MatriculacionDTO>> listarConFiltros(
-            @RequestParam(value = "nombreAsignatura", required = false) String nombreAsignatura,
+            @RequestParam(value = "asignatura", required = false) String asignatura,      // <- antes nombreAsignatura
             @RequestParam(value = "nombreAlumno", required = false) String nombreAlumno,
             @RequestParam(value = "fecha", required = false) String fecha,
             @RequestParam(value = "activo", required = false) Integer activo) {
 
-        Integer act = (activo != null && (activo == 0 || activo == 1)) ? activo : null;
+        // activo: 1 = activa, null = todas
+        Integer act = (activo != null && activo == 1) ? 1 : null;
+
+        // Si no se proporciona fecha, usar la fecha actual
+        if (fecha == null || fecha.isBlank()) {
+            fecha = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
+        }
 
         return ResponseEntity.ok(
-            matriculacionesService.obtenerMatriculacionesPorFiltros(nombreAsignatura, nombreAlumno, fecha, act)
+            matriculacionesService.obtenerMatriculacionesPorFiltros(asignatura, nombreAlumno, fecha, act)
         );
     }
 
-    
+    // 2. Obtener una matriculación específica -> 200 o 404
     @GetMapping("/matriculaciones/{id}")
-    public ResponseEntity<MatriculacionDTO> buscarAsignaturaPorId(@PathVariable("id") Integer id) {
+    public ResponseEntity<MatriculacionDTO> buscarMatriculacionPorId(@PathVariable("id") Integer id) {
         ArrayList<MatriculacionDTO> matricula = matriculacionesService.obtenerMatriculasPorId(id);
         if (matricula == null || matricula.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(matricula.get(0));
     }
-    
-    
-	@PostMapping("/matriculaciones")
-	public ResponseEntity<MatriculacionDTO> insertarMatriculacion(@RequestBody MatriculacionDTO matricula) {
-		matriculacionesService.insertarMatriculacion(matricula.getIdAlumno(), matricula.getIdAsignatura(), matricula.getFecha(), matricula.getTasa());
-		
-		return new ResponseEntity<>(matricula, HttpStatus.CREATED);
-	}
-    
-    
-	 @PutMapping("/matriculaciones/{id}")
-	    public ResponseEntity<?> actualizarMatriculas(@PathVariable Integer id, @RequestBody MatriculacionDTO matricula) {
 
-	        if (matricula.getId() == null || !id.equals(matricula.getId())) {
-	            return ResponseEntity.badRequest().body("El ID de la URL no coincide con el de la matricula");
-	        }
+    // 4. Crear -> 201 Created + JSON
+    @PostMapping("/matriculaciones")
+    public ResponseEntity<MatriculacionDTO> insertarMatriculacion(@RequestBody MatriculacionDTO matricula) {
+        matriculacionesService.insertarMatriculacion(
+                matricula.getIdAlumno(),
+                matricula.getIdAsignatura(),
+                matricula.getFecha(),
+                matricula.getTasa()
+        );
+        return new ResponseEntity<>(matricula, HttpStatus.CREATED);
+    }
 
-	        ArrayList<MatriculacionDTO> existente = matriculacionesService.obtenerMatriculasPorId(id);
-	        if (existente == null || existente.isEmpty()) {
-	            return ResponseEntity.notFound().build();
-	        }
+    // 5. Actualizar -> 200 o 404
+    @PutMapping("/matriculaciones/{id}")
+    public ResponseEntity<?> actualizarMatriculas(@PathVariable Integer id, @RequestBody MatriculacionDTO matricula) {
 
-	        matriculacionesService.actualizarMatriculacion(
-	        		matricula.getId(),
-	        		matricula.getIdAlumno(),
-	        		matricula.getIdAsignatura(),
-	        		matricula.getFecha(),
-	        		matricula.getTasa()
-	        );
+        if (matricula.getId() == null || !id.equals(matricula.getId())) {
+            return ResponseEntity.badRequest().body("El ID de la URL no coincide con el de la matricula");
+        }
 
-	        ArrayList<MatriculacionDTO> actualizada = matriculacionesService.obtenerMatriculasPorId(id);
-	        return ResponseEntity.ok(actualizada.isEmpty() ? null : actualizada.get(0));
-	    }
-	 
-	    @DeleteMapping("/matriculaciones/{id}")
-	    public ResponseEntity<String> borrarAsignatura(@PathVariable Integer id) {
+        ArrayList<MatriculacionDTO> existente = matriculacionesService.obtenerMatriculasPorId(id);
+        if (existente == null || existente.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
-	        ArrayList<MatriculacionDTO> existente = matriculacionesService.obtenerMatriculasPorId(id);
-	        if (existente == null || existente.isEmpty()) {
-	            return ResponseEntity.notFound().build();
-	        }
+        matriculacionesService.actualizarMatriculacion(
+                matricula.getId(),
+                matricula.getIdAlumno(),
+                matricula.getIdAsignatura(),
+                matricula.getFecha(),
+                matricula.getTasa()
+        );
 
-	        matriculacionesService.borrarMatriculacion(id);
+        ArrayList<MatriculacionDTO> actualizada = matriculacionesService.obtenerMatriculasPorId(id);
+        return ResponseEntity.ok(actualizada.isEmpty() ? null : actualizada.get(0));
+    }
 
-	        return ResponseEntity.ok("Asignatura eliminada correctamente.");
-	    }
+    // 6. Eliminar (marcar inactiva) -> 200 o 404
+    @DeleteMapping("/matriculaciones/{id}")
+    public ResponseEntity<String> borrarMatriculacion(@PathVariable Integer id) {
+
+        ArrayList<MatriculacionDTO> existente = matriculacionesService.obtenerMatriculasPorId(id);
+        if (existente == null || existente.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Asumimos que tu service la marca como inactiva (como pide el enunciado)
+        matriculacionesService.borrarMatriculacion(id);
+
+        return ResponseEntity.ok("Matriculación eliminada correctamente.");
+    }
 }
