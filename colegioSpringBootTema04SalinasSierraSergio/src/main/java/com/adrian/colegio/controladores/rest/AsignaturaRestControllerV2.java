@@ -32,11 +32,11 @@ public class AsignaturaRestControllerV2 {
 
     @GetMapping("/asignaturas/{id}")
     public ResponseEntity<AsignaturaDTO> buscarAsignaturaPorId(@PathVariable("id") Integer id) {
-        ArrayList<AsignaturaDTO> res = asignaturaService.obtenerAsignaturasPorId(id);
-        if (res == null || res.isEmpty()) {
+        ArrayList<AsignaturaDTO> respuesta = asignaturaService.obtenerAsignaturasPorId(id);
+        if (respuesta == null || respuesta.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(res.get(0));
+        return ResponseEntity.ok(respuesta.get(0));
     }
 
     @GetMapping(value = "/asignaturas")
@@ -53,9 +53,9 @@ public class AsignaturaRestControllerV2 {
             @RequestParam(value = "tasa", required = false) Double tasa,
             @RequestParam(value = "activo", required = false) Integer activo) {
 
-        Integer act = (activo != null && (activo == 0 || activo == 1)) ? activo : null;
+        Integer activoOk = (activo != null && (activo == 0 || activo == 1)) ? activo : null;
 
-        return ResponseEntity.ok(asignaturaService.obtenerAsignaturasPorFiltros(id, nombre, curso, tasa, act));
+        return ResponseEntity.ok(asignaturaService.obtenerAsignaturasPorFiltros(id, nombre, curso, tasa, activoOk));
     }
 
     @PutMapping("/asignaturas/{id}")
