@@ -40,15 +40,15 @@ public class NotasRestControllerV2 {
         return ResponseEntity.ok(res.get(0));
     }
 
-    @GetMapping(value = "/notas", params = {
-            "idAlumno", "nombreAlumno", "asignatura", "nota", "fecha", "activo"})
+    @GetMapping(value = "/notas")
     public ResponseEntity<List<NotaDTO>> listarTodas() {
         return ResponseEntity.ok(
                 notasService.obtenerNotasPorFiltros(null, null, null, null, null, null)
         );
     }
 
-    @GetMapping("/notas")
+    @GetMapping(value = "/notas", params = {
+            "idAlumno", "nombreAlumno", "asignatura", "nota", "fecha", "activo"})
     public ResponseEntity<List<NotaDTO>> listarNotasConFiltros(
             @RequestParam(value = "idAlumno", required = false) Integer idAlumno,
             @RequestParam(value = "nombreAlumno", required = false) String nombreAlumno,

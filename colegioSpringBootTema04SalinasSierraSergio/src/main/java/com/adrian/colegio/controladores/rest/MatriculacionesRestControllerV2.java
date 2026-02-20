@@ -14,25 +14,27 @@ import com.adrian.colegio.dtos.MatriculacionDTO;
 import com.adrian.colegio.servicio.interfaces.IMatriculacionesService;
 
 @RestController
-@RequestMapping("/colegio/v1")
+@RequestMapping("/colegio/v2")
 public class MatriculacionesRestControllerV2 {
 
     @Autowired
     private IMatriculacionesService matriculacionesService;
-
+  
     @GetMapping(value = "/matriculaciones")
     public ResponseEntity<List<MatriculacionDTO>> listarTodas() {
+    	
         return ResponseEntity.ok(
             matriculacionesService.obtenerMatriculacionesPorFiltros(null, null, null, null)
         );
     }
 
-    @GetMapping("/matriculaciones")
+    @GetMapping(value = "/matriculaciones", params = {"asignatura", "nombreAlumno", "fecha", "activo"})
     public ResponseEntity<List<MatriculacionDTO>> listarConFiltros(
-            @RequestParam(value = "asignatura", required = false) String asignatura,      // <- antes nombreAsignatura
+            @RequestParam(value = "asignatura", required = false) String asignatura,
             @RequestParam(value = "nombreAlumno", required = false) String nombreAlumno,
             @RequestParam(value = "fecha", required = false) String fecha,
             @RequestParam(value = "activo", required = false) Integer activo) {
+
 
         Integer act = (activo != null && activo == 1) ? 1 : null;
 
@@ -40,9 +42,13 @@ public class MatriculacionesRestControllerV2 {
             fecha = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
         }
 
-        return ResponseEntity.ok(
-            matriculacionesService.obtenerMatriculacionesPorFiltros(asignatura, nombreAlumno, fecha, act)
-        );
+        List<MatriculacionDTO> lista = matriculacionesService.obtenerMatriculacionesPorFiltros(asignatura, nombreAlumno, fecha, act);
+
+        if (lista == null || lista.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(lista);
     }
 
     @GetMapping("/matriculaciones/{id}")
@@ -89,7 +95,7 @@ public class MatriculacionesRestControllerV2 {
         return ResponseEntity.ok(actualizada.isEmpty() ? null : actualizada.get(0));
     }
 
-    // 6. Eliminar (marcar inactiva) -> 200 o 404
+
     @DeleteMapping("/matriculaciones/{id}")
     public ResponseEntity<String> borrarMatriculacion(@PathVariable Integer id) {
 
@@ -98,7 +104,6 @@ public class MatriculacionesRestControllerV2 {
             return ResponseEntity.notFound().build();
         }
 
-        // Asumimos que tu service la marca como inactiva (como pide el enunciado)
         matriculacionesService.borrarMatriculacion(id);
 
         return ResponseEntity.ok("Matriculación eliminada correctamente.");

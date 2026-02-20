@@ -5,13 +5,16 @@ meta {
 }
 
 get {
-  url: http://localhost:8080/colegio/v2/matriculaciones?nombreAlumno=Benito
+  url: http://localhost:8080/colegio/v2/matriculaciones?asignatura=Matematicas&nombreAlumno=Adrian&fecha=2026-02-20&activo=1
   body: none
   auth: inherit
 }
 
 params:query {
-  nombreAlumno: Benito
+  asignatura: Matematicas
+  nombreAlumno: Adrian
+  fecha: 2026-02-20
+  activo: 1
 }
 
 settings {
