@@ -10,6 +10,11 @@
 </head>
 
 <body class="onepiece-theme">
+	<header>
+		<h2>Piratah'</h2>
+		<h3 style="text-align:center;">Bienvenido/a, <span th:text="${usuario}"> </span>!</h3>
+		<p style="text-align:center;">Tu rol es: <span th:text="${rol}"> span> </span></p>
+	</header>
     <div class="container-fluid">
         <!-- Menu Fragment -->
         <div th:replace="~{menu :: menu}"></div>

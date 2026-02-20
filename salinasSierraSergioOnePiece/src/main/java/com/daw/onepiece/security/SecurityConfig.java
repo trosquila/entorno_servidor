@@ -46,18 +46,18 @@ public class SecurityConfig {
             // 2. Autorización de peticiones
             .authorizeHttpRequests(auth -> auth
                 // URLs públicas
-                .requestMatchers("/", "/login", "/accesoDenegado", "/css/**", "/js/**").permitAll()
+                .requestMatchers("/", "/login", "/accesoDenegado", "/css/**").permitAll()
                 
                 // URLs que requieren estar logueado (cualquier rol)
                 .requestMatchers("/home/**").authenticated()
                 
                 // Roles específicos (Asegúrate de que coincidan con tu DB)
-                .requestMatchers("/notas/**").hasAnyAuthority("director", "profesor")
-                .requestMatchers("/faltas/**").hasAnyAuthority("director", "profesor")
-                .requestMatchers("/matriculaciones/**").hasAnyAuthority("director", "secretario")
+                .requestMatchers("/piratas/**").hasAnyAuthority("almirante", "capitan")
+                .requestMatchers("/recompensas/**").hasAnyAuthority("almirante", "capitan")
+                .requestMatchers("/tripulaciones/**").hasAnyAuthority("almirante", "reclutador")
                 
                 // El resto de la aplicación es solo para el director
-                .anyRequest().hasAuthority("director")
+                .anyRequest().hasAuthority("almirante")
             )
             
             // 3. Configuración del Login
