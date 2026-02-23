@@ -22,13 +22,20 @@ public class NotasRestControllerV2 {
 
     @PostMapping("/notas")
     public ResponseEntity<NotaDTO> insertarNota(@RequestBody NotaDTO nota) {
-        notasService.insertarNota(
+
+        int idGenerado = notasService.insertarNota(
                 nota.getIdAlumno(),
                 nota.getIdAsignatura(),
                 Double.parseDouble(nota.getNota()),
                 nota.getFecha()
         );
-        return new ResponseEntity<>(nota, HttpStatus.CREATED);
+
+        ArrayList<NotaDTO> res = notasService.obtenerNotaPorId(idGenerado);
+        if (res == null || res.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(res.get(0));
     }
 
     @GetMapping("/notas/{id}")

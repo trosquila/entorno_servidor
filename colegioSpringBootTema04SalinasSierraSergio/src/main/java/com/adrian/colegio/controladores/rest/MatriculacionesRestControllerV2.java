@@ -62,15 +62,18 @@ public class MatriculacionesRestControllerV2 {
 
     @PostMapping("/matriculaciones")
     public ResponseEntity<MatriculacionDTO> insertarMatriculacion(@RequestBody MatriculacionDTO matricula) {
-        matriculacionesService.insertarMatriculacion(
+
+        int idGenerado = matriculacionesService.insertarMatriculacion(
                 matricula.getIdAlumno(),
                 matricula.getIdAsignatura(),
                 matricula.getFecha(),
                 matricula.getTasa()
         );
-        return new ResponseEntity<>(matricula, HttpStatus.CREATED);
-    }
 
+        ArrayList<MatriculacionDTO> res = matriculacionesService.obtenerMatriculasPorId(idGenerado);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(res.get(0));
+    }
     @PutMapping("/matriculaciones/{id}")
     public ResponseEntity<?> actualizarMatriculas(@PathVariable Integer id, @RequestBody MatriculacionDTO matricula) {
 
