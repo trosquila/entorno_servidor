@@ -46,9 +46,9 @@ public class SecurityConfig {
 						.requestMatchers("/home/**").authenticated()
 
 						// Roles específicos (Asegúrate de que coincidan con tu DB)
-						.requestMatchers("/piratas/**").hasAnyAuthority("almirante", "capitan")
+						.requestMatchers("/piratas/**").hasAnyAuthority("almirante", "vicealmirante")
 						.requestMatchers("/recompensas/**").hasAnyAuthority("almirante", "capitan")
-						.requestMatchers("/tripulaciones/**").hasAnyAuthority("almirante", "reclutador")
+						.requestMatchers("/tripulaciones/**").hasAnyAuthority("almirante", "vicealmirante")
 
 						// El resto de la aplicación es solo para el director
 						.anyRequest().hasAuthority("almirante"))
@@ -84,11 +84,11 @@ public class SecurityConfig {
 	            
 	            // Endpoints protegidos por roles
 	            .requestMatchers("/v1/piratas/**")
-	                .hasAnyAuthority("almirante", "capitan")
+	                .hasAnyAuthority("almirante","vicealmirante")
 	            .requestMatchers("/v1/recompensas/**")
 	                .hasAnyAuthority("almirante", "capitan")
 	            .requestMatchers("/v1/tripulaciones/**")
-	                .hasAnyAuthority("almirante", "reclutador")
+	                .hasAnyAuthority("almirante", "vicealmirante")
 	            
 	            // Cualquier otra petición API requiere autenticación
 	            .anyRequest().authenticated()
